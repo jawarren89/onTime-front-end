@@ -1,7 +1,10 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import axios from "axios";
-import RoutineList from "./components/RoutineList";
+
+import AllRoutines from "./pages/AllRoutines";
+import About from "./pages/About";
 
 function App() {
   const URL = "https://ontime-planner.herokuapp.com";
@@ -29,10 +32,10 @@ function App() {
       <header className="App-header">
         <h1>onTime</h1>
       </header>
-      <section>
-        <p>Hello Routines!</p>
-        <RoutineList routines={routines}></RoutineList>
-      </section>
+      <Routes>
+        <Route path="/" element={<AllRoutines routines={routines} />} />
+        <Route path="about" element={<About />} />
+      </Routes>
     </div>
   );
 }
