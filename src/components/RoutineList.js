@@ -33,8 +33,8 @@ RoutineList.propTypes = {
       title: PropTypes.string.isRequired,
       description: PropTypes.string,
       destination: PropTypes.string,
-      complete_time: PropTypes.number,
-      start_time: PropTypes.number,
+      complete_time: PropTypes.string,
+      start_time: PropTypes.string,
       total_time: PropTypes.number,
       tasks: PropTypes.array.isRequired,
     })

@@ -5,6 +5,7 @@ import axios from "axios";
 
 import AllRoutines from "./pages/AllRoutines";
 import About from "./pages/About";
+import NavBar from "./components/NavBar";
 
 function App() {
   const URL = "https://ontime-planner.herokuapp.com";
