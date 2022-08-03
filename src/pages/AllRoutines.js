@@ -5,9 +5,8 @@ import RoutineList from "../components/RoutineList";
 const AllRoutines = (props) => {
   return (
     <>
-      <main>
-        <h2 className="allroutines">Welcome to Routines!</h2>
-        <p>You can do this, I believe in you.</p>
+      <main className="allroutines">
+        <h2>Welcome to Routines!</h2>
         <section>
           <RoutineList routines={props.routines}></RoutineList>
         </section>

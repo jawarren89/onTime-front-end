@@ -9,7 +9,7 @@ import x from "../assets/x.svg";
 
 const NavBar = (props) => {
   return (
-    <>
+    <div className="menu">
       <div className="navbar">
         <Link to="#" className="menu-bars">
           <img
@@ -18,6 +18,9 @@ const NavBar = (props) => {
             onClick={props.toggleNavbarCallback}
           />
         </Link>
+        <header className="page-header">
+          <h1>onTime</h1>
+        </header>
       </div>
       <nav className={props.navbar ? "nav-menu active" : "nav-menu"}>
         <ul className="nav-menu-items" onClick={props.toggleNavbarCallback}>
@@ -38,7 +41,7 @@ const NavBar = (props) => {
           })}
         </ul>
       </nav>
-    </>
+    </div>
   );
 };
 
