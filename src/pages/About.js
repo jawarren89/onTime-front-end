@@ -1,12 +1,8 @@
 import React from "react";
-import NavBar from "../components/NavBar";
 
 const About = () => {
   return (
     <>
-      <nav>
-        <NavBar></NavBar>
-      </nav>
       <main>
         <h2>About onTime</h2>
         <p>Insert info here</p>

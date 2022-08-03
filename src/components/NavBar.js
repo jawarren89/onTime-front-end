@@ -1,32 +1,32 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+// import { useState } from "react";
 
 import NavbarData from "./NavBarData";
+import "./NavBar.css";
 import menu from "../assets/menu.svg";
 import x from "../assets/x.svg";
 
-const NavBar = () => {
-  const [navbar, setNavbar] = useState(false);
-
-  const showNavbar = () => setNavbar(!navbar);
-
+const NavBar = (props) => {
   return (
     <>
       <div className="navbar">
         <Link to="#" className="menu-bars">
-          <img src={menu} alt="menu bars" />
+          <img
+            src={menu}
+            alt="menu bars"
+            onClick={props.toggleNavbarCallback}
+          />
         </Link>
       </div>
-      <nav className={navbar ? "nav-menu active" : "nav-menu"}>
-        <ul className="nav-menu-items">
+      <nav className={props.navbar ? "nav-menu active" : "nav-menu"}>
+        <ul className="nav-menu-items" onClick={props.toggleNavbarCallback}>
           <li className="navbar-toggle">
-            <Link to="#" className="menubars">
+            <Link to="#" className="menu-bars">
               <img src={x} alt="close menu" />
             </Link>
           </li>
           {NavbarData.map((item, index) => {
-            console.log("get navbar data");
             return (
               <li key={index} className={item.cName}>
                 <Link to={item.path}>

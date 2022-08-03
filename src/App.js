@@ -11,6 +11,9 @@ function App() {
   const URL = "https://ontime-planner.herokuapp.com";
 
   const [routines, setRoutines] = useState([]);
+  const [navbar, setNavbar] = useState(true);
+
+  const toggleNavbar = () => setNavbar(!navbar);
 
   const fetchRoutines = () => {
     axios
@@ -30,9 +33,10 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         <h1>onTime</h1>
-      </header>
+      </header> */}
+      <NavBar navbar={navbar} toggleNavbarCallback={toggleNavbar}></NavBar>
       <Routes>
         <Route path="/" element={<AllRoutines routines={routines} />} />
         <Route path="about" element={<About />} />

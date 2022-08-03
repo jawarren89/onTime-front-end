@@ -1,16 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import RoutineList from "../components/RoutineList";
-import NavBar from "../components/NavBar";
 
 const AllRoutines = (props) => {
   return (
     <>
-      <nav>
-        <NavBar></NavBar>
-      </nav>
       <main>
-        <h2>Welcome to Routines!</h2>
+        <h2 className="allroutines">Welcome to Routines!</h2>
         <p>You can do this, I believe in you.</p>
         <section>
           <RoutineList routines={props.routines}></RoutineList>
