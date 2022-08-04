@@ -33,6 +33,17 @@ function App() {
       });
   };
 
+  const deleteRoutine = (routineId) => {
+    axios
+      .delete(`${URL}/routines/${routineId}`)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(error);
+      })
+  };
+
   // let location = useLocation();
   // useEffect(() => {
   //   console.log(location.pathname);
