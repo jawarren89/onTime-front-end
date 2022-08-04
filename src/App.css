@@ -16,12 +16,6 @@
   color: var(--text);
 }
 
-main {
-  max-width: 60em;
-  line-height: 1.5;
-  padding: 1em 1em;
-}
-
 * {
   box-sizing: border-box;
   margin: 0;

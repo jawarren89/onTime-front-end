@@ -1,0 +1,10 @@
+.routine * {
+    border: 1px solid blue;
+}
+
+.routine {
+    display: flex;
+    flex-direction: column;
+    flex-flow: space-between;
+}
+

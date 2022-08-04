@@ -1,9 +1,8 @@
+import "../styles/Routine.css";
 import React from "react";
 import { Link } from "react-router-dom";
-
 import PropTypes from "prop-types";
 
-import "./Routine.css";
 import play from "../assets/play.svg";
 import edit from "../assets/edit-2.svg";
 import trash from "../assets/trash-2.svg";
@@ -13,6 +12,8 @@ const Routine = (props) => {
     if (time_string) {
       const hours = time_string.split();
       return hours[0];
+    } else {
+      return "--";
     }
   };
 
@@ -25,6 +26,7 @@ const Routine = (props) => {
   };
 
   const total_tasks = props.tasks.length;
+  const start_time = time_parser(props.start_time);
   const complete_time = time_parser(props.complete_time);
 
   return (
@@ -32,7 +34,7 @@ const Routine = (props) => {
       <ul>
         <li className="title">{props.title}</li>
         <li className="timing">
-          Start: {props.start_time} | Complete: {props.complete_time}
+          Start: {start_time} | Complete: {complete_time}
         </li>
         <div className="buttons">
           <Link to="/playroutine">
@@ -51,7 +53,7 @@ const Routine = (props) => {
             <li>Tasks: {total_tasks} </li>
             <li className="description">Description: {props.description}</li>
             <div>
-              <li>Complete by: {complete_time}</li>
+              <li>Complete by: (insert 3 drop down selectors)</li>
             </div>
             <button onClick={updateOnClick}>Submit</button>
           </ul>

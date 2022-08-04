@@ -1,9 +1,9 @@
+import "../styles/NavBar.css";
 import React from "react";
 import { Link } from "react-router-dom";
 // import { useState } from "react";
 
 import NavbarData from "./NavBarData";
-import "./NavBar.css";
 import menu from "../assets/menu.svg";
 import x from "../assets/x.svg";
 
