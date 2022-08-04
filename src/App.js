@@ -85,6 +85,38 @@ function App() {
     })
   };
 
+  const addTask = (taskData) => {
+    axios
+      .post(`${URL}/tasks`, taskData)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  };
+
+  const updateTask = (taskId, taskData) => {
+    .put(`${URL}/tasks/${taskId}`, taskData)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  };
+
+  const deleteTask = (taskId) => {
+    axios
+      .delete(`${URL}/tasks/${taskId}`)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(error);
+      })
+  };
+
 
   // let location = useLocation();
   // useEffect(() => {
