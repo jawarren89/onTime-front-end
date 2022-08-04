@@ -35,22 +35,11 @@ function App() {
   };
 
   const selectRoutine = (routineId) => {
-    for (const routine of routines) => {
+    for (const routine of routines) {
       if (routine.routine_id === routineId) {
         setSelectedRoutine(routine);
       }
     }
-  };
-
-  const deleteRoutine = (routineId) => {
-    axios
-      .delete(`${URL}/routines/${routineId}`)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((err) => {
-        console.log(error);
-      })
   };
 
   const addRoutine = (routineData) => {
@@ -61,7 +50,7 @@ function App() {
       })
       .catch((error) => {
         console.log(error);
-      })
+      });
   };
 
   const updateRoutine = (routineId, routineData) => {
@@ -72,17 +61,29 @@ function App() {
       })
       .catch((error) => {
         console.log(error);
-      })
+      });
   };
 
-  const fetchRoutineTasks = (routineID) => {
-    .get(`${URL}/tasks`, { params: { routine_id:routineId }})
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error) => {
-      console.log(error);
-    })
+  const deleteRoutine = (routineId) => {
+    axios
+      .delete(`${URL}/routines/${routineId}`)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const fetchRoutineTasks = (routineId = null) => {
+    axios
+      .get(`${URL}/tasks`, { params: { routine_id: routineId } })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const addTask = (taskData) => {
@@ -93,17 +94,18 @@ function App() {
       })
       .catch((error) => {
         console.log(error);
-      })
+      });
   };
 
   const updateTask = (taskId, taskData) => {
-    .put(`${URL}/tasks/${taskId}`, taskData)
+    axios
+      .put(`${URL}/tasks/${taskId}`, taskData)
       .then((response) => {
         console.log(response);
       })
       .catch((error) => {
         console.log(error);
-      })
+      });
   };
 
   const deleteTask = (taskId) => {
@@ -112,11 +114,10 @@ function App() {
       .then((response) => {
         console.log(response);
       })
-      .catch((err) => {
+      .catch((error) => {
         console.log(error);
-      })
+      });
   };
-
 
   // let location = useLocation();
   // useEffect(() => {
@@ -135,7 +136,15 @@ function App() {
         toggleNavbarCallback={toggleNavbar}
       ></NavBar>
       <Routes>
-        <Route path="/" element={<AllRoutines routines={routines} />} />
+        <Route
+          path="/"
+          element={
+            <AllRoutines
+              routines={routines}
+              deleteRoutineCallback={deleteRoutine}
+            />
+          }
+        />
         <Route path="/taskbank" element={<PageNotFound />} />
         <Route path="/about" element={<About />} />
         <Route path="/settings" element={<PageNotFound />} />

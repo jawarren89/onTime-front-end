@@ -32,7 +32,8 @@ const Routine = (props) => {
   const start_time = time_parser(props.start_time);
   const complete_time = time_parser(props.complete_time);
 
-  const deleteOnClick = () => {
+  const deleteOnClick = (props) => {
+    props.deleteRoutineCallback(props.routine_id);
     return console.log("deleted");
   };
 

@@ -9,7 +9,10 @@ const AllRoutines = (props) => {
       <main className="allroutines">
         <h2 className="page-header">Welcome to Routines!</h2>
         <section className="routines-container">
-          <RoutineList routines={props.routines}></RoutineList>
+          <RoutineList
+            routines={props.routines}
+            deleteRoutineCallback={props.deleteRoutineCallback}
+          ></RoutineList>
         </section>
       </main>
     </>
@@ -29,6 +32,7 @@ AllRoutines.propTypes = {
       tasks: PropTypes.array.isRequired,
     })
   ),
+  deleteRoutineCallback: PropTypes.func.isRequired,
 };
 
 export default AllRoutines;
