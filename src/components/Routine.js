@@ -17,8 +17,13 @@ const Routine = (props) => {
 
   const time_parser = (time_string) => {
     if (time_string) {
-      const hours = time_string.split();
-      return hours[0];
+      const hours = "";
+      const minutes = "";
+      if (hours) {
+        return `${hours} "hours," ${minutes} "minutes"`;
+      } else {
+        return `${minutes} "minutes"`;
+      }
     } else {
       return "--";
     }
