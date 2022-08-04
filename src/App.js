@@ -8,6 +8,7 @@ import EditRoutine from "./pages/EditRoutine";
 import PlayRoutine from "./pages/PlayRoutine";
 import About from "./pages/About";
 import NavBar from "./components/NavBar";
+import PageNotFound from "./pages/404Page";
 
 function App() {
   const URL = "https://ontime-planner.herokuapp.com";
@@ -49,6 +50,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/editroutine" element={<EditRoutine />} />
         <Route path="/playroutine" element={<PlayRoutine />} />
+        <Route path="/404" element={<PageNotFound />} />
       </Routes>
     </div>
   );

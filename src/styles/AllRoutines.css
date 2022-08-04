@@ -4,3 +4,8 @@
     padding: 1em 1em;
     margin: 0 auto;
 }
+
+.page-header {
+    font-family: 'Cairo', Arial, Helvetica, sans-serif;
+    text-align: center;
+}

@@ -1,8 +1,6 @@
-/* .menu * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-} */
+.menu {
+    font-family: 'Cairo', Arial, sans-serif
+}
 
 .navbar {
     background-color: var(--bluegreen);
@@ -19,6 +17,7 @@
 }
 
 .nav-menu.active {
+    font-family: 'Cairo', Arial, sans-serif;
     background-color: var(--aliceblue);
     width: 250px;
     height: 100vh;
@@ -32,6 +31,8 @@
 }
 
 .nav-menu {
+    font-family: 'Cairo', Arial, sans-serif;
+
     background-color: var(--aliceblue);
     width: 250px;
     height: 100vh;
