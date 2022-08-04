@@ -58,17 +58,19 @@ const Routine = (props) => {
         </li>
       </ul>
 
-      <div className="drop-down">
-        <ul>
+      <div>
+        <ul className="drop-down">
           <li className="total-time">Total time: {props.total_time}</li>
           <li className="total-tasks">Tasks: {total_tasks} </li>
           <li className="description">Description: {props.description}</li>
-          <div className="edit-time">
-            <li>Complete by: (insert 3 drop down selectors)</li>
+          <div className="complete-by">
+            <li>Complete by: (insert selectors)</li>
           </div>
-          <button className="update-button" onClick={updateOnClick}>
-            Update
-          </button>
+          <div className="update-button-container">
+            <button className="update-button" onClick={updateOnClick}>
+              Update
+            </button>
+          </div>
         </ul>
       </div>
     </div>
