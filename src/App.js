@@ -14,7 +14,7 @@ function App() {
   const URL = "https://ontime-planner.herokuapp.com";
 
   const [routines, setRoutines] = useState([]);
-  // const [currentPage, setCurrentPage] = useState("onTime");
+  const [pageTitle, setPageTitle] = useState("onTime");
   const [navbar, setNavbar] = useState(true);
 
   const toggleNavbar = () => setNavbar(!navbar);
@@ -44,7 +44,11 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar navbar={navbar} toggleNavbarCallback={toggleNavbar}></NavBar>
+      <NavBar
+        pageTitle={pageTitle}
+        navbar={navbar}
+        toggleNavbarCallback={toggleNavbar}
+      ></NavBar>
       <Routes>
         <Route path="/" element={<AllRoutines routines={routines} />} />
         <Route path="/taskbank" element={<PageNotFound />} />

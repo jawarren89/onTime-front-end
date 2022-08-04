@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 // import { useState } from "react";
 
 import NavbarData from "./NavBarData";
+import PropTypes from "prop-types";
+
 import menu from "../assets/menu.svg";
 import x from "../assets/x.svg";
 
@@ -21,7 +23,7 @@ const NavBar = (props) => {
           />
         </Link>
         <header className="page-header">
-          <h1>onTime</h1>
+          <h1>{props.pageTitle}</h1>
         </header>
       </div>
       <nav className={props.navbar ? "nav-menu active" : "nav-menu"}>
@@ -46,6 +48,12 @@ const NavBar = (props) => {
       </nav>
     </div>
   );
+};
+
+NavBar.propTypes = {
+  pageTitle: PropTypes.string.isRequired,
+  navbar: PropTypes.bool.isRequired,
+  toggleNavbarCallback: PropTypes.func.isRequired,
 };
 
 export default NavBar;
