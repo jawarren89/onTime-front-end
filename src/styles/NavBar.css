@@ -14,6 +14,7 @@
     margin-left: 2rem;
     font-size: 2rem;
     background: none;
+    padding: 0 16px 0 0;
 }
 
 .nav-menu.active {
@@ -32,7 +33,6 @@
 
 .nav-menu {
     font-family: 'Cairo', Arial, sans-serif;
-
     background-color: var(--aliceblue);
     width: 250px;
     height: 100vh;

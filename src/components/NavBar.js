@@ -30,6 +30,7 @@ const NavBar = (props) => {
             <Link to="#" className="menu-bars">
               <img src={x} alt="close menu" />
             </Link>
+            <h1 class-Name="app-title">onTime</h1>
           </li>
           {NavbarData.map((item, index) => {
             return (

@@ -47,7 +47,9 @@ function App() {
       <NavBar navbar={navbar} toggleNavbarCallback={toggleNavbar}></NavBar>
       <Routes>
         <Route path="/" element={<AllRoutines routines={routines} />} />
+        <Route path="/taskbank" element={<PageNotFound />} />
         <Route path="/about" element={<About />} />
+        <Route path="/settings" element={<PageNotFound />} />
         <Route path="/editroutine" element={<EditRoutine />} />
         <Route path="/playroutine" element={<PlayRoutine />} />
         <Route path="/404" element={<PageNotFound />} />
