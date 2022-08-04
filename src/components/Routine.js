@@ -30,12 +30,9 @@ const Routine = (props) => {
   const complete_time = time_parser(props.complete_time);
 
   return (
-    <div className="routine">
-      <ul>
+    <div>
+      <ul className="routine">
         <li className="title">{props.title}</li>
-        <li className="timing">
-          Start: {start_time} | Complete: {complete_time}
-        </li>
         <div className="buttons">
           <Link to="/playroutine">
             <img src={play} alt="play icon" />
@@ -47,18 +44,22 @@ const Routine = (props) => {
             <img src={trash} alt="trash icon" />
           </button>
         </div>
-        <div className="drop-down">
-          <ul>
-            <li>Total time: {props.total_time}</li>
-            <li>Tasks: {total_tasks} </li>
-            <li className="description">Description: {props.description}</li>
-            <div>
-              <li>Complete by: (insert 3 drop down selectors)</li>
-            </div>
-            <button onClick={updateOnClick}>Submit</button>
-          </ul>
-        </div>
+        <li className="timing">
+          Start: {start_time} | Complete: {complete_time}
+        </li>
       </ul>
+
+      <div className="drop-down">
+        <ul>
+          <li>Total time: {props.total_time}</li>
+          <li>Tasks: {total_tasks} </li>
+          <li className="description">Description: {props.description}</li>
+          <div>
+            <li>Complete by: (insert 3 drop down selectors)</li>
+          </div>
+          <button onClick={updateOnClick}>Submit</button>
+        </ul>
+      </div>
     </div>
   );
 };
