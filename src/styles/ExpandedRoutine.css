@@ -2,6 +2,10 @@
     border: 1px solid blue;
 } */
 
+.drop-down-container {
+    margin-bottom: 1em;
+}
+
 .drop-down {
     list-style-type: none;
     font-size: smaller;

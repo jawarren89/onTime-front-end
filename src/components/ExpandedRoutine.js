@@ -20,7 +20,7 @@ const ExpandedRoutine = (props) => {
         </div>
         <div className="update-button-container">
           <button className="update-button" onClick={updateOnClick}>
-            Update
+            Update Time
           </button>
         </div>
       </ul>
