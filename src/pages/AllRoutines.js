@@ -8,7 +8,7 @@ const AllRoutines = (props) => {
     <>
       <main className="allroutines">
         <h2>Welcome to Routines!</h2>
-        <section>
+        <section className="routines-container">
           <RoutineList routines={props.routines}></RoutineList>
         </section>
       </main>

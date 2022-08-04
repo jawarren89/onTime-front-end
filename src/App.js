@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import axios from "axios";
 
 import AllRoutines from "./pages/AllRoutines";
@@ -13,6 +13,7 @@ function App() {
   const URL = "https://ontime-planner.herokuapp.com";
 
   const [routines, setRoutines] = useState([]);
+  // const [currentPage, setCurrentPage] = useState("onTime");
   const [navbar, setNavbar] = useState(true);
 
   const toggleNavbar = () => setNavbar(!navbar);
@@ -31,6 +32,13 @@ function App() {
       });
   };
 
+  // let location = useLocation();
+  // useEffect(() => {
+  //   console.log(location.pathname);
+  //   setCurrentPage(location.pathname);
+  // }, [location]);
+
+  // how do we get this to only fetch once??
   useEffect(() => fetchRoutines(), []);
 
   return (

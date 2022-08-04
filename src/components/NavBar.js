@@ -1,3 +1,5 @@
+// Source: https://www.youtube.com/watch?v=CXa0f4-dWi4
+
 import "../styles/NavBar.css";
 import React from "react";
 import { Link } from "react-router-dom";

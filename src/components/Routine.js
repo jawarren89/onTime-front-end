@@ -6,6 +6,8 @@ import PropTypes from "prop-types";
 import play from "../assets/play.svg";
 import edit from "../assets/edit-2.svg";
 import trash from "../assets/trash-2.svg";
+import chevron_right from "../assets/chevron-right.svg";
+import chevron_down from "../assets/chevron-down.svg";
 
 const Routine = (props) => {
   const time_parser = (time_string) => {
@@ -32,17 +34,24 @@ const Routine = (props) => {
   return (
     <div>
       <ul className="routine">
+        <img src={chevron_right} alt="right arrow" className="chevron-right" />
         <li className="title">{props.title}</li>
-        <div className="buttons">
+        <div className="button-container">
           <Link to="/playroutine">
-            <img src={play} alt="play icon" />
+            <button className="play">
+              <img src={play} alt="play icon" />
+            </button>
           </Link>
           <Link to="/editroutine">
-            <img src={edit} alt="edit icon" />
+            <button className="edit">
+              <img src={edit} alt="edit icon" />
+            </button>
           </Link>
-          <button onClick={deleteOnClick}>
-            <img src={trash} alt="trash icon" />
-          </button>
+          <div>
+            <button className="delete" onClick={deleteOnClick}>
+              <img src={trash} alt="trash icon" />
+            </button>
+          </div>
         </div>
         <li className="timing">
           Start: {start_time} | Complete: {complete_time}
@@ -51,13 +60,15 @@ const Routine = (props) => {
 
       <div className="drop-down">
         <ul>
-          <li>Total time: {props.total_time}</li>
-          <li>Tasks: {total_tasks} </li>
+          <li className="total-time">Total time: {props.total_time}</li>
+          <li className="total-tasks">Tasks: {total_tasks} </li>
           <li className="description">Description: {props.description}</li>
-          <div>
+          <div className="edit-time">
             <li>Complete by: (insert 3 drop down selectors)</li>
           </div>
-          <button onClick={updateOnClick}>Submit</button>
+          <button className="update-button" onClick={updateOnClick}>
+            Update
+          </button>
         </ul>
       </div>
     </div>
