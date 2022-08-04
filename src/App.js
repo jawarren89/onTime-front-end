@@ -14,6 +14,7 @@ function App() {
   const URL = "https://ontime-planner.herokuapp.com";
 
   const [routines, setRoutines] = useState([]);
+  const [selectedRoutine, setSelectedRoutine] = useState([]);
   const [pageTitle, setPageTitle] = useState("onTime");
   const [navbar, setNavbar] = useState(true);
 
@@ -33,6 +34,14 @@ function App() {
       });
   };
 
+  const selectRoutine = (routineId) => {
+    for (const routine of routines) => {
+      if (routine.routine_id === routineId) {
+        setSelectedRoutine(routine);
+      }
+    }
+  };
+
   const deleteRoutine = (routineId) => {
     axios
       .delete(`${URL}/routines/${routineId}`)
@@ -43,6 +52,19 @@ function App() {
         console.log(error);
       })
   };
+
+  const updateRoutine = (routineId, routineData) => {
+    axios
+      .put(`${URL}/routines/${routineId}`, routineData)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  };
+
+
 
   // let location = useLocation();
   // useEffect(() => {
