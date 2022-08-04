@@ -1,7 +1,10 @@
 import "../styles/Routine.css";
 import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+
+import ExpandedRoutine from "./ExpandedRoutine";
 
 import play from "../assets/play.svg";
 import edit from "../assets/edit-2.svg";
@@ -10,6 +13,8 @@ import chevron_right from "../assets/chevron-right.svg";
 import chevron_down from "../assets/chevron-down.svg";
 
 const Routine = (props) => {
+  const [isActive, setIsActive] = useState(false);
+
   const time_parser = (time_string) => {
     if (time_string) {
       const hours = time_string.split();
@@ -19,22 +24,22 @@ const Routine = (props) => {
     }
   };
 
+  const start_time = time_parser(props.start_time);
+  const complete_time = time_parser(props.complete_time);
+
   const deleteOnClick = () => {
     return console.log("deleted");
   };
 
-  const updateOnClick = () => {
-    return console.log("updated");
-  };
-
-  const total_tasks = props.tasks.length;
-  const start_time = time_parser(props.start_time);
-  const complete_time = time_parser(props.complete_time);
-
   return (
     <div>
       <ul className="routine">
-        <img src={chevron_right} alt="right arrow" className="chevron-right" />
+        <img
+          src={isActive ? chevron_down : chevron_right}
+          alt="expand/collapse icon"
+          className="chevron"
+          onClick={() => setIsActive(!isActive)}
+        />
         <li className="title">{props.title}</li>
         <div className="button-container">
           <Link to="/playroutine">
@@ -59,6 +64,14 @@ const Routine = (props) => {
       </ul>
 
       <div>
+        {isActive ? (
+          <ExpandedRoutine tasks={props.tasks}></ExpandedRoutine>
+        ) : (
+          ""
+        )}
+      </div>
+
+      {/* <div>
         <ul className="drop-down">
           <li className="total-time">Total time: {props.total_time}</li>
           <li className="total-tasks">Tasks: {total_tasks} </li>
@@ -72,7 +85,7 @@ const Routine = (props) => {
             </button>
           </div>
         </ul>
-      </div>
+      </div> */}
     </div>
   );
 };

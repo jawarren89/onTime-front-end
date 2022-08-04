@@ -82,10 +82,14 @@
     align-items: center;
 }
 
+span {
+    margin-left: 16px;
+}
+
 .page-header {
     padding: 1em;
 }
 
-span {
-    margin-left: 16px;
+.app-title {
+    color: white;
 }
