@@ -53,6 +53,17 @@ function App() {
       })
   };
 
+  const addRoutine = (routineData) => {
+    axios
+      .post(`${URL}/routines`, routineData)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  };
+
   const updateRoutine = (routineId, routineData) => {
     axios
       .put(`${URL}/routines/${routineId}`, routineData)
@@ -64,6 +75,15 @@ function App() {
       })
   };
 
+  const fetchRoutineTasks = (routineID) => {
+    .get(`${URL}/tasks`, { params: { routine_id:routineId }})
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  };
 
 
   // let location = useLocation();
