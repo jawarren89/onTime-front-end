@@ -1,0 +1,22 @@
+.time-selector-container * {
+    /* border: 1px solid blue; */
+}
+
+.time-selector-container {
+    display: grid;
+    grid-template-columns: .5fr 2fr .5fr;
+    grid-auto-flow: row;
+    justify-items: start;
+    align-items: center;
+}
+
+.complete-by {
+    min-width: 85px;
+    padding-right: 4px
+}
+
+.time-selectors * {
+    padding-right: .25em;
+    padding-left: .25em;
+    margin: 0 auto;
+}

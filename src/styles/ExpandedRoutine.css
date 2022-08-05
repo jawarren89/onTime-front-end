@@ -3,22 +3,24 @@
 }
 
 .drop-down-container {
-    margin-bottom: 1em;
+    padding: 8px 4px;
+    /* border: 1px solid blue; */
+    border-right: 1px solid var(--outline);
+    border-left: 1px solid var(--outline);
+    border-bottom: 1px solid var(--outline);
+    box-shadow: 0 0 4px 0 rgba(0,0,0,.2);
 }
 
 .drop-down {
     list-style-type: none;
     font-size: smaller;
     display: grid;
-    grid-template-columns: .25fr 4fr 1fr;
+    grid-template-columns: .5fr 3fr 2fr 1fr;
     grid-auto-flow: row;
-    /* row-gap: .25em; */
-    padding: .5em 0 .5em .25fr;
+    row-gap: 4px;
+    /* padding: .5em 0 .5em .25fr;
+    margin-right: 2fr; */
     align-items: center;
-    border-right: 1px solid var(--outline);
-    border-left: 1px solid var(--outline);
-    border-bottom: 1px solid var(--outline);
-    box-shadow: 0 0 4px 0 rgba(0,0,0,.2);
 }
 
 .total-time {
@@ -27,14 +29,15 @@
 
 .total-tasks {
     text-align: center;
+    padding: 0 1em;
 }
 
 .description {
-    grid-column: 2/3;
+    grid-column: 2/4;
     grid-row: 2;
 }
 
-.complete-by {
+.complete-by-container {
     grid-column: 2/3;
     grid-row: 3;
 }
@@ -47,6 +50,6 @@
 }
 
 .update-button {
-    height: 28px;
+    /* height: 28px; */
     padding: 0 .5em;
 }

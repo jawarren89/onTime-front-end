@@ -2,6 +2,8 @@ import "../styles/ExpandedRoutine.css";
 import React from "react";
 import PropTypes from "prop-types";
 
+import TimeSelector from "./TimeSelector";
+
 const ExpandedRoutine = (props) => {
   const updateOnClick = () => {
     return console.log("updated");
@@ -17,9 +19,9 @@ const ExpandedRoutine = (props) => {
           Tasks: {props.tasks.length ? props.tasks.length : "--"}
         </li>
         <li className="description">Description: {props.description}</li>
-        <div className="complete-by">
-          <li>Complete by: (insert selectors)</li>
-        </div>
+        <li className="complete-by-container">
+          <TimeSelector complete_time={props.complete_time}></TimeSelector>
+        </li>
         <div className="update-button-container">
           <button className="update-button" onClick={updateOnClick}>
             Update
