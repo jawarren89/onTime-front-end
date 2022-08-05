@@ -19,16 +19,20 @@ const Routine = (props) => {
     props.deleteRoutineCallback(props.routine_id);
   };
 
-  const timeParser = (time) => {
-    if (time) {
-      return `${time.hour}:${time.minute}`;
+  const timeParser = (time, duration) => {
+    if (time && duration) {
+      if (time.minute === 0) {
+        return `${time.hour}:00`;
+      } else {
+        return `${time.hour}:${time.minute}`;
+      }
     } else {
       return "--";
     }
   };
 
-  const start = timeParser(props.start_time);
-  const complete = timeParser(props.complete_by);
+  const start = timeParser(props.start_time, props.total_time);
+  const complete = timeParser(props.complete_time, true);
 
   return (
     <div>
