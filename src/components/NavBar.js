@@ -3,13 +3,11 @@
 import "../styles/NavBar.css";
 import React from "react";
 import { Link } from "react-router-dom";
-// import { useState } from "react";
 
 import NavbarData from "./NavBarData";
 import PropTypes from "prop-types";
 
 import menu from "../assets/menu.svg";
-import x from "../assets/x.svg";
 
 const NavBar = (props) => {
   return (
@@ -18,7 +16,7 @@ const NavBar = (props) => {
         <Link to="#" className="menu-bars">
           <img
             src={menu}
-            alt="menu bars"
+            alt="menu icon"
             onClick={props.toggleNavbarCallback}
           />
         </Link>
@@ -30,7 +28,7 @@ const NavBar = (props) => {
         <ul className="nav-menu-items" onClick={props.toggleNavbarCallback}>
           <li className="navbar-toggle">
             <Link to="#" className="menu-bars">
-              <img src={x} alt="close menu" />
+              <img src={menu} alt="menu icon" />
             </Link>
             <h1 className="app-title">onTime</h1>
           </li>

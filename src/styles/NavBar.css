@@ -14,7 +14,7 @@
     margin-left: 2rem;
     font-size: 2rem;
     background: none;
-    padding: 0 16px 0 0;
+    padding: 0 2rem 0 0;
 }
 
 .nav-menu.active {
@@ -87,7 +87,7 @@ span {
 }
 
 .page-header {
-    padding: 1em;
+    padding: 3em 0;
 }
 
 .app-title {

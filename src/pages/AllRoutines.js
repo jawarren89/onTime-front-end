@@ -6,15 +6,13 @@ import RoutineList from "../components/RoutineList";
 const AllRoutines = (props) => {
   return (
     <>
-      <main className="allroutines">
-        <h2 className="page-header">Welcome to Routines!</h2>
-        <section className="routines-container">
-          <RoutineList
-            routines={props.routines}
-            deleteRoutineCallback={props.deleteRoutineCallback}
-          ></RoutineList>
-        </section>
-      </main>
+      {/* <h2 className="page-header">Welcome to Routines!</h2> */}
+      <section className="routines-container">
+        <RoutineList
+          routines={props.routines}
+          deleteRoutineCallback={props.deleteRoutineCallback}
+        ></RoutineList>
+      </section>
     </>
   );
 };

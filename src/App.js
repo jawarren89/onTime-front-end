@@ -122,8 +122,15 @@ function App() {
 
   let location = useLocation();
   useEffect(() => {
-    console.log(location.pathname);
-    setPageTitle(location.pathname);
+    if (location.pathname === "/") {
+      setPageTitle("Routines");
+    } else if (location.pathname === "/taskbank") {
+      setPageTitle("Task Bank");
+    } else if (location.pathname === "/about") {
+      setPageTitle("About onTime");
+    } else if (location.pathname === "/settings") {
+      setPageTitle("Settings");
+    }
   }, [location]);
 
   // how do we get this to only fetch once??
@@ -151,7 +158,7 @@ function App() {
         <Route path="/settings" element={<PageNotFound />} />
         <Route path="/editroutine" element={<EditRoutine />} />
         <Route path="/playroutine" element={<PlayRoutine />} />
-        <Route path="/404" element={<PageNotFound />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>
   );
