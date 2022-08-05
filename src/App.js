@@ -127,7 +127,7 @@ function App() {
     } else if (location.pathname === "/taskbank") {
       setPageTitle("Task Bank");
     } else if (location.pathname === "/about") {
-      setPageTitle("About onTime");
+      setPageTitle("About");
     } else if (location.pathname === "/settings") {
       setPageTitle("Settings");
     }

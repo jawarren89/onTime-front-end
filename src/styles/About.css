@@ -1,12 +1,34 @@
-.about-container {
+.about-page-container {
+    max-width: 60em;
     height: 100vh;
     line-height: 1.5;
-    padding: 25vh 0;
+    padding: 2em 2em;
     margin: 0 auto;
-    text-align: center;
-    background-color: var(--aliceblue)
+    /* background-color: var(--aliceblue) */
 }
 
-.about-title {
-font-family: 'Cairo', Arial, Helvetica, sans-serif;
+.section-header {
+    font-family: 'Cairo', Arial, Helvetica, sans-serif;
+    color: var(--indigo);
+    padding-bottom: 1em;
+    text-align: center;
 }
+
+.about-content {
+    text-align: justify;
+    padding-bottom: 1em;
+}
+
+.features-list {
+    padding-bottom: 1em
+}
+
+.features-list * {
+    margin-left: 3em;
+    padding-inline-start: .25em;
+}
+
+.authors-section {
+    padding: 1em 0;
+}
+
