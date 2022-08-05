@@ -46,7 +46,7 @@ function App() {
     axios
       .post(`${URL}/routines`, routineData)
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -57,7 +57,7 @@ function App() {
     axios
       .put(`${URL}/routines/${routineId}`, routineData)
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -68,7 +68,8 @@ function App() {
     axios
       .delete(`${URL}/routines/${routineId}`)
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
+        fetchRoutines();
       })
       .catch((error) => {
         console.log(error);
@@ -79,7 +80,7 @@ function App() {
     axios
       .get(`${URL}/tasks`, { params: { routine_id: routineId } })
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -90,7 +91,7 @@ function App() {
     axios
       .post(`${URL}/tasks`, taskData)
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -101,7 +102,7 @@ function App() {
     axios
       .put(`${URL}/tasks/${taskId}`, taskData)
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -112,18 +113,18 @@ function App() {
     axios
       .delete(`${URL}/tasks/${taskId}`)
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-  // let location = useLocation();
-  // useEffect(() => {
-  //   console.log(location.pathname);
-  //   setCurrentPage(location.pathname);
-  // }, [location]);
+  let location = useLocation();
+  useEffect(() => {
+    console.log(location.pathname);
+    setPageTitle(location.pathname);
+  }, [location]);
 
   // how do we get this to only fetch once??
   useEffect(() => fetchRoutines(), []);

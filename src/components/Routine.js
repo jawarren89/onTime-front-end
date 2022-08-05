@@ -15,27 +15,20 @@ import chevron_down from "../assets/chevron-down.svg";
 const Routine = (props) => {
   const [isActive, setIsActive] = useState(false);
 
-  const time_parser = (time_string) => {
-    if (time_string) {
-      const hours = "";
-      const minutes = "";
-      if (hours) {
-        return `${hours} "hours," ${minutes} "minutes"`;
-      } else {
-        return `${minutes} "minutes"`;
-      }
+  const deleteOnClick = () => {
+    props.deleteRoutineCallback(props.routine_id);
+  };
+
+  const timeParser = (time) => {
+    if (time) {
+      return `${time.hour}:${time.minute}`;
     } else {
       return "--";
     }
   };
 
-  const start_time = time_parser(props.start_time);
-  const complete_time = time_parser(props.complete_time);
-
-  const deleteOnClick = (props) => {
-    props.deleteRoutineCallback(props.routine_id);
-    return console.log("deleted");
-  };
+  const start = timeParser(props.start_time);
+  const complete = timeParser(props.complete_by);
 
   return (
     <div>
@@ -65,12 +58,18 @@ const Routine = (props) => {
           </div>
         </div>
         <li className="timing">
-          Start: {start_time} | Complete: {complete_time}
+          Start: {start} | Complete: {complete}
         </li>
       </ul>
       <div className="expanded-routine">
         {isActive ? (
-          <ExpandedRoutine tasks={props.tasks}></ExpandedRoutine>
+          <ExpandedRoutine
+            routine_id={props.routine_id}
+            tasks={props.tasks}
+            total_time={props.total_time}
+            description={props.description}
+            complete_time={props.complete_time}
+          ></ExpandedRoutine>
         ) : (
           ""
         )}
@@ -80,18 +79,28 @@ const Routine = (props) => {
 };
 
 Routine.propTypes = {
-  routines: PropTypes.arrayOf(
-    PropTypes.shape({
-      routine_id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      description: PropTypes.string,
-      destination: PropTypes.string,
-      complete_time: PropTypes.string,
-      start_time: PropTypes.string,
-      total_time: PropTypes.number,
-      tasks: PropTypes.array.isRequired,
-    })
-  ),
+  routine_id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  destination: PropTypes.string,
+  complete_time: PropTypes.shape({
+    hour: PropTypes.number,
+    minute: PropTypes.number,
+    second: PropTypes.number,
+    day: PropTypes.number,
+    month: PropTypes.number,
+    year: PropTypes.number,
+  }),
+  start_time: PropTypes.shape({
+    hour: PropTypes.number,
+    minute: PropTypes.number,
+    second: PropTypes.number,
+    day: PropTypes.number,
+    month: PropTypes.number,
+    year: PropTypes.number,
+  }),
+  total_time: PropTypes.number,
+  tasks: PropTypes.array.isRequired,
 };
 
 export default Routine;
