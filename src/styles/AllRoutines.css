@@ -2,12 +2,6 @@
     max-width: 50em;
     height: 100vh;
     line-height: 1.5;
-    padding: 3em 1em;
+    padding: 1em 0em;
     margin: 0 auto;
-    /* background-color: var(--aliceblue) */
 }
-
-/* .page-header {
-    font-family: 'Cairo', Arial, Helvetica, sans-serif;
-    text-align: center;
-} */

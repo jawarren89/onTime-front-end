@@ -7,12 +7,12 @@ const AllRoutines = (props) => {
   return (
     <>
       {/* <h2 className="page-header">Welcome to Routines!</h2> */}
-      <section className="routines-container">
+      <main className="routines-container">
         <RoutineList
           routines={props.routines}
           deleteRoutineCallback={props.deleteRoutineCallback}
         ></RoutineList>
-      </section>
+      </main>
     </>
   );
 };

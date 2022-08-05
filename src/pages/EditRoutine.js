@@ -4,7 +4,7 @@ import React from "react";
 const EditRoutine = () => {
   return (
     <>
-      <main className="editroutine">
+      <main className="edit-routine-container">
         <h2>Edit Your Routine Here!</h2>
         <p>You can do this, I believe in you.</p>
       </main>

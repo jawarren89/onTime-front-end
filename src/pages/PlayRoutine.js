@@ -4,7 +4,7 @@ import React from "react";
 const PlayRoutine = () => {
   return (
     <>
-      <main className="playroutine">
+      <main className="play-routine-container">
         <h2>Routine will play on this screen!</h2>
         <p>You can do this, I believe in you.</p>
       </main>

@@ -3,7 +3,7 @@ import React from "react";
 const About = () => {
   return (
     <>
-      <main>
+      <main className="about-container">
         <h2>About onTime</h2>
         <p>Insert info here</p>
         <h2>Who are we?</h2>

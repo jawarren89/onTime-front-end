@@ -6,20 +6,24 @@
 .routine {
     display: grid;
     grid-template-columns: .25fr 4fr 1fr;
+    grid-template-rows: 1fr 1fr;
     grid-auto-flow: row;
     border: 1px solid var(--outline);
-    margin-bottom: 1em;
-
+    margin-bottom: 0em;
 }
 
 .expanded {
     margin-bottom: 0;
 }
 
-.chevron{
-    display: grid;
+.chevron {
     grid-column: 1;
     grid-row: 1/3;
+}
+
+.routine-title {
+    grid-column: 2/3;
+    padding: 0 1em 0 0;
 }
 
 .button-container {
@@ -33,6 +37,11 @@
     padding: .25em;
 }
 
-.timing {
+.times-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-row: 2;
     font-size: smaller;
+    min-width: 80px;
+    max-width: fit-content;
 }

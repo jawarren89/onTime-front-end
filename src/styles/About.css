@@ -1,0 +1,12 @@
+.about-container {
+    height: 100vh;
+    line-height: 1.5;
+    padding: 25vh 0;
+    margin: 0 auto;
+    text-align: center;
+    background-color: var(--aliceblue)
+}
+
+.about-title {
+font-family: 'Cairo', Arial, Helvetica, sans-serif;
+}

@@ -35,7 +35,7 @@ const Routine = (props) => {
   const complete = timeParser(props.complete_time, true);
 
   return (
-    <div>
+    <div className="routine-item-container">
       <ul className={isActive ? "routine expanded" : "routine"}>
         <img
           src={isActive ? chevron_down : chevron_right}
@@ -43,7 +43,7 @@ const Routine = (props) => {
           className="chevron"
           onClick={() => setIsActive(!isActive)}
         />
-        <li className="title">{props.title}</li>
+        <li className="routine-title">{props.title}</li>
         <div className="button-container">
           <Link to="/playroutine">
             <button className="play">
@@ -61,11 +61,12 @@ const Routine = (props) => {
             </button>
           </div>
         </div>
-        <li className="timing">
-          Start: {start} | Complete: {complete}
-        </li>
+        <div className="times-container">
+          <li className="times">Start: {start}</li>
+          <li className="times">Complete: {complete}</li>
+        </div>
       </ul>
-      <div className="expanded-routine">
+      <div className="expanded-routine-container">
         {isActive ? (
           <ExpandedRoutine
             routine_id={props.routine_id}

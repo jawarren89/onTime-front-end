@@ -1,11 +1,12 @@
-import "../styles/AllRoutines.css";
+import "../styles/404Page.css";
 import React from "react";
 
 const PageNotFound = () => {
   return (
     <>
-      <main className="404-page">
-        <h1 className="page-header">404: Page Not Found</h1>
+      <main className="page404-container">
+        <h1 className="page404-title">404: Page Not Found</h1>
+        <p>load interesting image here, Joan's choice</p>
       </main>
     </>
   );

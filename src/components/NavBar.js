@@ -11,7 +11,7 @@ import menu from "../assets/menu.svg";
 
 const NavBar = (props) => {
   return (
-    <div className="menu">
+    <div className="navbar-container">
       <div className="navbar">
         <Link to="#" className="menu-bars">
           <img
@@ -20,7 +20,7 @@ const NavBar = (props) => {
             onClick={props.toggleNavbarCallback}
           />
         </Link>
-        <header className="page-header">
+        <header className="current-page-title">
           <h1>{props.pageTitle}</h1>
         </header>
       </div>
