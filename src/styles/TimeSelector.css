@@ -4,14 +4,14 @@
 
 .time-selector-container {
     display: grid;
-    grid-template-columns: .5fr 2fr .5fr;
+    grid-template-columns: 85px 1fr;
     grid-auto-flow: row;
     justify-items: start;
     align-items: center;
 }
 
 .complete-by {
-    min-width: 85px;
+    /* width: 85px; */
     padding-right: 4px
 }
 

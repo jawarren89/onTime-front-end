@@ -11,7 +11,7 @@
     border-right: 1px solid var(--outline);
     border-left: 1px solid var(--outline);
     border-bottom: 1px solid var(--outline);
-    padding: 12px 4px 4px 4px;
+    padding: 10px 8px 10px 8px;
 }
 
 .expanded {
@@ -25,7 +25,7 @@
 
 .routine-title {
     grid-column: 2/3;
-    padding: 0 1em 0 0;
+    padding-right: 1em;
 }
 
 .button-container {
@@ -40,10 +40,23 @@
 }
 
 .times-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     grid-row: 2;
+    grid-column: 2/3;
     font-size: smaller;
-    min-width: 80px;
-    max-width: fit-content;
+}
+
+
+.time-start {
+    width: 110px;
+    padding-right: 5px
+}
+
+@media (max-width: 390px) {
+    .times-start {
+        width: 55px;
+        text-align: center;
+    }
 }

@@ -12,21 +12,23 @@ const ExpandedRoutine = (props) => {
   return (
     <div className="drop-down-container">
       <ul className="drop-down">
-        <li className="total-time">
-          Total time: {props.total_time ? props.total_time : "--"}
-        </li>
-        <li className="total-tasks">
-          Tasks: {props.tasks.length ? props.tasks.length : "--"}
-        </li>
+        <div className="drop-row1">
+          <li className="total-tasks">
+            Tasks: {props.tasks.length ? props.tasks.length : "--"}
+          </li>
+          <li className="total-time">
+            Total time: {props.total_time ? props.total_time : "--"}
+          </li>
+          <div className="update-button-container">
+            <button className="update-button" onClick={updateOnClick}>
+              Update
+            </button>
+          </div>
+        </div>
         <li className="description">Description: {props.description}</li>
         <li className="complete-by-container">
           <TimeSelector complete_time={props.complete_time}></TimeSelector>
         </li>
-        <div className="update-button-container">
-          <button className="update-button" onClick={updateOnClick}>
-            Update
-          </button>
-        </div>
       </ul>
     </div>
   );

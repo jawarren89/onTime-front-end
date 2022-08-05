@@ -19,12 +19,21 @@ const Routine = (props) => {
     props.deleteRoutineCallback(props.routine_id);
   };
 
+  const meridiemParser = (time) => {
+    if (time.hour >= 12) {
+      return "PM";
+    } else {
+      return "AM";
+    }
+  };
+
   const timeParser = (time, duration) => {
     if (time && duration) {
+      const meridiem = meridiemParser(time);
       if (time.minute === 0) {
-        return `${time.hour}:00`;
+        return `${time.hour}:00 ${meridiem}`;
       } else {
-        return `${time.hour}:${time.minute}`;
+        return `${time.hour}:${time.minute} ${meridiem}`;
       }
     } else {
       return "--";
@@ -62,9 +71,11 @@ const Routine = (props) => {
           </div>
         </div>
         <div className="times-container">
-          <li className="times">Start: {start}</li>
-          <li className="times">Complete: {complete}</li>
+          <li className="time-start">Start: {start}</li>
+          <li className="time-complete">Complete: {complete}</li>
         </div>
+        {/* <li className="time-start">Start: {start}</li>
+        <li className="time-complete">Complete: {complete}</li> */}
       </ul>
       <div className="expanded-routine-container">
         {isActive ? (

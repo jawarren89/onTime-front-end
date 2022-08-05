@@ -133,7 +133,6 @@ function App() {
     }
   }, [location]);
 
-  // how do we get this to only fetch once??
   useEffect(() => fetchRoutines(), []);
 
   return (
