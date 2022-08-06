@@ -97,25 +97,8 @@ const TimeSelector = (props) => {
     props.setTimeForm(newTimeForm);
   };
 
-  // const toMilitary = (form) => {
-  //   if (form[2] === "PM") {
-  //     return [form[0] + 12, form[1]];
-  //   } else {
-  //     return [form[0], form[1]];
-  //   }
-  // };
-
-  // const handleSubmitTime = (event) => {
-  //   event.preventDefault();
-  //   console.log("yes");
-  //   const military = toMilitary(props.timeForm);
-  //   props.updateRoutine(props.routine_id, { complete_time: military });
-  // };
-
   return (
-    <div className="time-selector-container">
-      {/* <div className="complete-by">Complete by:</div>
-      <form className="time-selectors" onSubmit={handleSubmitTime}> */}
+    <div className="time-dropdowns">
       <DropdownItem
         id="hours"
         label="hours"
@@ -137,7 +120,6 @@ const TimeSelector = (props) => {
         value={props.timeForm.meridiem}
         onChange={onTimeChange}
       ></DropdownItem>
-      {/* </form> */}
     </div>
   );
 };
@@ -146,7 +128,6 @@ TimeSelector.propTypes = {
   complete: PropTypes.object.isRequired,
   timeForm: PropTypes.object.isRequired,
   setTimeForm: PropTypes.func.isRequired,
-  // handleSubmitTime: PropTypes.func.isRequired,
 };
 
 export default TimeSelector;

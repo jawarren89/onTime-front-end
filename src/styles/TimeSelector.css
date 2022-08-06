@@ -1,19 +1,4 @@
-.time-selector-container * {
-    /* border: 1px solid blue; */
-}
-
-.time-selector-container {
-    display: grid;
-    grid-template-columns: 85px 1fr;
-    grid-auto-flow: row;
-    justify-items: start;
-    align-items: center;
-}
-
-.complete-by {
-    padding-right: 4px
-}
-
 .dropdown-item {
     margin-right: .5em;
+    text-align: center;
 }

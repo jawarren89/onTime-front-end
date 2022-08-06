@@ -47,26 +47,23 @@ const ExpandedRoutine = (props) => {
           </li>
         </div>
         <li className="description">Description: {props.description}</li>
-
-        <div className="complete-by">Complete by:</div>
-        <form className="time-selectors" onSubmit={handleSubmitTime}>
-          {/* <li className="complete-by-container"> */}
-          <TimeSelector
-            complete={props.complete}
-            handleSubmit={props.handleSubmit}
-            timeForm={timeForm}
-            setTimeForm={setTimeForm}
-            handleSubmitTime={handleSubmitTime}
-          ></TimeSelector>
-          {/* </li> */}
-          <div className="update-button-container">
+        <li className="time-selector-container">
+          <div className="complete-by-text">Complete by:</div>
+          <form className="complete-by-form" onSubmit={handleSubmitTime}>
+            <TimeSelector
+              complete={props.complete}
+              handleSubmit={props.handleSubmit}
+              timeForm={timeForm}
+              setTimeForm={setTimeForm}
+              handleSubmitTime={handleSubmitTime}
+            ></TimeSelector>
             <input
               className="update-button"
               type="submit"
               value="Update"
             ></input>
-          </div>
-        </form>
+          </form>
+        </li>
       </ul>
     </div>
   );
