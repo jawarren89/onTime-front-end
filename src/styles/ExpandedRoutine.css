@@ -4,7 +4,6 @@
 
 .drop-down-container {
     padding: 12px 5px;
-    border: 1px solid blue;
     border-right: 1px solid var(--outline);
     border-left: 1px solid var(--outline);
     border-bottom: 1px solid var(--outline);

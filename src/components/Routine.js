@@ -74,8 +74,6 @@ const Routine = (props) => {
           <li className="time-start">Start: {start}</li>
           <li className="time-complete">Complete: {complete}</li>
         </div>
-        {/* <li className="time-start">Start: {start}</li>
-        <li className="time-complete">Complete: {complete}</li> */}
       </ul>
       <div className="expanded-routine-container">
         {isActive ? (

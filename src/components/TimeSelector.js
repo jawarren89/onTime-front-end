@@ -15,14 +15,13 @@ const TimeSelector = (props) => {
     props.complete_time ? props.complete_time.minute : "--"
   );
 
-  // useState(
-  //   props.complete_time.minute ? props.complete_time.minute : "--"
-  // );
   const [meridiem, setMeridiem] = useState("--");
 
   const hoursOptions = ["--", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-  const minutesOptions = [...Array(61).keys()];
+  const minutesOptions = [...Array(60).keys()];
 
+  // my array maps numbes 0 to 59, but doesn't show -- or double digits for nums
+  // less than 10. is the only way to get that to type out all the strings from --, 00, 01, 02, to 60?
   // const minutesOptions = [
   // "--"
   //   "00",
