@@ -17,7 +17,6 @@ const Routine = (props) => {
   const start = TimeParser(props.start_time, props.total_time);
   const finish = TimeParser(props.complete_time, true);
 
-  const [isActive, setIsActive] = useState(false);
   const [complete, setComplete] = useState({
     hours: finish[0],
     minutes: finish[1],
@@ -28,6 +27,16 @@ const Routine = (props) => {
     props.deleteRoutine(props.routine_id);
   };
 
+  const expandRow = () => {
+    if (props.expandedRow === props.routine_id) {
+      props.setExpandedRow(0);
+    } else {
+      props.setExpandedRow(props.routine_id);
+    }
+  };
+
+  const isActive = props.expandedRow === props.routine_id;
+
   return (
     <div className="routine-item-container">
       <ul className={isActive ? "routine expanded" : "routine"}>
@@ -35,18 +44,18 @@ const Routine = (props) => {
           src={isActive ? chevron_down : chevron_right}
           alt="expand/collapse icon"
           className="chevron"
-          onClick={() => setIsActive(!isActive)}
+          onClick={expandRow}
         />
-        <li className="routine-title" onClick={() => setIsActive(!isActive)}>
+        <li className="routine-title" onClick={expandRow}>
           {props.title}
         </li>
         <div className="button-container">
-          <Link to="/playroutine">
+          <Link to="/routine/:routine_id/play">
             <button className="play">
               <img src={play} alt="play icon" />
             </button>
           </Link>
-          <Link to="/editroutine">
+          <Link to={`/routine/${props.routine_id}/edit`}>
             <button className="edit">
               <img src={edit} alt="edit icon" />
             </button>
@@ -57,7 +66,7 @@ const Routine = (props) => {
             </button>
           </div>
         </div>
-        <div className="times-container" onClick={() => setIsActive(!isActive)}>
+        <div className="times-container" onClick={expandRow}>
           <li className="time-start">
             Start: {start[0]}:{start[1]} {start[2]}
           </li>
@@ -109,6 +118,9 @@ Routine.propTypes = {
   total_time: PropTypes.number,
   tasks: PropTypes.array.isRequired,
   updateRoutine: PropTypes.func.isRequired,
+  deleteRoutine: PropTypes.func.isRequired,
+  expandedRow: PropTypes.number.isRequired,
+  setExpandedRow: PropTypes.func.isRequired,
 };
 
 export default Routine;

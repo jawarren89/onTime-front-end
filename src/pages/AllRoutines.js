@@ -27,9 +27,10 @@ const AllRoutines = (props) => {
         >
           {showRoutineForm ? <NewRoutineForm></NewRoutineForm> : ""}
         </section> */}
-
         <RoutineList
           routines={props.routines}
+          selectedRoutine={props.selectedRoutine}
+          setSelectedRoutine={props.setSelectedRoutine}
           updateRoutine={props.updateRoutine}
           deleteRoutine={props.deleteRoutine}
         ></RoutineList>
@@ -65,6 +66,11 @@ AllRoutines.propTypes = {
       tasks: PropTypes.array.isRequired,
     })
   ),
+  selectedRoutine: PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+  }),
+  setSelectedRoutine: PropTypes.func.isRequired,
   updateRoutine: PropTypes.func.isRequired,
   deleteRoutine: PropTypes.func.isRequired,
 };

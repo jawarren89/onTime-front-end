@@ -1,8 +1,11 @@
 import React from "react";
+import { useState } from "react";
 import Routine from "./Routine.js";
 import PropTypes from "prop-types";
 
 const RoutineList = (props) => {
+  const [expandedRow, setExpandedRow] = useState(0);
+
   const routineComponents = props.routines.map((routine) => {
     return (
       <Routine
@@ -15,8 +18,12 @@ const RoutineList = (props) => {
         start_time={routine.start_time}
         total_time={routine.total_time}
         tasks={routine.tasks}
+        selectedRoutine={props.selectedRoutine}
+        setSelectedRoutine={props.setSelectedRoutine}
         updateRoutine={props.updateRoutine}
         deleteRoutine={props.deleteRoutine}
+        expandedRow={expandedRow}
+        setExpandedRow={setExpandedRow}
       ></Routine>
     );
   });
@@ -55,6 +62,11 @@ RoutineList.propTypes = {
       tasks: PropTypes.array.isRequired,
     })
   ),
+  selectedRoutine: PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+  }),
+  setSelectedRoutine: PropTypes.func.isRequired,
   updateRoutine: PropTypes.func.isRequired,
   deleteRoutine: PropTypes.func.isRequired,
 };

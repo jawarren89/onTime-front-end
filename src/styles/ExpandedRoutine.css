@@ -50,16 +50,11 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    /* grid-template-columns: 85px 1fr 1fr;
-    grid-auto-flow: row;
-    justify-items: start;
-    align-items: center; */
 }
 
 .complete-by-text {
     padding-right: 4px
 }
-
 
 .update-button-container {
     padding: 0 .25em;

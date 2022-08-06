@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 
 import AllRoutines from "./pages/AllRoutines";
@@ -14,9 +14,11 @@ function App() {
   const URL = "https://ontime-planner.herokuapp.com";
 
   const [routines, setRoutines] = useState([]);
-  const [selectedRoutine, setSelectedRoutine] = useState("");
+  const [selectedRoutine, setSelectedRoutine] = useState({ id: 0, title: "" });
   const [pageTitle, setPageTitle] = useState("onTime");
   const [viewNavbar, setViewNavbar] = useState(true);
+
+  // const { routine_id } = useParams();
 
   const toggleNavbar = () => setViewNavbar(!viewNavbar);
 
@@ -34,13 +36,13 @@ function App() {
       });
   };
 
-  const selectRoutine = (routineId) => {
-    for (const routine of routines) {
-      if (routine.routine_id === routineId) {
-        setSelectedRoutine(routine);
-      }
-    }
-  };
+  // const selectRoutine = (routineId) => {
+  //   for (const routine of routines) {
+  //     if (routine.routine_id === routineId) {
+  //       setSelectedRoutine(routine);
+  //     }
+  //   }
+  // };
 
   const addRoutine = (routineData) => {
     axios
@@ -150,6 +152,8 @@ function App() {
           element={
             <AllRoutines
               routines={routines}
+              selectedRoutine={selectedRoutine}
+              setSelectedRoutine={setSelectedRoutine}
               deleteRoutine={deleteRoutine}
               updateRoutine={updateRoutine}
             />
@@ -158,8 +162,8 @@ function App() {
         <Route path="/taskbank" element={<PageNotFound />} />
         <Route path="/about" element={<About />} />
         <Route path="/settings" element={<PageNotFound />} />
-        <Route path="/editroutine" element={<EditRoutine />} />
-        <Route path="/playroutine" element={<PlayRoutine />} />
+        <Route path="/routine/:routine_id/edit" element={<EditRoutine />} />
+        <Route path="/routine/:routine_id/play" element={<PlayRoutine />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>
