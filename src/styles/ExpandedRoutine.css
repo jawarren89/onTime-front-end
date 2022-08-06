@@ -1,5 +1,5 @@
 .drop-down * {
-    /* border: 1px solid blue; */
+    border: 1px solid blue;
 }
 
 .drop-down-container {
@@ -49,7 +49,7 @@
 .time-selector-container * {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
 }
 
 .complete-by-text {

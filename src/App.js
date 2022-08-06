@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
-import { Routes, Route, useLocation, useParams } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import axios from "axios";
 
 import AllRoutines from "./pages/AllRoutines";
@@ -17,8 +17,6 @@ function App() {
   const [selectedRoutine, setSelectedRoutine] = useState({ id: 0, title: "" });
   const [pageTitle, setPageTitle] = useState("onTime");
   const [viewNavbar, setViewNavbar] = useState(true);
-
-  // const { routine_id } = useParams();
 
   const toggleNavbar = () => setViewNavbar(!viewNavbar);
 
@@ -154,15 +152,24 @@ function App() {
               routines={routines}
               selectedRoutine={selectedRoutine}
               setSelectedRoutine={setSelectedRoutine}
-              deleteRoutine={deleteRoutine}
               updateRoutine={updateRoutine}
+              deleteRoutine={deleteRoutine}
             />
           }
         />
         <Route path="/taskbank" element={<PageNotFound />} />
         <Route path="/about" element={<About />} />
         <Route path="/settings" element={<PageNotFound />} />
-        <Route path="/routine/:routine_id/edit" element={<EditRoutine />} />
+        <Route
+          path="/routine/:routine_id/edit"
+          element={
+            <EditRoutine
+              routines={routines}
+              selectedRoutine={selectedRoutine}
+              updateRoutine={updateRoutine}
+            />
+          }
+        />
         <Route path="/routine/:routine_id/play" element={<PlayRoutine />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>

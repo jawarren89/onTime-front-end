@@ -50,7 +50,7 @@ const Routine = (props) => {
           {props.title}
         </li>
         <div className="button-container">
-          <Link to="/routine/:routine_id/play">
+          <Link to={`/routine/${props.routine_id}/play`}>
             <button className="play">
               <img src={play} alt="play icon" />
             </button>

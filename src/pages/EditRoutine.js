@@ -1,7 +1,10 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 // import PropTypes from "prop-types";
 
 const EditRoutine = () => {
+  const { routine_id } = useParams();
+
   return (
     <>
       <main className="edit-routine-container">
