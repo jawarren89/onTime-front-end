@@ -8,14 +8,6 @@ import PropTypes from "prop-types";
 import DropdownItem from "./DropdownItem";
 
 const TimeSelector = (props) => {
-  const [hours, setHours] = useState(
-    props.complete_time ? props.complete_time.hour : "--"
-  );
-  const [minutes, setMinutes] = useState(
-    props.complete_time ? props.complete_time.minute : "--"
-  );
-  const [meridiem, setMeridiem] = useState("--");
-
   const hoursOptions = [
     "--",
     "1",
@@ -99,54 +91,62 @@ const TimeSelector = (props) => {
 
   const meridiemOptions = ["AM", "PM"];
 
-  const handleHoursChange = (event) => {
-    setHours(event.target.value);
+  const onTimeChange = (event) => {
+    const newTimeForm = { ...props.timeForm };
+    newTimeForm[event.target.id] = event.target.value;
+    props.setTimeForm(newTimeForm);
   };
 
-  const handleMinutesChange = (event) => {
-    setMinutes(event.target.value);
-  };
+  // const toMilitary = (form) => {
+  //   if (form[2] === "PM") {
+  //     return [form[0] + 12, form[1]];
+  //   } else {
+  //     return [form[0], form[1]];
+  //   }
+  // };
 
-  const handleMeridiemChange = (event) => {
-    setMeridiem(event.target.value);
-  };
+  // const handleSubmitTime = (event) => {
+  //   event.preventDefault();
+  //   console.log("yes");
+  //   const military = toMilitary(props.timeForm);
+  //   props.updateRoutine(props.routine_id, { complete_time: military });
+  // };
 
   return (
     <div className="time-selector-container">
-      <div className="complete-by">Complete by:</div>
-      <div className="time-selectors">
-        <DropdownItem
-          label="Hour: "
-          options={hoursOptions}
-          value={hours}
-          onChange={handleHoursChange}
-        ></DropdownItem>
-        <DropdownItem
-          label="Minute: "
-          options={minutesOptions}
-          value={minutes}
-          onChange={handleMinutesChange}
-        ></DropdownItem>
-        <DropdownItem
-          label="AM/PM: "
-          options={meridiemOptions}
-          value={meridiem}
-          onChange={handleMeridiemChange}
-        ></DropdownItem>
-      </div>
+      {/* <div className="complete-by">Complete by:</div>
+      <form className="time-selectors" onSubmit={handleSubmitTime}> */}
+      <DropdownItem
+        id="hours"
+        label="hours"
+        options={hoursOptions}
+        value={props.timeForm.hours}
+        onChange={onTimeChange}
+      ></DropdownItem>
+      <DropdownItem
+        id="minutes"
+        label="minutes"
+        options={minutesOptions}
+        value={props.timeForm.minutes}
+        onChange={onTimeChange}
+      ></DropdownItem>
+      <DropdownItem
+        id="meridiem"
+        label="meridiem"
+        options={meridiemOptions}
+        value={props.timeForm.meridiem}
+        onChange={onTimeChange}
+      ></DropdownItem>
+      {/* </form> */}
     </div>
   );
 };
 
 TimeSelector.propTypes = {
-  complete_time: PropTypes.shape({
-    hour: PropTypes.number,
-    minute: PropTypes.number,
-    second: PropTypes.number,
-    day: PropTypes.number,
-    month: PropTypes.number,
-    year: PropTypes.number,
-  }),
+  complete: PropTypes.object.isRequired,
+  timeForm: PropTypes.object.isRequired,
+  setTimeForm: PropTypes.func.isRequired,
+  // handleSubmitTime: PropTypes.func.isRequired,
 };
 
 export default TimeSelector;

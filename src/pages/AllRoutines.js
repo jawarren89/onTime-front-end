@@ -30,7 +30,8 @@ const AllRoutines = (props) => {
 
         <RoutineList
           routines={props.routines}
-          deleteRoutineCallback={props.deleteRoutineCallback}
+          updateRoutine={props.updateRoutine}
+          deleteRoutine={props.deleteRoutine}
         ></RoutineList>
       </main>
     </>
@@ -64,7 +65,8 @@ AllRoutines.propTypes = {
       tasks: PropTypes.array.isRequired,
     })
   ),
-  deleteRoutineCallback: PropTypes.func.isRequired,
+  updateRoutine: PropTypes.func.isRequired,
+  deleteRoutine: PropTypes.func.isRequired,
 };
 
 export default AllRoutines;

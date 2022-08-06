@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
+import TimeParser from "./TimeParser";
 import ExpandedRoutine from "./ExpandedRoutine";
 
 import play from "../assets/play.svg";
@@ -13,37 +14,19 @@ import chevron_right from "../assets/chevron-right.svg";
 import chevron_down from "../assets/chevron-down.svg";
 
 const Routine = (props) => {
+  const start = TimeParser(props.start_time, props.total_time);
+  const finish = TimeParser(props.complete_time, true);
+
   const [isActive, setIsActive] = useState(false);
+  const [complete, setComplete] = useState({
+    hours: finish[0],
+    minutes: finish[1],
+    meridiem: finish[2],
+  });
 
   const deleteOnClick = () => {
-    props.deleteRoutineCallback(props.routine_id);
+    props.deleteRoutine(props.routine_id);
   };
-
-  const militaryParser = (time) => {
-    if (time.hour > 12) {
-      const timeData = [time.hour - 12, "PM"];
-      return timeData;
-    } else {
-      const timeData = [time.hour, "AM"];
-      return timeData;
-    }
-  };
-
-  const timeParser = (time, duration) => {
-    if (time && duration) {
-      const civilian = militaryParser(time);
-      if (time.minute === 0) {
-        return `${civilian[0]}:00 ${civilian[1]}`;
-      } else {
-        return `${civilian[0]}:${time.minute} ${civilian[1]}`;
-      }
-    } else {
-      return "--";
-    }
-  };
-
-  const start = timeParser(props.start_time, props.total_time);
-  const complete = timeParser(props.complete_time, true);
 
   return (
     <div className="routine-item-container">
@@ -75,8 +58,12 @@ const Routine = (props) => {
           </div>
         </div>
         <div className="times-container" onClick={() => setIsActive(!isActive)}>
-          <li className="time-start">Start: {start}</li>
-          <li className="time-complete">Complete: {complete}</li>
+          <li className="time-start">
+            Start: {start[0]}:{start[1]} {start[2]}
+          </li>
+          <li className="time-complete">
+            Complete: {complete.hours}:{complete.minutes} {complete.meridiem}
+          </li>
         </div>
       </ul>
       <div className="expanded-routine-container">
@@ -86,7 +73,9 @@ const Routine = (props) => {
             tasks={props.tasks}
             total_time={props.total_time}
             description={props.description}
-            complete_time={props.complete_time}
+            complete={complete}
+            setComplete={setComplete}
+            updateRoutine={props.updateRoutine}
           ></ExpandedRoutine>
         ) : (
           ""
@@ -119,6 +108,7 @@ Routine.propTypes = {
   }),
   total_time: PropTypes.number,
   tasks: PropTypes.array.isRequired,
+  updateRoutine: PropTypes.func.isRequired,
 };
 
 export default Routine;

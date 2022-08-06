@@ -54,8 +54,9 @@ function App() {
   };
 
   const updateRoutine = (routineId, routineData) => {
+    const routineUpdate = { routine_id: routineId, routineData };
     axios
-      .put(`${URL}/routines/${routineId}`, routineData)
+      .put(`${URL}/routines/${routineId}`, routineUpdate)
       .then((response) => {
         console.log(response.data);
       })
@@ -149,7 +150,8 @@ function App() {
           element={
             <AllRoutines
               routines={routines}
-              deleteRoutineCallback={deleteRoutine}
+              deleteRoutine={deleteRoutine}
+              updateRoutine={updateRoutine}
             />
           }
         />

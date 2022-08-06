@@ -15,7 +15,8 @@ const RoutineList = (props) => {
         start_time={routine.start_time}
         total_time={routine.total_time}
         tasks={routine.tasks}
-        deleteRoutineCallback={props.deleteRoutineCallback}
+        updateRoutine={props.updateRoutine}
+        deleteRoutine={props.deleteRoutine}
       ></Routine>
     );
   });
@@ -54,7 +55,8 @@ RoutineList.propTypes = {
       tasks: PropTypes.array.isRequired,
     })
   ),
-  deleteRoutineCallback: PropTypes.func.isRequired,
+  updateRoutine: PropTypes.func.isRequired,
+  deleteRoutine: PropTypes.func.isRequired,
 };
 
 export default RoutineList;

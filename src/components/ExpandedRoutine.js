@@ -1,12 +1,38 @@
 import "../styles/ExpandedRoutine.css";
 import React from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 
 import TimeSelector from "./TimeSelector";
 
 const ExpandedRoutine = (props) => {
-  const updateOnClick = () => {
-    return console.log("updated");
+  const [timeForm, setTimeForm] = useState(props.complete);
+
+  const toMilitaryDict = (form) => {
+    if (form.meridiem === "PM") {
+      const timeData = {
+        complete_time: {
+          hour: parseInt(form.hours) + 12,
+          minute: parseInt(form.minutes),
+        },
+      };
+      return timeData;
+    } else {
+      const timeData = {
+        complete_time: {
+          hour: parseInt(form.hours) + 12,
+          minute: parseInt(form.minutes),
+        },
+      };
+      return timeData;
+    }
+  };
+
+  const handleSubmitTime = (event) => {
+    event.preventDefault();
+    const military = toMilitaryDict(timeForm);
+    console.log(military);
+    props.updateRoutine(props.routine_id, military);
   };
 
   return (
@@ -19,16 +45,28 @@ const ExpandedRoutine = (props) => {
           <li className="total-time">
             Total time: {props.total_time ? props.total_time : "--"}
           </li>
-          <div className="update-button-container">
-            <button className="update-button" onClick={updateOnClick}>
-              Update
-            </button>
-          </div>
         </div>
         <li className="description">Description: {props.description}</li>
-        <li className="complete-by-container">
-          <TimeSelector complete_time={props.complete_time}></TimeSelector>
-        </li>
+
+        <div className="complete-by">Complete by:</div>
+        <form className="time-selectors" onSubmit={handleSubmitTime}>
+          {/* <li className="complete-by-container"> */}
+          <TimeSelector
+            complete={props.complete}
+            handleSubmit={props.handleSubmit}
+            timeForm={timeForm}
+            setTimeForm={setTimeForm}
+            handleSubmitTime={handleSubmitTime}
+          ></TimeSelector>
+          {/* </li> */}
+          <div className="update-button-container">
+            <input
+              className="update-button"
+              type="submit"
+              value="Update"
+            ></input>
+          </div>
+        </form>
       </ul>
     </div>
   );
@@ -37,16 +75,11 @@ const ExpandedRoutine = (props) => {
 ExpandedRoutine.propTypes = {
   routine_id: PropTypes.number.isRequired,
   description: PropTypes.string,
-  complete_time: PropTypes.shape({
-    hour: PropTypes.number,
-    minute: PropTypes.number,
-    second: PropTypes.number,
-    day: PropTypes.number,
-    month: PropTypes.number,
-    year: PropTypes.number,
-  }),
   total_time: PropTypes.number,
   tasks: PropTypes.array.isRequired,
+  complete: PropTypes.object.isRequired,
+  setComplete: PropTypes.func.isRequired,
+  updateRoutine: PropTypes.func.isRequired,
 };
 
 export default ExpandedRoutine;
