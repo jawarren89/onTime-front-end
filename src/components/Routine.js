@@ -19,21 +19,23 @@ const Routine = (props) => {
     props.deleteRoutineCallback(props.routine_id);
   };
 
-  const meridiemParser = (time) => {
-    if (time.hour >= 12) {
-      return "PM";
+  const militaryParser = (time) => {
+    if (time.hour > 12) {
+      const timeData = [time.hour - 12, "PM"];
+      return timeData;
     } else {
-      return "AM";
+      const timeData = [time.hour, "AM"];
+      return timeData;
     }
   };
 
   const timeParser = (time, duration) => {
     if (time && duration) {
-      const meridiem = meridiemParser(time);
+      const civilian = militaryParser(time);
       if (time.minute === 0) {
-        return `${time.hour}:00 ${meridiem}`;
+        return `${civilian[0]}:00 ${civilian[1]}`;
       } else {
-        return `${time.hour}:${time.minute} ${meridiem}`;
+        return `${civilian[0]}:${time.minute} ${civilian[1]}`;
       }
     } else {
       return "--";
@@ -52,7 +54,9 @@ const Routine = (props) => {
           className="chevron"
           onClick={() => setIsActive(!isActive)}
         />
-        <li className="routine-title">{props.title}</li>
+        <li className="routine-title" onClick={() => setIsActive(!isActive)}>
+          {props.title}
+        </li>
         <div className="button-container">
           <Link to="/playroutine">
             <button className="play">
@@ -70,7 +74,7 @@ const Routine = (props) => {
             </button>
           </div>
         </div>
-        <div className="times-container">
+        <div className="times-container" onClick={() => setIsActive(!isActive)}>
           <li className="time-start">Start: {start}</li>
           <li className="time-complete">Complete: {complete}</li>
         </div>

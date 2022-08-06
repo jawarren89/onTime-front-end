@@ -1,6 +1,6 @@
-/* .menu * {
+.navbar-container * {
     border: 1px solid blue;
-} */
+}
 
 .navbar-container {
     font-family: 'Cairo', Arial, sans-serif;
@@ -31,6 +31,24 @@
     font-size: 2rem;
     background: none;
 }
+
+.add-routine {
+    background-color: var(--bluegreen);
+    height: 56px;
+    display: flex;
+    justify-content:flex-end;
+    align-items: center;
+}
+
+.right-button {
+    margin-right: 3rem;
+    font-size: 2rem;
+    width: 3rem;
+    background: none;
+}
+
+
+/* actual menu component css starts here */
 
 .nav-menu.active {
     font-family: 'Cairo', Arial, sans-serif;

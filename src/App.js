@@ -14,11 +14,11 @@ function App() {
   const URL = "https://ontime-planner.herokuapp.com";
 
   const [routines, setRoutines] = useState([]);
-  const [selectedRoutine, setSelectedRoutine] = useState([]);
+  const [selectedRoutine, setSelectedRoutine] = useState("");
   const [pageTitle, setPageTitle] = useState("onTime");
-  const [navbar, setNavbar] = useState(true);
+  const [viewNavbar, setViewNavbar] = useState(true);
 
-  const toggleNavbar = () => setNavbar(!navbar);
+  const toggleNavbar = () => setViewNavbar(!viewNavbar);
 
   const fetchRoutines = () => {
     axios
@@ -139,7 +139,8 @@ function App() {
     <div className="App">
       <NavBar
         pageTitle={pageTitle}
-        navbar={navbar}
+        selectedRoutine={selectedRoutine}
+        viewNavbar={viewNavbar}
         toggleNavbarCallback={toggleNavbar}
       ></NavBar>
       <Routes>

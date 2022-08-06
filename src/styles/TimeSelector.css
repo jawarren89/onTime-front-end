@@ -11,12 +11,9 @@
 }
 
 .complete-by {
-    /* width: 85px; */
     padding-right: 4px
 }
 
-.time-selectors * {
-    padding-right: .25em;
-    padding-left: .25em;
-    margin: 0 auto;
+.dropdown-item {
+    margin-right: .5em;
 }

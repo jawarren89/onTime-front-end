@@ -2,16 +2,25 @@
 
 import "../styles/NavBar.css";
 import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import NavbarData from "./NavBarData";
 import PropTypes from "prop-types";
 
+import add from "../assets/plus-circle.svg";
 import menu from "../assets/menu.svg";
 
 const NavBar = (props) => {
+  const [showRoutineForm, setShowRoutineForm] = useState(false);
+
+  const showFormOnClick = () => {
+    setShowRoutineForm(!showRoutineForm);
+  };
+
   return (
     <div className="navbar-container">
+      {/* horizontal bar with menu icon and current page title */}
       <div className="navbar">
         <Link to="#" className="menu-bars">
           <img
@@ -20,11 +29,18 @@ const NavBar = (props) => {
             onClick={props.toggleNavbarCallback}
           />
         </Link>
-        <header className="current-page-title">
-          <h1>{props.pageTitle}</h1>
-        </header>
+        <h1 className="current-page-title">
+          {props.selectedRoutine ? props.selectedRoutine : props.pageTitle}
+        </h1>
       </div>
-      <nav className={props.navbar ? "nav-menu active" : "nav-menu"}>
+      <div className="add-routine">
+        <button className="right-button" onClick={showFormOnClick}>
+          <img src={add} alt="add icon" />
+        </button>
+      </div>
+
+      {/* actual menu component here */}
+      <nav className={props.viewNavbar ? "nav-menu active" : "nav-menu"}>
         <ul className="nav-menu-items" onClick={props.toggleNavbarCallback}>
           <li className="navbar-toggle">
             <Link to="#" className="menu-bars">
@@ -50,7 +66,8 @@ const NavBar = (props) => {
 
 NavBar.propTypes = {
   pageTitle: PropTypes.string.isRequired,
-  navbar: PropTypes.bool.isRequired,
+  selectedRoutine: PropTypes.string.isRequired,
+  viewNavbar: PropTypes.bool.isRequired,
   toggleNavbarCallback: PropTypes.func.isRequired,
 };
 
