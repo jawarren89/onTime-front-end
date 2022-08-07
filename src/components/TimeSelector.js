@@ -110,14 +110,14 @@ const TimeSelector = (props) => {
         id="hours"
         label="hours"
         options={hoursOptions}
-        value={props.timeForm.hours}
+        value={props.timeForm.hour}
         onChange={onTimeChange}
       ></TimeDropdown>
       <TimeDropdown
         id="minutes"
         label="minutes"
         options={minutesOptions}
-        value={props.timeForm.minutes}
+        value={props.timeForm.minute}
         onChange={onTimeChange}
       ></TimeDropdown>
       <TimeDropdown

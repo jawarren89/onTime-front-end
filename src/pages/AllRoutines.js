@@ -51,8 +51,8 @@ AllRoutines.propTypes = {
       title: PropTypes.string.isRequired,
       description: PropTypes.string,
       destination: PropTypes.string,
-      complete_time: PropTypes.array.isRequired,
-      start_time: PropTypes.array.isRequired,
+      complete_time: PropTypes.object.isRequired,
+      start_time: PropTypes.object.isRequired,
       total_time: PropTypes.number,
       tasks: PropTypes.array.isRequired,
     })

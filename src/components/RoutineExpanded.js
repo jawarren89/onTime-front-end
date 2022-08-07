@@ -11,11 +11,7 @@ import TimeSelector from "./TimeSelector";
 // as the form submission event.
 
 const RoutineExpanded = (props) => {
-  const [timeForm, setTimeForm] = useState({
-    hours: props.complete_time[0],
-    minutes: props.complete_time[1],
-    meridiem: props.complete_time[2],
-  });
+  const [timeForm, setTimeForm] = useState(props.complete_time);
 
   const convertForSubmit = (form, routine_id) => {
     if (form.meridiem === "PM") {
@@ -83,7 +79,7 @@ RoutineExpanded.propTypes = {
   description: PropTypes.string,
   total_time: PropTypes.number,
   tasks: PropTypes.array.isRequired,
-  complete_time: PropTypes.array.isRequired,
+  complete_time: PropTypes.object.isRequired,
   updateRoutine: PropTypes.func.isRequired,
 };
 

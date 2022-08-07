@@ -14,20 +14,20 @@ const TimeToCivilian = (time) => {
   if (time) {
     const civilian = militaryParser(time);
     if (time.minute < 10) {
-      return [
-        civilian[0].toString(),
-        "0" + time.minute,
-        civilian[1].toString(),
-      ];
+      return {
+        hour: civilian[0].toString(),
+        minute: "0" + time.minute,
+        meridiem: civilian[1].toString(),
+      };
     } else {
-      return [
-        civilian[0].toString(),
-        time.minute.toString(),
-        civilian[1].toString(),
-      ];
+      return {
+        hour: civilian[0].toString(),
+        minute: time.minute.toString(),
+        meridiem: civilian[1].toString(),
+      };
     }
   } else {
-    return ["--", "--", "--"];
+    return { hour: "--", minute: "--", meridiem: "--" };
   }
 };
 

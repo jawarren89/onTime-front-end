@@ -3,7 +3,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-// import TimeToCivilian from "./TimeToCivilian";
 import RoutineExpanded from "./RoutineExpanded";
 
 import play from "../assets/play.svg";
@@ -69,12 +68,12 @@ const Routine = (props) => {
         </div>
         <div className="times-container" onClick={expandRow}>
           <li className="time-start">
-            Start: {props.start_time[0]}:{props.start_time[1]}{" "}
-            {props.start_time[2]}
+            Start: {props.start_time.hour}:{props.start_time.minute}{" "}
+            {props.start_time.meridiem}
           </li>
           <li className="time-complete">
-            Complete: {props.complete_time[0]}:{props.complete_time[1]}{" "}
-            {props.complete_time[2]}
+            Complete: {props.complete_time.hour}:{props.complete_time.minute}{" "}
+            {props.complete_time.meridiem}
           </li>
         </div>
       </ul>
@@ -101,8 +100,8 @@ Routine.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   destination: PropTypes.string,
-  complete_time: PropTypes.array.isRequired,
-  start_time: PropTypes.array.isRequired,
+  complete_time: PropTypes.object.isRequired,
+  start_time: PropTypes.object.isRequired,
   total_time: PropTypes.number,
   tasks: PropTypes.array.isRequired,
   // setSelectedRoutine: PropTypes.func.isRequired,
