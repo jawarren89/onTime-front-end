@@ -20,6 +20,27 @@ function App() {
 
   const toggleNavbar = () => setViewNavbar(!viewNavbar);
 
+  //Convert time in hrs:min meridiem to military time for axios submission
+  const toMilitaryDict = (form) => {
+    if (form.meridiem === "PM") {
+      const timeData = {
+        complete_time: {
+          hour: parseInt(form.hours) + 12,
+          minute: parseInt(form.minutes),
+        },
+      };
+      return timeData;
+    } else {
+      const timeData = {
+        complete_time: {
+          hour: parseInt(form.hours),
+          minute: parseInt(form.minutes),
+        },
+      };
+      return timeData;
+    }
+  };
+
   const fetchAllRoutines = () => {
     axios
       .get(`${URL}/routines`)
@@ -175,6 +196,7 @@ function App() {
               setSelectedRoutine={setSelectedRoutine}
               updateRoutine={updateRoutine}
               deleteRoutine={deleteRoutine}
+              toMilitaryDict={toMilitaryDict}
             />
           }
         />

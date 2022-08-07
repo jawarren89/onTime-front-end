@@ -23,6 +23,7 @@ const RoutineList = (props) => {
         deleteRoutine={props.deleteRoutine}
         expandedRow={expandedRow}
         setExpandedRow={setExpandedRow}
+        toMilitaryDict={props.toMilitaryDict}
       ></Routine>
     );
   });
@@ -64,6 +65,7 @@ RoutineList.propTypes = {
   setSelectedRoutine: PropTypes.func.isRequired,
   updateRoutine: PropTypes.func.isRequired,
   deleteRoutine: PropTypes.func.isRequired,
+  toMilitaryDict: PropTypes.func.isRequired,
 };
 
 export default RoutineList;

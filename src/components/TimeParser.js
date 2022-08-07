@@ -1,4 +1,4 @@
-const TimeParser = (time, duration) => {
+const TimeParser = (time) => {
   const militaryParser = (time) => {
     if (time.hour > 12) {
       return [time.hour - 12, "PM"];
@@ -7,15 +7,12 @@ const TimeParser = (time, duration) => {
     }
   };
 
-  if (time && duration) {
-    const civilian = militaryParser(time);
-    if (time.minute === 0) {
-      return [civilian[0], "00", civilian[1]];
-    } else {
-      return [civilian[0], time.minute, civilian[1]];
-    }
+  const civilian = militaryParser(time);
+
+  if (time.minute === 0) {
+    return [civilian[0], "00", civilian[1]];
   } else {
-    return ["--", "--", "--"];
+    return [civilian[0], time.minute, civilian[1]];
   }
 };
 

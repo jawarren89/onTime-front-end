@@ -124,7 +124,6 @@ const TimeSelector = (props) => {
 };
 
 TimeSelector.propTypes = {
-  complete: PropTypes.object.isRequired,
   timeForm: PropTypes.object.isRequired,
   setTimeForm: PropTypes.func.isRequired,
 };

@@ -23,7 +23,7 @@ const DropdownItem = (props) => {
 DropdownItem.propTypes = {
   label: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,
-  // value: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 

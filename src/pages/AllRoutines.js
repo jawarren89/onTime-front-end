@@ -32,6 +32,7 @@ const AllRoutines = (props) => {
           setSelectedRoutine={props.setSelectedRoutine}
           updateRoutine={props.updateRoutine}
           deleteRoutine={props.deleteRoutine}
+          toMilitaryDict={props.toMilitaryDict}
         ></RoutineList>
       </main>
     </>
@@ -68,6 +69,7 @@ AllRoutines.propTypes = {
   setSelectedRoutine: PropTypes.func.isRequired,
   updateRoutine: PropTypes.func.isRequired,
   deleteRoutine: PropTypes.func.isRequired,
+  toMilitaryDict: PropTypes.func.isRequired,
 };
 
 export default AllRoutines;

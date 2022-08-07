@@ -1,7 +1,6 @@
 import "../styles/NewRoutineForm.css";
 import React from "react";
 import PropTypes from "prop-types";
-import { useState } from "react";
 
 import TimeSelector from "./TimeSelector";
 
@@ -13,20 +12,23 @@ const NewRoutineForm = (props) => {
         <input
           type="text"
           name="title"
+          placeholder="title required"
           value={props.routineForm.title}
           onChange={props.onFormChange}
           className="input-title"
         />
       </div>
       <div>
-        <label htmlFor="owner">Description: </label>
+        <label htmlFor="description">Description: </label>
         <input
           type="text"
           name="description"
+          placeholder="add a description (optional)"
           value={props.routineForm.owner}
           onChange={props.onFormChange}
         />
       </div>
+      <div>Complete by:</div>
       <TimeSelector
         complete={props.complete}
         timeForm={props.routineForm}
@@ -36,6 +38,11 @@ const NewRoutineForm = (props) => {
   );
 };
 
-NewRoutineForm.propTypes = {};
+NewRoutineForm.propTypes = {
+  routineForm: PropTypes.object.isRequired,
+  setRoutineForm: PropTypes.func.isRequired,
+  complete: PropTypes.object,
+  onFormChange: PropTypes.func.isRequired,
+};
 
 export default NewRoutineForm;

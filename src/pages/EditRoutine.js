@@ -5,16 +5,20 @@ import PropTypes from "prop-types";
 
 import NewRoutineForm from "../components/NewRoutineForm";
 
-const defaultRoutineForm = {
-  title: "",
-  description: "",
-  complete_by: "--",
-};
+// const defaultRoutineForm = {
+//   title: "",
+//   description: "",
+//   complete_by: "--",
+// };
 
 const EditRoutine = (props) => {
-  const { routine_id } = useParams();
+  const { routineId } = useParams();
 
-  const [routineForm, setRoutineForm] = useState(defaultRoutineForm);
+  const [routineForm, setRoutineForm] = useState({
+    title: props.selectedRoutine.title,
+    description: props.selectedRoutine.description,
+    complete_by: props.selectedRoutine.complete,
+  });
 
   const onFormChange = (event) => {
     const stateName = event.target.name;
@@ -28,9 +32,8 @@ const EditRoutine = (props) => {
 
   const handleAddRoutine = (event) => {
     event.preventDefault();
-    props.addRoutine(routineForm);
-    setRoutineForm(defaultRoutineForm);
-    // set form back to hidden
+    props.updateRoutine(routineForm);
+    setRoutineForm(routineForm);
   };
 
   return (
@@ -42,10 +45,12 @@ const EditRoutine = (props) => {
         <section className="boardform-container">
           <form onSubmit={handleAddRoutine}>
             <NewRoutineForm
-              onFormChange={onFormChange}
               routineForm={routineForm}
               setRoutineForm={setRoutineForm}
+              // title={props.selectedRoutine.title}
+              // description={props.selectedRoutine.desciption}
               complete={props.selectedRoutine.complete_by}
+              onFormChange={onFormChange}
             ></NewRoutineForm>
             <div className="button-container">
               <input

@@ -1,6 +1,5 @@
 import "../styles/Routine.css";
 import React from "react";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -14,14 +13,12 @@ import chevron_right from "../assets/chevron-right.svg";
 import chevron_down from "../assets/chevron-down.svg";
 
 const Routine = (props) => {
-  const start = TimeParser(props.start_time, props.total_time);
-  const finish = TimeParser(props.complete_time, true);
-
-  const [complete, setComplete] = useState({
-    hours: finish[0],
-    minutes: finish[1],
-    meridiem: finish[2],
-  });
+  const start = props.total_time
+    ? TimeParser(props.start_time)
+    : ["--", "--", "--"];
+  const complete = props.complete_time
+    ? TimeParser(props.complete_time)
+    : ["--", "--", "--"];
 
   const deleteOnClick = () => {
     props.deleteRoutine(props.routine_id);
@@ -41,8 +38,8 @@ const Routine = (props) => {
       title: props.title,
       description: props.description,
       destination: props.destination,
-      complete_time: props.complete_time,
-      start_time: props.start_time,
+      complete_time: complete,
+      start_time: start,
       total_time: props.total_time,
       tasks: props.tasks,
     };
@@ -85,7 +82,7 @@ const Routine = (props) => {
             Start: {start[0]}:{start[1]} {start[2]}
           </li>
           <li className="time-complete">
-            Complete: {complete.hours}:{complete.minutes} {complete.meridiem}
+            Complete: {complete[0]}:{complete[1]} {complete[2]}
           </li>
         </div>
       </ul>
@@ -97,8 +94,8 @@ const Routine = (props) => {
             total_time={props.total_time}
             description={props.description}
             complete={complete}
-            setComplete={setComplete}
             updateRoutine={props.updateRoutine}
+            toMilitaryDict={props.toMilitaryDict}
           ></ExpandedRoutine>
         ) : (
           ""
@@ -136,6 +133,7 @@ Routine.propTypes = {
   setSelectedRoutine: PropTypes.func.isRequired,
   expandedRow: PropTypes.number.isRequired,
   setExpandedRow: PropTypes.func.isRequired,
+  toMilitaryDict: PropTypes.func.isRequired,
 };
 
 export default Routine;

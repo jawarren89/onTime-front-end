@@ -6,31 +6,15 @@ import PropTypes from "prop-types";
 import TimeSelector from "./TimeSelector";
 
 const ExpandedRoutine = (props) => {
-  const [timeForm, setTimeForm] = useState(props.complete);
-
-  const timeToMilitaryDict = (form) => {
-    if (form.meridiem === "PM") {
-      const timeData = {
-        complete_time: {
-          hour: parseInt(form.hours) + 12,
-          minute: parseInt(form.minutes),
-        },
-      };
-      return timeData;
-    } else {
-      const timeData = {
-        complete_time: {
-          hour: parseInt(form.hours),
-          minute: parseInt(form.minutes),
-        },
-      };
-      return timeData;
-    }
-  };
+  const [timeForm, setTimeForm] = useState({
+    hours: props.complete[0],
+    minutes: props.complete[1],
+    meridiem: props.complete[2],
+  });
 
   const handleSubmitTime = (event) => {
     event.preventDefault();
-    const military = timeToMilitaryDict(timeForm);
+    const military = props.toMilitaryDict(timeForm);
     console.log(military);
     props.updateRoutine(props.routine_id, military);
   };
@@ -51,7 +35,6 @@ const ExpandedRoutine = (props) => {
           <div className="complete-by-text">Complete by:</div>
           <form className="complete-by-form" onSubmit={handleSubmitTime}>
             <TimeSelector
-              complete={props.complete}
               timeForm={timeForm}
               setTimeForm={setTimeForm}
             ></TimeSelector>
@@ -72,8 +55,7 @@ ExpandedRoutine.propTypes = {
   description: PropTypes.string,
   total_time: PropTypes.number,
   tasks: PropTypes.array.isRequired,
-  complete: PropTypes.object.isRequired,
-  setComplete: PropTypes.func.isRequired,
+  complete: PropTypes.array.isRequired,
   updateRoutine: PropTypes.func.isRequired,
 };
 
