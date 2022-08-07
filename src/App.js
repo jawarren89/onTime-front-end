@@ -14,25 +14,38 @@ function App() {
   const URL = "https://ontime-planner.herokuapp.com";
 
   const [routines, setRoutines] = useState([]);
-  const [selectedRoutine, setSelectedRoutine] = useState({ id: 0, title: "" });
+  const [selectedRoutine, setSelectedRoutine] = useState({});
   const [pageTitle, setPageTitle] = useState("onTime");
   const [viewNavbar, setViewNavbar] = useState(true);
 
   const toggleNavbar = () => setViewNavbar(!viewNavbar);
 
-  const fetchRoutines = () => {
+  const fetchAllRoutines = () => {
     axios
       .get(`${URL}/routines`)
       .then((response) => {
-        console.log("fetchRoutines request");
         const updatedRoutines = response.data;
-        console.log(updatedRoutines);
         setRoutines(updatedRoutines);
+        console.log("fetchAllRoutines request");
+        console.log(updatedRoutines);
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+  // const fetchOneRoutine = (routineId) => {
+  //   axios
+  //     .get(`${URL}/routines/${routineId}`)
+  //     .then((response) => {
+  //       console.log("fetchOneRoutine request");
+  //       const oneRoutine = response.data;
+  //       console.log(oneRoutine);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
   // const selectRoutine = (routineId) => {
   //   for (const routine of routines) {
@@ -70,13 +83,14 @@ function App() {
       .delete(`${URL}/routines/${routineId}`)
       .then((response) => {
         console.log(response.data);
-        fetchRoutines();
+        fetchAllRoutines();
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
+  //Gets all tasks or, optionally, all tasks associated with a routine
   const fetchRoutineTasks = (routineId = null) => {
     axios
       .get(`${URL}/tasks`, { params: { routine_id: routineId } })
@@ -134,7 +148,15 @@ function App() {
     }
   }, [location]);
 
-  useEffect(() => fetchRoutines(), []);
+  useEffect(() => fetchAllRoutines(), []);
+
+  // useEffect(() => {
+  //   if (selectedRoutine === 0) {
+  //     return;
+  //   } else {
+  //     fetchOneRoutine(selectedRoutine);
+  //   }
+  // }, [selectedRoutine]);
 
   return (
     <div className="App">
@@ -150,7 +172,6 @@ function App() {
           element={
             <AllRoutines
               routines={routines}
-              selectedRoutine={selectedRoutine}
               setSelectedRoutine={setSelectedRoutine}
               updateRoutine={updateRoutine}
               deleteRoutine={deleteRoutine}

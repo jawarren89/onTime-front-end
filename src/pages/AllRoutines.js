@@ -1,11 +1,11 @@
 import "../styles/AllRoutines.css";
 import React from "react";
-import { useState } from "react";
+// import { useState } from "react";
 import PropTypes from "prop-types";
 import RoutineList from "../components/RoutineList";
 
-import add from "../assets/plus-circle.svg";
-import NewRoutineForm from "../components/NewRoutineForm";
+// import add from "../assets/plus-circle.svg";
+// import NewRoutineForm from "../components/NewRoutineForm";
 
 const AllRoutines = (props) => {
   // const [showRoutineForm, setShowRoutineForm] = useState(false);
@@ -29,7 +29,6 @@ const AllRoutines = (props) => {
         </section> */}
         <RoutineList
           routines={props.routines}
-          selectedRoutine={props.selectedRoutine}
           setSelectedRoutine={props.setSelectedRoutine}
           updateRoutine={props.updateRoutine}
           deleteRoutine={props.deleteRoutine}
@@ -66,10 +65,6 @@ AllRoutines.propTypes = {
       tasks: PropTypes.array.isRequired,
     })
   ),
-  selectedRoutine: PropTypes.shape({
-    id: PropTypes.number,
-    title: PropTypes.string,
-  }),
   setSelectedRoutine: PropTypes.func.isRequired,
   updateRoutine: PropTypes.func.isRequired,
   deleteRoutine: PropTypes.func.isRequired,

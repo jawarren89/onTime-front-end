@@ -35,6 +35,20 @@ const Routine = (props) => {
     }
   };
 
+  const selectRoutineonClick = () => {
+    const currentRoutine = {
+      routine_id: props.routine_id,
+      title: props.title,
+      description: props.description,
+      destination: props.destination,
+      complete_time: props.complete_time,
+      start_time: props.start_time,
+      total_time: props.total_time,
+      tasks: props.tasks,
+    };
+    props.setSelectedRoutine(currentRoutine);
+  };
+
   const isActive = props.expandedRow === props.routine_id;
 
   return (
@@ -51,12 +65,12 @@ const Routine = (props) => {
         </li>
         <div className="button-container">
           <Link to={`/routine/${props.routine_id}/play`}>
-            <button className="play">
+            <button className="play" onClick={selectRoutineonClick}>
               <img src={play} alt="play icon" />
             </button>
           </Link>
           <Link to={`/routine/${props.routine_id}/edit`}>
-            <button className="edit">
+            <button className="edit" onClick={selectRoutineonClick}>
               <img src={edit} alt="edit icon" />
             </button>
           </Link>
@@ -119,6 +133,7 @@ Routine.propTypes = {
   tasks: PropTypes.array.isRequired,
   updateRoutine: PropTypes.func.isRequired,
   deleteRoutine: PropTypes.func.isRequired,
+  setSelectedRoutine: PropTypes.func.isRequired,
   expandedRow: PropTypes.number.isRequired,
   setExpandedRow: PropTypes.func.isRequired,
 };

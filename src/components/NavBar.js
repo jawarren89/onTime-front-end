@@ -30,9 +30,8 @@ const NavBar = (props) => {
           />
         </Link>
         <h1 className="current-page-title">
-          {props.selectedRoutine.title
-            ? props.selectedRoutine.title
-            : props.pageTitle}
+          {props.pageTitle}
+          {/* {props.selectedRoutine ? props.selectedRoutine : props.pageTitle} */}
         </h1>
       </div>
       <div className="add-routine">
@@ -68,10 +67,7 @@ const NavBar = (props) => {
 
 NavBar.propTypes = {
   pageTitle: PropTypes.string.isRequired,
-  selectedRoutine: PropTypes.shape({
-    id: PropTypes.number,
-    title: PropTypes.string,
-  }),
+  selectedRoutine: PropTypes.object.isRequired,
   viewNavbar: PropTypes.bool.isRequired,
   toggleNavbarCallback: PropTypes.func.isRequired,
 };
