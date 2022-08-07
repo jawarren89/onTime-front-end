@@ -8,7 +8,7 @@ import TimeSelector from "./TimeSelector";
 const ExpandedRoutine = (props) => {
   const [timeForm, setTimeForm] = useState(props.complete);
 
-  const toMilitaryDict = (form) => {
+  const timeToMilitaryDict = (form) => {
     if (form.meridiem === "PM") {
       const timeData = {
         complete_time: {
@@ -20,7 +20,7 @@ const ExpandedRoutine = (props) => {
     } else {
       const timeData = {
         complete_time: {
-          hour: parseInt(form.hours) + 12,
+          hour: parseInt(form.hours),
           minute: parseInt(form.minutes),
         },
       };
@@ -30,7 +30,7 @@ const ExpandedRoutine = (props) => {
 
   const handleSubmitTime = (event) => {
     event.preventDefault();
-    const military = toMilitaryDict(timeForm);
+    const military = timeToMilitaryDict(timeForm);
     console.log(military);
     props.updateRoutine(props.routine_id, military);
   };
@@ -52,10 +52,8 @@ const ExpandedRoutine = (props) => {
           <form className="complete-by-form" onSubmit={handleSubmitTime}>
             <TimeSelector
               complete={props.complete}
-              handleSubmit={props.handleSubmit}
               timeForm={timeForm}
               setTimeForm={setTimeForm}
-              handleSubmitTime={handleSubmitTime}
             ></TimeSelector>
             <input
               className="update-button"

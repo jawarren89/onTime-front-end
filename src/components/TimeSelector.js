@@ -2,7 +2,6 @@
 
 import "../styles/TimeSelector.css";
 import React from "react";
-import { useState } from "react";
 import PropTypes from "prop-types";
 
 import DropdownItem from "./DropdownItem";

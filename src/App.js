@@ -185,7 +185,6 @@ function App() {
           path="/routine/:routine_id/edit"
           element={
             <EditRoutine
-              routines={routines}
               selectedRoutine={selectedRoutine}
               updateRoutine={updateRoutine}
             />
