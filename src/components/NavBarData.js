@@ -9,7 +9,7 @@ import settings from "../assets/settings.svg";
 const NavbarData = [
   {
     title: "Routines",
-    path: "/",
+    path: "/routines",
     icon: <img src={check_square} alt="checked box icon" />,
     cName: "nav-text",
   },

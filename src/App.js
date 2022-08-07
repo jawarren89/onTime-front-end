@@ -166,7 +166,7 @@ function App() {
       ></NavBar>
       <Routes>
         <Route
-          path="/"
+          path="/routines"
           element={
             <AllRoutines
               routines={routines}
@@ -180,7 +180,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/settings" element={<PageNotFound />} />
         <Route
-          path="/routine/:routine_id/edit"
+          path="/routines/:routine_id/edit"
           element={
             <EditRoutine
               currentRoutine={currentRoutine}
@@ -189,7 +189,7 @@ function App() {
             />
           }
         />
-        <Route path="/routine/:routine_id/play" element={<PlayRoutine />} />
+        <Route path="/routines/:routine_id/play" element={<PlayRoutine />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>

@@ -45,7 +45,7 @@ const Routine = (props) => {
           {props.title}
         </li>
         <div className="button-container">
-          <Link to={`/routine/${props.routine_id}/play`}>
+          <Link to={`/routines/${props.routine_id}/play`}>
             <button
               className="play"
               // onClick={() => props.setSelectedRoutine(props.routine_id)}
@@ -53,7 +53,7 @@ const Routine = (props) => {
               <img src={play} alt="play icon" />
             </button>
           </Link>
-          <Link to={`/routine/${props.routine_id}/edit`}>
+          <Link to={`/routines/${props.routine_id}/edit`}>
             <button
               className="edit"
               // onClick={() => props.setSelectedRoutine(props.routine_id)}
@@ -97,7 +97,6 @@ const Routine = (props) => {
 };
 
 Routine.propTypes = {
-  key: PropTypes.number.isRequired,
   routine_id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
