@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const DropdownItem = (props) => {
+const TimeDropdown = (props) => {
   return (
     <label htmlFor={props.label}>
       <select
@@ -20,11 +20,11 @@ const DropdownItem = (props) => {
   );
 };
 
-DropdownItem.propTypes = {
+TimeDropdown.propTypes = {
   label: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
 };
 
-export default DropdownItem;
+export default TimeDropdown;

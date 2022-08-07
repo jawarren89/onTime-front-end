@@ -5,11 +5,11 @@ import PropTypes from "prop-types";
 
 import TimeSelector from "./TimeSelector";
 
-const ExpandedRoutine = (props) => {
+const RoutineExpanded = (props) => {
   const [timeForm, setTimeForm] = useState({
-    hours: props.complete[0],
-    minutes: props.complete[1],
-    meridiem: props.complete[2],
+    hours: props.completeCivTime[0],
+    minutes: props.completeCivTime[1],
+    meridiem: props.completeCivTime[2],
   });
 
   const handleSubmitTime = (event) => {
@@ -50,13 +50,13 @@ const ExpandedRoutine = (props) => {
   );
 };
 
-ExpandedRoutine.propTypes = {
+RoutineExpanded.propTypes = {
   routine_id: PropTypes.number.isRequired,
   description: PropTypes.string,
   total_time: PropTypes.number,
   tasks: PropTypes.array.isRequired,
-  complete: PropTypes.array.isRequired,
+  completeCivTime: PropTypes.array.isRequired,
   updateRoutine: PropTypes.func.isRequired,
 };
 
-export default ExpandedRoutine;
+export default RoutineExpanded;

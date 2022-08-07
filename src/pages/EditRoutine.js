@@ -49,7 +49,7 @@ const EditRoutine = (props) => {
               setRoutineForm={setRoutineForm}
               // title={props.selectedRoutine.title}
               // description={props.selectedRoutine.desciption}
-              complete={props.selectedRoutine.complete_by}
+              complete={props.selectedRoutine.complete}
               onFormChange={onFormChange}
             ></NewRoutineForm>
             <div className="button-container">
@@ -77,21 +77,21 @@ EditRoutine.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
     destination: PropTypes.string,
-    complete_time: PropTypes.shape({
+    complete: PropTypes.shape({
       hour: PropTypes.number,
       minute: PropTypes.number,
-      second: PropTypes.number,
-      day: PropTypes.number,
-      month: PropTypes.number,
-      year: PropTypes.number,
+      // second: PropTypes.number,
+      // day: PropTypes.number,
+      // month: PropTypes.number,
+      // year: PropTypes.number,
     }),
     start_time: PropTypes.shape({
       hour: PropTypes.number,
       minute: PropTypes.number,
       second: PropTypes.number,
-      day: PropTypes.number,
-      month: PropTypes.number,
-      year: PropTypes.number,
+      // day: PropTypes.number,
+      // month: PropTypes.number,
+      // year: PropTypes.number,
     }),
     total_time: PropTypes.number,
     tasks: PropTypes.array,

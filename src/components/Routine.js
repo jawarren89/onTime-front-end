@@ -3,8 +3,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import TimeParser from "./TimeParser";
-import ExpandedRoutine from "./ExpandedRoutine";
+import TimeToCivilian from "./TimeToCivilian";
+import RoutineExpanded from "./RoutineExpanded";
 
 import play from "../assets/play.svg";
 import edit from "../assets/edit-2.svg";
@@ -13,11 +13,11 @@ import chevron_right from "../assets/chevron-right.svg";
 import chevron_down from "../assets/chevron-down.svg";
 
 const Routine = (props) => {
-  const start = props.total_time
-    ? TimeParser(props.start_time)
+  const startCivTime = props.total_time
+    ? TimeToCivilian(props.start_time)
     : ["--", "--", "--"];
-  const complete = props.complete_time
-    ? TimeParser(props.complete_time)
+  const completeCivTime = props.complete_time
+    ? TimeToCivilian(props.complete_time)
     : ["--", "--", "--"];
 
   const deleteOnClick = () => {
@@ -32,14 +32,15 @@ const Routine = (props) => {
     }
   };
 
+  //Do not need this if making an axios call in app for one routine
   const selectRoutineonClick = () => {
     const currentRoutine = {
       routine_id: props.routine_id,
       title: props.title,
       description: props.description,
       destination: props.destination,
-      complete_time: complete,
-      start_time: start,
+      complete_time: completeCivTime,
+      start_time: startCivTime,
       total_time: props.total_time,
       tasks: props.tasks,
     };
@@ -79,24 +80,25 @@ const Routine = (props) => {
         </div>
         <div className="times-container" onClick={expandRow}>
           <li className="time-start">
-            Start: {start[0]}:{start[1]} {start[2]}
+            Start: {startCivTime[0]}:{startCivTime[1]} {startCivTime[2]}
           </li>
           <li className="time-complete">
-            Complete: {complete[0]}:{complete[1]} {complete[2]}
+            Complete: {completeCivTime[0]}:{completeCivTime[1]}{" "}
+            {completeCivTime[2]}
           </li>
         </div>
       </ul>
       <div className="expanded-routine-container">
         {isActive ? (
-          <ExpandedRoutine
+          <RoutineExpanded
             routine_id={props.routine_id}
             tasks={props.tasks}
             total_time={props.total_time}
             description={props.description}
-            complete={complete}
+            completeCivTime={completeCivTime}
             updateRoutine={props.updateRoutine}
             toMilitaryDict={props.toMilitaryDict}
-          ></ExpandedRoutine>
+          ></RoutineExpanded>
         ) : (
           ""
         )}

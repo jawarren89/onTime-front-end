@@ -4,7 +4,7 @@ import "../styles/TimeSelector.css";
 import React from "react";
 import PropTypes from "prop-types";
 
-import DropdownItem from "./DropdownItem";
+import TimeDropdown from "./TimeDropdown";
 
 const TimeSelector = (props) => {
   const hoursOptions = [
@@ -98,27 +98,27 @@ const TimeSelector = (props) => {
 
   return (
     <div className="time-dropdowns">
-      <DropdownItem
+      <TimeDropdown
         id="hours"
         label="hours"
         options={hoursOptions}
         value={props.timeForm.hours}
         onChange={onTimeChange}
-      ></DropdownItem>
-      <DropdownItem
+      ></TimeDropdown>
+      <TimeDropdown
         id="minutes"
         label="minutes"
         options={minutesOptions}
         value={props.timeForm.minutes}
         onChange={onTimeChange}
-      ></DropdownItem>
-      <DropdownItem
+      ></TimeDropdown>
+      <TimeDropdown
         id="meridiem"
         label="meridiem"
         options={meridiemOptions}
         value={props.timeForm.meridiem}
         onChange={onTimeChange}
-      ></DropdownItem>
+      ></TimeDropdown>
     </div>
   );
 };
