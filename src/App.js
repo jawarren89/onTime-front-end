@@ -9,6 +9,7 @@ import PlayRoutine from "./pages/PlayRoutine";
 import About from "./pages/About";
 import NavBar from "./components/NavBar";
 import PageNotFound from "./pages/404Page";
+import TimeToCivilian from "./components/TimeToCivilian";
 
 function App() {
   const URL = "https://ontime-planner.herokuapp.com";
@@ -16,37 +17,23 @@ function App() {
   const [routines, setRoutines] = useState([]);
   // const [selectedRoutine, setSelectedRoutine] = useState(1);
   const [currentRoutine, setCurrentRoutine] = useState({});
+
   const [pageTitle, setPageTitle] = useState("onTime");
   const [viewNavbar, setViewNavbar] = useState(true);
 
   const toggleNavbar = () => setViewNavbar(!viewNavbar);
-
-  //Convert time in hrs:min meridiem to military time for axios submission
-  const toMilitaryDict = (form) => {
-    if (form.meridiem === "PM") {
-      const timeData = {
-        complete_time: {
-          hour: parseInt(form.hours) + 12,
-          minute: parseInt(form.minutes),
-        },
-      };
-      return timeData;
-    } else {
-      const timeData = {
-        complete_time: {
-          hour: parseInt(form.hours),
-          minute: parseInt(form.minutes),
-        },
-      };
-      return timeData;
-    }
-  };
 
   const fetchAllRoutines = () => {
     axios
       .get(`${URL}/routines`)
       .then((response) => {
         const updatedRoutines = response.data;
+
+        for (const routine of updatedRoutines) {
+          routine.start_time = TimeToCivilian(routine.start_time);
+          routine.complete_time = TimeToCivilian(routine.complete_time);
+        }
+
         setRoutines(updatedRoutines);
         console.log("fetchAllRoutines request");
         console.log(updatedRoutines);
@@ -61,6 +48,10 @@ function App() {
       .get(`${URL}/routines/${routineId}`)
       .then((response) => {
         const oneRoutine = response.data;
+
+        oneRoutine.start_time = TimeToCivilian(oneRoutine.start_time);
+        oneRoutine.complete_time = TimeToCivilian(oneRoutine.complete_time);
+
         setCurrentRoutine(oneRoutine);
         console.log("fetchOneRoutine request");
         console.log(oneRoutine);
@@ -82,11 +73,11 @@ function App() {
   };
 
   const updateRoutine = (routineId, routineData) => {
-    const routineUpdate = { routine_id: routineId, routineData };
     axios
-      .put(`${URL}/routines/${routineId}`, routineUpdate)
+      .put(`${URL}/routines/${routineId}`, routineData)
       .then((response) => {
         console.log(response.data);
+        fetchAllRoutines();
       })
       .catch((error) => {
         console.log(error);
@@ -182,7 +173,6 @@ function App() {
               // setSelectedRoutine={setSelectedRoutine}
               updateRoutine={updateRoutine}
               deleteRoutine={deleteRoutine}
-              toMilitaryDict={toMilitaryDict}
             />
           }
         />

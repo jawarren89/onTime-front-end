@@ -1,3 +1,7 @@
+// TimeToCivilian takes a 24hr time, as retrieved via an axios call, and
+// converts it into a list of two-digit strings for hours, minutes, and
+// meridiem (AM/PM).
+
 const TimeToCivilian = (time) => {
   const militaryParser = (time) => {
     if (time.hour > 12) {
@@ -7,16 +11,23 @@ const TimeToCivilian = (time) => {
     }
   };
 
-  const civilian = militaryParser(time);
-
-  if (time.minute === 0) {
-    return [civilian[0].toString(), "00", civilian[1].toString()];
+  if (time) {
+    const civilian = militaryParser(time);
+    if (time.minute < 10) {
+      return [
+        civilian[0].toString(),
+        "0" + time.minute,
+        civilian[1].toString(),
+      ];
+    } else {
+      return [
+        civilian[0].toString(),
+        time.minute.toString(),
+        civilian[1].toString(),
+      ];
+    }
   } else {
-    return [
-      civilian[0].toString(),
-      time.minute.toString(),
-      civilian[1].toString(),
-    ];
+    return ["--", "--", "--"];
   }
 };
 

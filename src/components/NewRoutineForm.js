@@ -12,6 +12,9 @@ import TimeSelector from "./TimeSelector";
 // routineForm must be civilian.
 
 const NewRoutineForm = (props) => {
+  // const title = props.currentRoutine.title;
+  // const description = props.currentRoutine.description;
+
   return (
     <div>
       <div className="input-container">
@@ -45,6 +48,7 @@ const NewRoutineForm = (props) => {
 };
 
 NewRoutineForm.propTypes = {
+  currentRoutine: PropTypes.object.isRequired,
   routineForm: PropTypes.object.isRequired,
   setRoutineForm: PropTypes.func.isRequired,
   onFormChange: PropTypes.func.isRequired,

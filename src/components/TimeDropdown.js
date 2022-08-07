@@ -27,7 +27,7 @@ const TimeDropdown = (props) => {
 TimeDropdown.propTypes = {
   label: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
 };
 

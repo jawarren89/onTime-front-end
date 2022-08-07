@@ -12,18 +12,39 @@ import TimeSelector from "./TimeSelector";
 
 const RoutineExpanded = (props) => {
   const [timeForm, setTimeForm] = useState({
-    hours: props.completeCivTime[0],
-    minutes: props.completeCivTime[1],
-    meridiem: props.completeCivTime[2],
+    hours: props.complete_time[0],
+    minutes: props.complete_time[1],
+    meridiem: props.complete_time[2],
   });
 
-  //Time is managed in Routine/RoutineExpanded/TimeForm in civilian time.
-  //Convert back to military time before submitting axios call.
+  const convertForSubmit = (form, routine_id) => {
+    if (form.meridiem === "PM") {
+      const timeData = {
+        routine_id: routine_id,
+        complete_time: {
+          hour: parseInt(form.hours) + 12,
+          minute: parseInt(form.minutes),
+        },
+      };
+      return timeData;
+    } else {
+      const timeData = {
+        routine_id: routine_id,
+        complete_time: {
+          hour: parseInt(form.hours),
+          minute: parseInt(form.minutes),
+        },
+      };
+      return timeData;
+    }
+  };
+
+  //Convert back to military time and add routine_id before submitting.
   const handleSubmitTime = (event) => {
     event.preventDefault();
-    const military = props.toMilitaryDict(timeForm);
-    props.updateRoutine(props.routine_id, military);
-    console.log(military);
+    const submitTime = convertForSubmit(timeForm, props.routine_id);
+    props.updateRoutine(props.routine_id, submitTime);
+    console.log(submitTime);
   };
 
   return (
@@ -62,7 +83,7 @@ RoutineExpanded.propTypes = {
   description: PropTypes.string,
   total_time: PropTypes.number,
   tasks: PropTypes.array.isRequired,
-  completeCivTime: PropTypes.array.isRequired,
+  complete_time: PropTypes.array.isRequired,
   updateRoutine: PropTypes.func.isRequired,
 };
 

@@ -1,9 +1,9 @@
 import "../styles/Routine.css";
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import TimeToCivilian from "./TimeToCivilian";
+// import TimeToCivilian from "./TimeToCivilian";
 import RoutineExpanded from "./RoutineExpanded";
 
 import play from "../assets/play.svg";
@@ -21,13 +21,6 @@ const Routine = (props) => {
   const deleteOnClick = () => {
     props.deleteRoutine(props.routine_id);
   };
-
-  const startCivTime = props.total_time
-    ? TimeToCivilian(props.start_time)
-    : ["--", "--", "--"];
-  const completeCivTime = props.complete_time
-    ? TimeToCivilian(props.complete_time)
-    : ["--", "--", "--"];
 
   const expandRow = () => {
     if (props.expandedRow === props.routine_id) {
@@ -76,11 +69,12 @@ const Routine = (props) => {
         </div>
         <div className="times-container" onClick={expandRow}>
           <li className="time-start">
-            Start: {startCivTime[0]}:{startCivTime[1]} {startCivTime[2]}
+            Start: {props.start_time[0]}:{props.start_time[1]}{" "}
+            {props.start_time[2]}
           </li>
           <li className="time-complete">
-            Complete: {completeCivTime[0]}:{completeCivTime[1]}{" "}
-            {completeCivTime[2]}
+            Complete: {props.complete_time[0]}:{props.complete_time[1]}{" "}
+            {props.complete_time[2]}
           </li>
         </div>
       </ul>
@@ -91,9 +85,8 @@ const Routine = (props) => {
             tasks={props.tasks}
             total_time={props.total_time}
             description={props.description}
-            completeCivTime={completeCivTime}
+            complete_time={props.complete_time}
             updateRoutine={props.updateRoutine}
-            toMilitaryDict={props.toMilitaryDict}
           ></RoutineExpanded>
         ) : (
           ""
@@ -104,34 +97,20 @@ const Routine = (props) => {
 };
 
 Routine.propTypes = {
+  key: PropTypes.number.isRequired,
   routine_id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   destination: PropTypes.string,
-  complete_time: PropTypes.shape({
-    hour: PropTypes.number,
-    minute: PropTypes.number,
-    second: PropTypes.number,
-    day: PropTypes.number,
-    month: PropTypes.number,
-    year: PropTypes.number,
-  }),
-  start_time: PropTypes.shape({
-    hour: PropTypes.number,
-    minute: PropTypes.number,
-    second: PropTypes.number,
-    day: PropTypes.number,
-    month: PropTypes.number,
-    year: PropTypes.number,
-  }),
+  complete_time: PropTypes.array.isRequired,
+  start_time: PropTypes.array.isRequired,
   total_time: PropTypes.number,
   tasks: PropTypes.array.isRequired,
+  // setSelectedRoutine: PropTypes.func.isRequired,
   updateRoutine: PropTypes.func.isRequired,
   deleteRoutine: PropTypes.func.isRequired,
-  // setSelectedRoutine: PropTypes.func.isRequired,
   expandedRow: PropTypes.number.isRequired,
   setExpandedRow: PropTypes.func.isRequired,
-  toMilitaryDict: PropTypes.func.isRequired,
 };
 
 export default Routine;

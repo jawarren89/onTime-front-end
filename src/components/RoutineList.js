@@ -28,7 +28,6 @@ const RoutineList = (props) => {
         deleteRoutine={props.deleteRoutine}
         expandedRow={expandedRow}
         setExpandedRow={setExpandedRow}
-        toMilitaryDict={props.toMilitaryDict}
       ></Routine>
     );
   });
@@ -47,22 +46,8 @@ RoutineList.propTypes = {
       title: PropTypes.string.isRequired,
       description: PropTypes.string,
       destination: PropTypes.string,
-      complete_time: PropTypes.shape({
-        hour: PropTypes.number,
-        minute: PropTypes.number,
-        second: PropTypes.number,
-        day: PropTypes.number,
-        month: PropTypes.number,
-        year: PropTypes.number,
-      }),
-      start_time: PropTypes.shape({
-        hour: PropTypes.number,
-        minute: PropTypes.number,
-        second: PropTypes.number,
-        day: PropTypes.number,
-        month: PropTypes.number,
-        year: PropTypes.number,
-      }),
+      complete_time: PropTypes.array.isRequired,
+      start_time: PropTypes.array.isRequired,
       total_time: PropTypes.number,
       tasks: PropTypes.array.isRequired,
     })
@@ -70,7 +55,6 @@ RoutineList.propTypes = {
   // setSelectedRoutine: PropTypes.func.isRequired,
   updateRoutine: PropTypes.func.isRequired,
   deleteRoutine: PropTypes.func.isRequired,
-  toMilitaryDict: PropTypes.func.isRequired,
 };
 
 export default RoutineList;
