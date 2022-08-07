@@ -12,9 +12,6 @@ import TimeSelector from "./TimeSelector";
 // routineForm must be civilian.
 
 const NewRoutineForm = (props) => {
-  // const title = props.currentRoutine.title;
-  // const description = props.currentRoutine.description;
-
   return (
     <div>
       <div className="input-container">
@@ -23,7 +20,7 @@ const NewRoutineForm = (props) => {
           type="text"
           name="title"
           placeholder="title required"
-          value={props.routineForm.title}
+          value={props.selectedRoutine.title}
           onChange={props.onFormChange}
           className="input-title"
         />
@@ -34,21 +31,20 @@ const NewRoutineForm = (props) => {
           type="text"
           name="description"
           placeholder="add a description (optional)"
-          value={props.routineForm.description}
+          value={props.selectedRoutine.description}
           onChange={props.onFormChange}
         />
       </div>
       <div>Complete by:</div>
       <TimeSelector
-        timeForm={props.routineForm}
-        setTimeForm={props.setRoutineForm}
+        timeForm={props.selectedRoutine}
+        setTimeForm={props.setSelectedRoutine}
       ></TimeSelector>
     </div>
   );
 };
 
 NewRoutineForm.propTypes = {
-  currentRoutine: PropTypes.object.isRequired,
   routineForm: PropTypes.object.isRequired,
   setRoutineForm: PropTypes.func.isRequired,
   onFormChange: PropTypes.func.isRequired,

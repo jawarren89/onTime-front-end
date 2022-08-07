@@ -15,9 +15,7 @@ function App() {
   const URL = "https://ontime-planner.herokuapp.com";
 
   const [routines, setRoutines] = useState([]);
-  // const [selectedRoutine, setSelectedRoutine] = useState(1);
-  const [currentRoutine, setCurrentRoutine] = useState({});
-
+  const [selectedRoutine, setSelectedRoutine] = useState({});
   const [pageTitle, setPageTitle] = useState("onTime");
   const [viewNavbar, setViewNavbar] = useState(true);
 
@@ -52,7 +50,7 @@ function App() {
         oneRoutine.start_time = TimeToCivilian(oneRoutine.start_time);
         oneRoutine.complete_time = TimeToCivilian(oneRoutine.complete_time);
 
-        setCurrentRoutine(oneRoutine);
+        setSelectedRoutine(oneRoutine);
         console.log("fetchOneRoutine request");
         console.log(oneRoutine);
       })
@@ -183,9 +181,13 @@ function App() {
           path="/routines/:routine_id/edit"
           element={
             <EditRoutine
-              currentRoutine={currentRoutine}
+              selectedRoutine={selectedRoutine}
+              setSelectedRoutine={setSelectedRoutine}
               fetchOneRoutine={fetchOneRoutine}
               updateRoutine={updateRoutine}
+              addTask={addTask}
+              updateTask={updateTask}
+              deleteTask={deleteTask}
             />
           }
         />

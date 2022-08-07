@@ -1,10 +1,8 @@
 import NewRoutineForm from "../components/NewRoutineForm";
 import React from "react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
-
-// import TimeToCivilian from "../components/TimeToCivilian";
 
 // The EditRoutine page is accessed when a user clicks on a routine to edit or
 // when a user navigates to a specific edit route. As such, the routine fetched
@@ -14,45 +12,31 @@ const EditRoutine = (props) => {
   const { routine_id } = useParams();
   useEffect(() => props.fetchOneRoutine(routine_id), []);
 
-  const [routineForm, setRoutineForm] = useState({
-    title: "banana",
-    description: "jk",
-  });
-
-  // const [timeForm, setTimeForm] = useState({
-  //   hours: props.complete_time[0],
-  //   minutes: props.complete_time[1],
-  //   meridiem: props.complete_time[2],
-  // });
-
-  // useEffect(() => setRoutineForm(props.currentRoutine), []);
-
   const onFormChange = (event) => {
     const stateName = event.target.name;
     const inputValue = event.target.value;
 
-    const newRoutineForm = { ...routineForm };
+    const newRoutineForm = { ...props.selectedRoutine };
     newRoutineForm[stateName] = inputValue;
 
-    setRoutineForm(newRoutineForm);
+    props.setSelectedRoutine(newRoutineForm);
   };
 
   const handleEditRoutine = (event) => {
     event.preventDefault();
-    props.updateRoutine(routineForm);
-    setRoutineForm(routineForm);
+    props.updateRoutine(props.selectedRoutine);
   };
 
   return (
     <>
       <main className="edit-routine-container">
-        <h2>Edit {props.currentRoutine.title}</h2>
+        <h2>Edit Routine: {props.selectedRoutine.title}</h2>
         <p>You can do this, I believe in you.</p>
         <section className="routineform-container">
           <form onSubmit={handleEditRoutine}>
             <NewRoutineForm
-              routineForm={routineForm}
-              setRoutineForm={setRoutineForm}
+              selectedRoutine={props.selectedRoutine}
+              setSelectedRoutine={props.setSelectedRoutine}
               onFormChange={onFormChange}
             ></NewRoutineForm>
             <div className="button-container">
@@ -60,14 +44,17 @@ const EditRoutine = (props) => {
                 className="startButton"
                 type="submit"
                 value="Update Routine"
-                disabled={
-                  routineForm.title.length < 1 ||
-                  routineForm.title.length > 40 ||
-                  routineForm.description.length > 110
-                }
+                // disabled={
+                //   props.selectedRoutine.title.length < 1 ||
+                //   props.selectedRoutine.title.length > 40 ||
+                //   props.selectedRoutine.description.length > 110
+                // }
               ></input>
             </div>
           </form>
+        </section>
+        <section>
+          <h2>List your tasks here!</h2>
         </section>
       </main>
     </>
@@ -75,9 +62,13 @@ const EditRoutine = (props) => {
 };
 
 EditRoutine.propTypes = {
-  currentRoutine: PropTypes.object.isRequired,
+  selectedRoutine: PropTypes.object.isRequired,
+  setSelectedRoutine: PropTypes.func.isRequired,
   fetchOneRoutine: PropTypes.func.isRequired,
   updateRoutine: PropTypes.func.isRequired,
+  addTask: PropTypes.func.isRequired,
+  updateTask: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
 };
 
 export default EditRoutine;
