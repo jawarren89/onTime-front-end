@@ -14,7 +14,8 @@ function App() {
   const URL = "https://ontime-planner.herokuapp.com";
 
   const [routines, setRoutines] = useState([]);
-  const [selectedRoutine, setSelectedRoutine] = useState({});
+  // const [selectedRoutine, setSelectedRoutine] = useState(1);
+  const [currentRoutine, setCurrentRoutine] = useState({});
   const [pageTitle, setPageTitle] = useState("onTime");
   const [viewNavbar, setViewNavbar] = useState(true);
 
@@ -55,26 +56,19 @@ function App() {
       });
   };
 
-  // const fetchOneRoutine = (routineId) => {
-  //   axios
-  //     .get(`${URL}/routines/${routineId}`)
-  //     .then((response) => {
-  //       console.log("fetchOneRoutine request");
-  //       const oneRoutine = response.data;
-  //       console.log(oneRoutine);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
-
-  // const selectRoutine = (routineId) => {
-  //   for (const routine of routines) {
-  //     if (routine.routine_id === routineId) {
-  //       setSelectedRoutine(routine);
-  //     }
-  //   }
-  // };
+  const fetchOneRoutine = (routineId) => {
+    axios
+      .get(`${URL}/routines/${routineId}`)
+      .then((response) => {
+        const oneRoutine = response.data;
+        setCurrentRoutine(oneRoutine);
+        console.log("fetchOneRoutine request");
+        console.log(oneRoutine);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const addRoutine = (routineData) => {
     axios
@@ -171,19 +165,11 @@ function App() {
 
   useEffect(() => fetchAllRoutines(), []);
 
-  // useEffect(() => {
-  //   if (selectedRoutine === 0) {
-  //     return;
-  //   } else {
-  //     fetchOneRoutine(selectedRoutine);
-  //   }
-  // }, [selectedRoutine]);
-
   return (
     <div className="App">
       <NavBar
         pageTitle={pageTitle}
-        selectedRoutine={selectedRoutine}
+        // selectedRoutine={selectedRoutine}
         viewNavbar={viewNavbar}
         toggleNavbarCallback={toggleNavbar}
       ></NavBar>
@@ -193,7 +179,7 @@ function App() {
           element={
             <AllRoutines
               routines={routines}
-              setSelectedRoutine={setSelectedRoutine}
+              // setSelectedRoutine={setSelectedRoutine}
               updateRoutine={updateRoutine}
               deleteRoutine={deleteRoutine}
               toMilitaryDict={toMilitaryDict}
@@ -207,7 +193,8 @@ function App() {
           path="/routine/:routine_id/edit"
           element={
             <EditRoutine
-              selectedRoutine={selectedRoutine}
+              currentRoutine={currentRoutine}
+              fetchOneRoutine={fetchOneRoutine}
               updateRoutine={updateRoutine}
             />
           }

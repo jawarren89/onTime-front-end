@@ -4,6 +4,13 @@ import PropTypes from "prop-types";
 
 import TimeSelector from "./TimeSelector";
 
+// The NewRoutineForm component is used on the EditRoutine page and to add a
+// new routine on the AllRoutines page. The values shown for title and
+// description are managed in a routineForm state one level about where the form
+// is rendered. The form renders a TimeSelector component also, using times
+// passed through routineForm. **REMINDER** these times in
+// routineForm must be civilian.
+
 const NewRoutineForm = (props) => {
   return (
     <div>
@@ -24,13 +31,12 @@ const NewRoutineForm = (props) => {
           type="text"
           name="description"
           placeholder="add a description (optional)"
-          value={props.routineForm.owner}
+          value={props.routineForm.description}
           onChange={props.onFormChange}
         />
       </div>
       <div>Complete by:</div>
       <TimeSelector
-        complete={props.complete}
         timeForm={props.routineForm}
         setTimeForm={props.setRoutineForm}
       ></TimeSelector>
@@ -41,7 +47,6 @@ const NewRoutineForm = (props) => {
 NewRoutineForm.propTypes = {
   routineForm: PropTypes.object.isRequired,
   setRoutineForm: PropTypes.func.isRequired,
-  complete: PropTypes.object,
   onFormChange: PropTypes.func.isRequired,
 };
 

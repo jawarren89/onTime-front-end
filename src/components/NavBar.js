@@ -11,6 +11,10 @@ import PropTypes from "prop-types";
 import add from "../assets/plus-circle.svg";
 import menu from "../assets/menu.svg";
 
+// The NavBar is made up of a horizontal bar with menu icon and current page
+// title, and a menu component that can collapse and expande (default is
+// collapsed). Future goal: divide these components.
+
 const NavBar = (props) => {
   const [showRoutineForm, setShowRoutineForm] = useState(false);
 
@@ -67,7 +71,7 @@ const NavBar = (props) => {
 
 NavBar.propTypes = {
   pageTitle: PropTypes.string.isRequired,
-  selectedRoutine: PropTypes.object.isRequired,
+  // selectedRoutine: PropTypes.number.isRequired,
   viewNavbar: PropTypes.bool.isRequired,
   toggleNavbarCallback: PropTypes.func.isRequired,
 };

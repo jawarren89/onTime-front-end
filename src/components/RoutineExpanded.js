@@ -5,6 +5,11 @@ import PropTypes from "prop-types";
 
 import TimeSelector from "./TimeSelector";
 
+// The RoutineExpanded component holds additional data about each routine,
+// and allows the user to update the CompleteBy time using the TimeSelector
+// component. The state of the TimeSelector component is managed here, as well
+// as the form submission event.
+
 const RoutineExpanded = (props) => {
   const [timeForm, setTimeForm] = useState({
     hours: props.completeCivTime[0],
@@ -12,11 +17,13 @@ const RoutineExpanded = (props) => {
     meridiem: props.completeCivTime[2],
   });
 
+  //Time is managed in Routine/RoutineExpanded/TimeForm in civilian time.
+  //Convert back to military time before submitting axios call.
   const handleSubmitTime = (event) => {
     event.preventDefault();
     const military = props.toMilitaryDict(timeForm);
-    console.log(military);
     props.updateRoutine(props.routine_id, military);
+    console.log(military);
   };
 
   return (

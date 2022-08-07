@@ -1,5 +1,5 @@
 import "../styles/Routine.css";
-import React from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -12,7 +12,16 @@ import trash from "../assets/trash-2.svg";
 import chevron_right from "../assets/chevron-right.svg";
 import chevron_down from "../assets/chevron-down.svg";
 
+// The Routine component displays each routine, with an optionally expanded
+// component (called RoutineExpanded) if the routine is selected. Displayed
+// times from the Routine object are converted and displayed in civilian times,
+// and are passed as such to the option RoutineEpanded component.
+
 const Routine = (props) => {
+  const deleteOnClick = () => {
+    props.deleteRoutine(props.routine_id);
+  };
+
   const startCivTime = props.total_time
     ? TimeToCivilian(props.start_time)
     : ["--", "--", "--"];
@@ -20,31 +29,12 @@ const Routine = (props) => {
     ? TimeToCivilian(props.complete_time)
     : ["--", "--", "--"];
 
-  const deleteOnClick = () => {
-    props.deleteRoutine(props.routine_id);
-  };
-
   const expandRow = () => {
     if (props.expandedRow === props.routine_id) {
       props.setExpandedRow(0);
     } else {
       props.setExpandedRow(props.routine_id);
     }
-  };
-
-  //Do not need this if making an axios call in app for one routine
-  const selectRoutineonClick = () => {
-    const currentRoutine = {
-      routine_id: props.routine_id,
-      title: props.title,
-      description: props.description,
-      destination: props.destination,
-      complete_time: completeCivTime,
-      start_time: startCivTime,
-      total_time: props.total_time,
-      tasks: props.tasks,
-    };
-    props.setSelectedRoutine(currentRoutine);
   };
 
   const isActive = props.expandedRow === props.routine_id;
@@ -63,12 +53,18 @@ const Routine = (props) => {
         </li>
         <div className="button-container">
           <Link to={`/routine/${props.routine_id}/play`}>
-            <button className="play" onClick={selectRoutineonClick}>
+            <button
+              className="play"
+              // onClick={() => props.setSelectedRoutine(props.routine_id)}
+            >
               <img src={play} alt="play icon" />
             </button>
           </Link>
           <Link to={`/routine/${props.routine_id}/edit`}>
-            <button className="edit" onClick={selectRoutineonClick}>
+            <button
+              className="edit"
+              // onClick={() => props.setSelectedRoutine(props.routine_id)}
+            >
               <img src={edit} alt="edit icon" />
             </button>
           </Link>
@@ -132,7 +128,7 @@ Routine.propTypes = {
   tasks: PropTypes.array.isRequired,
   updateRoutine: PropTypes.func.isRequired,
   deleteRoutine: PropTypes.func.isRequired,
-  setSelectedRoutine: PropTypes.func.isRequired,
+  // setSelectedRoutine: PropTypes.func.isRequired,
   expandedRow: PropTypes.number.isRequired,
   setExpandedRow: PropTypes.func.isRequired,
   toMilitaryDict: PropTypes.func.isRequired,

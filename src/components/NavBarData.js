@@ -3,6 +3,9 @@ import star from "../assets/star.svg";
 import info from "../assets/info.svg";
 import settings from "../assets/settings.svg";
 
+// NavbarData contains a list of objects for each item rendered
+// in the Navbar menu.
+
 const NavbarData = [
   {
     title: "Routines",

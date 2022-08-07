@@ -3,6 +3,11 @@ import { useState } from "react";
 import Routine from "./Routine.js";
 import PropTypes from "prop-types";
 
+// The RoutineList component maps all fetched routine data in App.js
+// (passed as props.routines) into individual routine components. It
+// also manages the state of which routine is currently set to expanded.
+// Only one routine can be expanded at a time.
+
 const RoutineList = (props) => {
   const [expandedRow, setExpandedRow] = useState(0);
 
@@ -18,7 +23,7 @@ const RoutineList = (props) => {
         start_time={routine.start_time}
         total_time={routine.total_time}
         tasks={routine.tasks}
-        setSelectedRoutine={props.setSelectedRoutine}
+        // setSelectedRoutine={props.setSelectedRoutine}
         updateRoutine={props.updateRoutine}
         deleteRoutine={props.deleteRoutine}
         expandedRow={expandedRow}
@@ -62,7 +67,7 @@ RoutineList.propTypes = {
       tasks: PropTypes.array.isRequired,
     })
   ),
-  setSelectedRoutine: PropTypes.func.isRequired,
+  // setSelectedRoutine: PropTypes.func.isRequired,
   updateRoutine: PropTypes.func.isRequired,
   deleteRoutine: PropTypes.func.isRequired,
   toMilitaryDict: PropTypes.func.isRequired,

@@ -1,24 +1,20 @@
+import NewRoutineForm from "../components/NewRoutineForm";
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import NewRoutineForm from "../components/NewRoutineForm";
+import TimeToCivilian from "../components/TimeToCivilian";
 
-// const defaultRoutineForm = {
-//   title: "",
-//   description: "",
-//   complete_by: "--",
-// };
+// The EditRoutine page is accessed when a user clicks on a routine to edit or
+// when a user navigates to a specific edit route. As such, the routine fetched
+// is based on the routineId in the browserURL.
 
 const EditRoutine = (props) => {
   const { routineId } = useParams();
+  useEffect(() => props.fetchOneRoutine(routineId), [props, routineId]);
 
-  const [routineForm, setRoutineForm] = useState({
-    title: props.selectedRoutine.title,
-    description: props.selectedRoutine.description,
-    complete_by: props.selectedRoutine.complete,
-  });
+  const [routineForm, setRoutineForm] = useState(props.currentRoutine);
 
   const onFormChange = (event) => {
     const stateName = event.target.name;
@@ -30,11 +26,18 @@ const EditRoutine = (props) => {
     setRoutineForm(newRoutineForm);
   };
 
-  const handleAddRoutine = (event) => {
+  const handleEditRoutine = (event) => {
     event.preventDefault();
     props.updateRoutine(routineForm);
     setRoutineForm(routineForm);
   };
+
+  const startCivTime = props.currentRoutine.total_time
+    ? TimeToCivilian(props.currentRoutine.start_time)
+    : ["--", "--", "--"];
+  const completeCivTime = props.currentRoutine.complete_time
+    ? TimeToCivilian(props.currentRoutine.complete_time)
+    : ["--", "--", "--"];
 
   return (
     <>
@@ -42,14 +45,13 @@ const EditRoutine = (props) => {
         <h2>Edit Your Routine Here!</h2>
         <p>You can do this, I believe in you.</p>
 
-        <section className="boardform-container">
-          <form onSubmit={handleAddRoutine}>
+        <section className="routineform-container">
+          <form onSubmit={handleEditRoutine}>
             <NewRoutineForm
               routineForm={routineForm}
               setRoutineForm={setRoutineForm}
               // title={props.selectedRoutine.title}
               // description={props.selectedRoutine.desciption}
-              complete={props.selectedRoutine.complete}
               onFormChange={onFormChange}
             ></NewRoutineForm>
             <div className="button-container">
@@ -57,11 +59,11 @@ const EditRoutine = (props) => {
                 className="startButton"
                 type="submit"
                 value="Update Routine"
-                disabled={
-                  routineForm.title.length < 1 ||
-                  routineForm.title.length > 40 ||
-                  routineForm.description.length > 110
-                }
+                // disabled={
+                //   routineForm.title.length < 1 ||
+                //   routineForm.title.length > 40 ||
+                //   routineForm.description.length > 110
+                // }
               ></input>
             </div>
           </form>
@@ -72,30 +74,8 @@ const EditRoutine = (props) => {
 };
 
 EditRoutine.propTypes = {
-  selectedRoutine: PropTypes.shape({
-    routine_id: PropTypes.number,
-    title: PropTypes.string,
-    description: PropTypes.string,
-    destination: PropTypes.string,
-    complete: PropTypes.shape({
-      hour: PropTypes.number,
-      minute: PropTypes.number,
-      // second: PropTypes.number,
-      // day: PropTypes.number,
-      // month: PropTypes.number,
-      // year: PropTypes.number,
-    }),
-    start_time: PropTypes.shape({
-      hour: PropTypes.number,
-      minute: PropTypes.number,
-      second: PropTypes.number,
-      // day: PropTypes.number,
-      // month: PropTypes.number,
-      // year: PropTypes.number,
-    }),
-    total_time: PropTypes.number,
-    tasks: PropTypes.array,
-  }),
+  currentRoutine: PropTypes.object.isRequired,
+  fetchOneRoutine: PropTypes.func.isRequired,
   updateRoutine: PropTypes.func.isRequired,
 };
 

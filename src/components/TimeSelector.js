@@ -6,6 +6,14 @@ import PropTypes from "prop-types";
 
 import TimeDropdown from "./TimeDropdown";
 
+// The TimeSelector component is a 3-part dropdown to select hours, minutes,
+// and meridiem. Dropdown options are listed here and passed into the
+// individual TimeDropdown components. Time values passed in to the dropdowns
+// for default values on are through the state object timeForm, managed at the
+// level above where the TimeSelector is located and passed with props. timeForm
+// object values MUST be passed as strings to be compatible across
+// hr/min/meridiem values in TimeSelector.
+
 const TimeSelector = (props) => {
   const hoursOptions = [
     "--",
