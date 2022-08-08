@@ -1,29 +1,21 @@
-.navbar-container * {
+/* .navbar * {
     border: 1px solid blue;
-}
+} */
 
-.navbar-container {
+.navbar {
     font-family: 'Cairo', Arial, sans-serif;
     margin: 0;
-}
-
-.app-title {
-    color: var(--indigo);
-    font-size: 2em;
-    padding: 0 0 0 16px;
+    background-color: var(--bluegreen);
+    height: 56px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .current-page-title {
     color: var(--indigo);
     padding: 0 0 0 2rem;
-}
-
-.navbar {
-    background-color: var(--bluegreen);
-    height: 56px;
-    display: flex;
-    justify-content:flex-start;
-    align-items: center;
+    margin-right: 20vw;
 }
 
 .menu-bars {
@@ -32,19 +24,10 @@
     background: none;
 }
 
-.add-routine {
-    background-color: var(--bluegreen);
-    height: 56px;
-    display: flex;
-    justify-content:flex-end;
-    align-items: center;
-}
-
-.right-button {
-    margin-right: 3rem;
-    font-size: 2rem;
-    width: 3rem;
-    background: none;
+.add-button {
+    margin-right: 2rem;
+    height: 2rem;
+    width: 2rem;
 }
 
 
@@ -76,6 +59,12 @@
     left: 0;
     transition: 350ms;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+.app-title {
+    color: var(--indigo);
+    font-size: 2em;
+    padding: 0 0 0 16px;
 }
 
 .nav-text {

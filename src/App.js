@@ -7,7 +7,6 @@ import AllRoutines from "./pages/AllRoutines";
 import EditRoutine from "./pages/EditRoutine";
 import PlayRoutine from "./pages/PlayRoutine";
 import About from "./pages/About";
-import NavBar from "./components/NavBar";
 import PageNotFound from "./pages/404Page";
 import TimeToCivilian from "./components/TimeToCivilian";
 
@@ -156,21 +155,24 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar
+      {/* <NavMenu
         pageTitle={pageTitle}
-        // selectedRoutine={selectedRoutine}
         viewNavbar={viewNavbar}
         toggleNavbarCallback={toggleNavbar}
-      ></NavBar>
+      ></NavMenu> */}
       <Routes>
         <Route
           path="/routines"
           element={
             <AllRoutines
               routines={routines}
+              selectedRoutine={selectedRoutine}
               // setSelectedRoutine={setSelectedRoutine}
               updateRoutine={updateRoutine}
               deleteRoutine={deleteRoutine}
+              pageTitle={pageTitle}
+              toggleNavbar={toggleNavbar}
+              viewNavbar={viewNavbar}
             />
           }
         />

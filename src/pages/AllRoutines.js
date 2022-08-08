@@ -1,10 +1,14 @@
 import "../styles/AllRoutines.css";
 import React from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import RoutineList from "../components/RoutineList";
 
 import add from "../assets/plus-circle.svg";
+import menu from "../assets/menu.svg";
+
+import NavMenu from "../components/NavMenu";
 import NewRoutineForm from "../components/NewRoutineForm";
 
 // The AllRoutines page component is the page that loads as a "home" page.
@@ -21,12 +25,18 @@ const AllRoutines = (props) => {
 
   return (
     <>
-      <main className="routines-container">
-        <div className="add-routine">
-          <button className="add-button" onClick={showFormOnClick}>
-            <img src={add} alt="add icon" />
-          </button>
-        </div>
+      <header className="navbar">
+        <NavMenu
+          pageTitle={props.pageTitle}
+          viewNavbar={props.viewNavbar}
+          toggleNavbar={props.toggleNavbar}
+        ></NavMenu>
+        <button className="add-button" onClick={showFormOnClick}>
+          <img src={add} alt="add icon" />
+        </button>
+      </header>
+
+      <body className="routines-container">
         <section
           className={showRoutineForm ? "routine-form expanded" : "routine-form"}
         >
@@ -37,9 +47,8 @@ const AllRoutines = (props) => {
           // setSelectedRoutine={props.setSelectedRoutine}
           updateRoutine={props.updateRoutine}
           deleteRoutine={props.deleteRoutine}
-          toMilitaryDict={props.toMilitaryDict}
         ></RoutineList>
-      </main>
+      </body>
     </>
   );
 };
@@ -60,6 +69,9 @@ AllRoutines.propTypes = {
   // setSelectedRoutine: PropTypes.func.isRequired,
   updateRoutine: PropTypes.func.isRequired,
   deleteRoutine: PropTypes.func.isRequired,
+  pageTitle: PropTypes.string.isRequired,
+  viewNavbar: PropTypes.bool.isRequired,
+  toggleNavbar: PropTypes.func.isRequired,
 };
 
 export default AllRoutines;

@@ -6,7 +6,7 @@ import settings from "../assets/settings.svg";
 // NavbarData contains a list of objects for each item rendered
 // in the Navbar menu.
 
-const NavbarData = [
+const NavMenuData = [
   {
     title: "Routines",
     path: "/routines",
@@ -33,4 +33,4 @@ const NavbarData = [
   },
 ];
 
-export default NavbarData;
+export default NavMenuData;
