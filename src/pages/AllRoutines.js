@@ -42,6 +42,7 @@ const AllRoutines = (props) => {
         </section>
         <RoutineList
           routines={props.routines}
+          selectedRoutine={props.selectedRoutine}
           setSelectedRoutine={props.setSelectedRoutine}
           updateRoutine={props.updateRoutine}
           deleteRoutine={props.deleteRoutine}

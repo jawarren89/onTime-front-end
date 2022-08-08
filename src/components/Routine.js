@@ -29,13 +29,13 @@ const Routine = (props) => {
       props.setExpandedRow(props.routine_id);
       props.setSelectedRoutine({
         routine_id: props.routine_id,
-        // title: props.title,
-        // description: props.description,
-        // destination: props.destination,
+        title: props.title,
+        description: props.description,
+        destination: props.destination,
         complete_time: props.complete_time,
-        // start_time: props.start_time,
-        // total_time: props.total_time,
-        // tasks: props.tasks,
+        start_time: props.start_time,
+        total_time: props.total_time,
+        tasks: props.tasks,
       });
     }
   };
@@ -90,6 +90,7 @@ const Routine = (props) => {
             total_time={props.total_time}
             description={props.description}
             complete_time={props.complete_time}
+            selectedRoutine={props.selectedRoutine}
             updateRoutine={props.updateRoutine}
           ></RoutineExpanded>
         ) : (
@@ -109,6 +110,7 @@ Routine.propTypes = {
   start_time: PropTypes.object.isRequired,
   total_time: PropTypes.number,
   tasks: PropTypes.array.isRequired,
+  selectedRoutine: PropTypes.object.isRequired,
   setSelectedRoutine: PropTypes.func.isRequired,
   updateRoutine: PropTypes.func.isRequired,
   deleteRoutine: PropTypes.func.isRequired,

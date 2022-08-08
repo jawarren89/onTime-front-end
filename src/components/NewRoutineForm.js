@@ -20,7 +20,7 @@ const NewRoutineForm = (props) => {
           type="text"
           name="title"
           placeholder="title required"
-          value={props.selectedRoutine.title}
+          value={props.routineForm.title}
           onChange={props.onFormChange}
           className="input-title"
         />
@@ -31,14 +31,14 @@ const NewRoutineForm = (props) => {
           type="text"
           name="description"
           placeholder="add a description (optional)"
-          value={props.selectedRoutine.description}
+          value={props.routineForm.description}
           onChange={props.onFormChange}
         />
       </div>
       <div>Complete by:</div>
       <TimeSelector
-        timeForm={props.selectedRoutine}
-        setTimeForm={props.setSelectedRoutine}
+        timeForm={props.routineForm}
+        setTimeForm={props.setRoutineForm}
       ></TimeSelector>
     </div>
   );

@@ -18,8 +18,8 @@ const RoutineExpanded = (props) => {
       const timeData = {
         routine_id: routine_id,
         complete_time: {
-          hour: parseInt(form.hours) + 12,
-          minute: parseInt(form.minutes),
+          hour: parseInt(form.hour) + 12,
+          minute: parseInt(form.minute),
         },
       };
       return timeData;
@@ -27,8 +27,8 @@ const RoutineExpanded = (props) => {
       const timeData = {
         routine_id: routine_id,
         complete_time: {
-          hour: parseInt(form.hours),
-          minute: parseInt(form.minutes),
+          hour: parseInt(form.hour),
+          minute: parseInt(form.minute),
         },
       };
       return timeData;
@@ -80,6 +80,7 @@ RoutineExpanded.propTypes = {
   total_time: PropTypes.number,
   tasks: PropTypes.array.isRequired,
   complete_time: PropTypes.object.isRequired,
+  selectedRoutine: PropTypes.object.isRequired,
   updateRoutine: PropTypes.func.isRequired,
 };
 

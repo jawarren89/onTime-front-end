@@ -1,5 +1,5 @@
 import "../styles/EditRoutine.css";
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -15,19 +15,24 @@ const EditRoutine = (props) => {
   const { routine_id } = useParams();
   useEffect(() => props.fetchOneRoutine(routine_id), []);
 
+  const [routineForm, setRoutineForm] = useState({ ...props.selectedRoutine });
+  // const selectedRoutineCopy = JSON.parse(JSON.stringify(props.selectedRoutine));
+  // useEffect(() => setRoutineForm(selectedRoutineCopy), []);
+
   const onFormChange = (event) => {
     const stateName = event.target.name;
     const inputValue = event.target.value;
 
-    const newRoutineForm = { ...props.selectedRoutine };
+    const newRoutineForm = { ...routineForm };
     newRoutineForm[stateName] = inputValue;
 
+    setRoutineForm(newRoutineForm);
     props.setSelectedRoutine(newRoutineForm);
   };
 
   const handleEditRoutine = (event) => {
     event.preventDefault();
-    props.updateRoutine(props.selectedRoutine);
+    props.updateRoutine(routineForm);
   };
 
   return (
@@ -45,8 +50,8 @@ const EditRoutine = (props) => {
         <section className="routineform-container">
           <form onSubmit={handleEditRoutine}>
             <NewRoutineForm
-              selectedRoutine={props.selectedRoutine}
-              setSelectedRoutine={props.setSelectedRoutine}
+              routineForm={routineForm}
+              setRoutineForm={setRoutineForm}
               onFormChange={onFormChange}
             ></NewRoutineForm>
             <div className="button-container">
@@ -55,9 +60,9 @@ const EditRoutine = (props) => {
                 type="submit"
                 value="Update Routine"
                 // disabled={
-                //   props.selectedRoutine.title.length < 1 ||
-                //   props.selectedRoutine.title.length > 40 ||
-                //   props.selectedRoutine.description.length > 110
+                //   routineForm.title.length < 1 ||
+                //   routineForm.title.length > 40 ||
+                //   routineForm.description.length > 110
                 // }
               ></input>
             </div>
@@ -80,8 +85,8 @@ EditRoutine.propTypes = {
   addTask: PropTypes.func.isRequired,
   updateTask: PropTypes.func.isRequired,
   deleteTask: PropTypes.func.isRequired,
-  selectedRoutine: PropTypes.object.isRequired,
   setSelectedRoutine: PropTypes.func.isRequired,
+  selectedRoutine: PropTypes.object.isRequired,
 };
 
 export default EditRoutine;

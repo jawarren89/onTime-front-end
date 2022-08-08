@@ -23,6 +23,7 @@ const RoutineList = (props) => {
         start_time={routine.start_time}
         total_time={routine.total_time}
         tasks={routine.tasks}
+        selectedRoutine={props.selectedRoutine}
         setSelectedRoutine={props.setSelectedRoutine}
         updateRoutine={props.updateRoutine}
         deleteRoutine={props.deleteRoutine}
@@ -52,6 +53,7 @@ RoutineList.propTypes = {
       tasks: PropTypes.array.isRequired,
     })
   ),
+  selectedRoutine: PropTypes.object.isRequired,
   setSelectedRoutine: PropTypes.func.isRequired,
   updateRoutine: PropTypes.func.isRequired,
   deleteRoutine: PropTypes.func.isRequired,

@@ -163,11 +163,11 @@ function App() {
               pageTitle={pageTitle}
               viewNavbar={viewNavbar}
               toggleNavbar={toggleNavbar}
+              selectedRoutine={selectedRoutine}
+              setSelectedRoutine={setSelectedRoutine}
               routines={routines}
               updateRoutine={updateRoutine}
               deleteRoutine={deleteRoutine}
-              selectedRoutine={selectedRoutine}
-              setSelectedRoutine={setSelectedRoutine}
             />
           }
         />
