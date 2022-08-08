@@ -34,7 +34,6 @@ const EditRoutine = (props) => {
     <>
       <header className="navbar">
         <NavMenu
-          selectedRoutine={props.selectedRoutine}
           pageTitle={props.pageTitle}
           viewNavbar={props.viewNavbar}
           toggleNavbar={props.toggleNavbar}

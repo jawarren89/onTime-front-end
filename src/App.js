@@ -225,7 +225,6 @@ function App() {
               pageTitle={pageTitle}
               viewNavbar={viewNavbar}
               toggleNavbar={toggleNavbar}
-              selectedRoutine={selectedRoutine}
             />
           }
         />
