@@ -24,8 +24,19 @@ const Routine = (props) => {
   const expandRow = () => {
     if (props.expandedRow === props.routine_id) {
       props.setExpandedRow(0);
+      props.setSelectedRoutine({});
     } else {
       props.setExpandedRow(props.routine_id);
+      props.setSelectedRoutine({
+        routine_id: props.routine_id,
+        // title: props.title,
+        // description: props.description,
+        // destination: props.destination,
+        complete_time: props.complete_time,
+        // start_time: props.start_time,
+        // total_time: props.total_time,
+        // tasks: props.tasks,
+      });
     }
   };
 
@@ -45,18 +56,12 @@ const Routine = (props) => {
         </li>
         <div className="button-container">
           <Link to={`/routines/${props.routine_id}/play`}>
-            <button
-              className="play"
-              // onClick={() => props.setSelectedRoutine(props.routine_id)}
-            >
+            <button className="play">
               <img src={play} alt="play icon" />
             </button>
           </Link>
           <Link to={`/routines/${props.routine_id}/edit`}>
-            <button
-              className="edit"
-              // onClick={() => props.setSelectedRoutine(props.routine_id)}
-            >
+            <button className="edit">
               <img src={edit} alt="edit icon" />
             </button>
           </Link>
