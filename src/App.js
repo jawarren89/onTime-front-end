@@ -138,6 +138,28 @@ function App() {
       });
   };
 
+  const initiateRoutine = (routineId) => {
+    axios
+      .put(`${URL}/routines/init/${routineId}`, {})
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const fetchInitiatedRoutine = (routineId) => {
+    axios
+      .get(`${URL}/routines/init/${routineId}`)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   let location = useLocation();
   useEffect(() => {
     if (location.pathname === "/") {
