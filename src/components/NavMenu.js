@@ -10,7 +10,8 @@ import PropTypes from "prop-types";
 import menu from "../assets/menu.svg";
 
 // The NavBar is a menu component that can collapse and expande (default is
-// collapsed). It is rendered inside the header component of applicable pages.
+// collapsed). It is rendered as a fragmen inside the header component of
+// applicable pages.
 
 const NavMenu = (props) => {
   return (
@@ -19,9 +20,7 @@ const NavMenu = (props) => {
       <Link to="#" className="menu-bars">
         <img src={menu} alt="menu icon" onClick={props.toggleNavbar} />
       </Link>
-      <h1 className="current-page-title">
-        {props.selectedRoutine ? props.selectedRoutine.title : props.pageTitle}
-      </h1>
+      <h1 className="current-page-title">{props.pageTitle}</h1>
       {/* </div> */}
 
       {/* collapsible menu component here */}
@@ -51,7 +50,6 @@ const NavMenu = (props) => {
 
 NavMenu.propTypes = {
   pageTitle: PropTypes.string.isRequired,
-  selectedRoutine: PropTypes.object,
   viewNavbar: PropTypes.bool.isRequired,
   toggleNavbar: PropTypes.func.isRequired,
 };

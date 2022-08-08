@@ -104,7 +104,7 @@ Routine.propTypes = {
   start_time: PropTypes.object.isRequired,
   total_time: PropTypes.number,
   tasks: PropTypes.array.isRequired,
-  // setSelectedRoutine: PropTypes.func.isRequired,
+  setSelectedRoutine: PropTypes.func.isRequired,
   updateRoutine: PropTypes.func.isRequired,
   deleteRoutine: PropTypes.func.isRequired,
   expandedRow: PropTypes.number.isRequired,

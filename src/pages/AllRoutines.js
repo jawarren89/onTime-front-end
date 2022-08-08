@@ -1,12 +1,10 @@
 import "../styles/AllRoutines.css";
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import RoutineList from "../components/RoutineList";
 
 import add from "../assets/plus-circle.svg";
-import menu from "../assets/menu.svg";
 
 import NavMenu from "../components/NavMenu";
 import NewRoutineForm from "../components/NewRoutineForm";
@@ -27,6 +25,7 @@ const AllRoutines = (props) => {
     <>
       <header className="navbar">
         <NavMenu
+          selectedRoutine={props.selectedRoutine}
           pageTitle={props.pageTitle}
           viewNavbar={props.viewNavbar}
           toggleNavbar={props.toggleNavbar}
@@ -36,7 +35,7 @@ const AllRoutines = (props) => {
         </button>
       </header>
 
-      <body className="routines-container">
+      <main className="routines-container">
         <section
           className={showRoutineForm ? "routine-form expanded" : "routine-form"}
         >
@@ -44,16 +43,19 @@ const AllRoutines = (props) => {
         </section>
         <RoutineList
           routines={props.routines}
-          // setSelectedRoutine={props.setSelectedRoutine}
+          setSelectedRoutine={props.setSelectedRoutine}
           updateRoutine={props.updateRoutine}
           deleteRoutine={props.deleteRoutine}
         ></RoutineList>
-      </body>
+      </main>
     </>
   );
 };
 
 AllRoutines.propTypes = {
+  pageTitle: PropTypes.string.isRequired,
+  viewNavbar: PropTypes.bool.isRequired,
+  toggleNavbar: PropTypes.func.isRequired,
   routines: PropTypes.arrayOf(
     PropTypes.shape({
       routine_id: PropTypes.number.isRequired,
@@ -66,12 +68,10 @@ AllRoutines.propTypes = {
       tasks: PropTypes.array.isRequired,
     })
   ),
-  // setSelectedRoutine: PropTypes.func.isRequired,
+  selectedRoutine: PropTypes.object.isRequired,
+  setSelectedRoutine: PropTypes.func.isRequired,
   updateRoutine: PropTypes.func.isRequired,
   deleteRoutine: PropTypes.func.isRequired,
-  pageTitle: PropTypes.string.isRequired,
-  viewNavbar: PropTypes.bool.isRequired,
-  toggleNavbar: PropTypes.func.isRequired,
 };
 
 export default AllRoutines;

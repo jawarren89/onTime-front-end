@@ -155,34 +155,59 @@ function App() {
 
   return (
     <div className="App">
-      {/* <NavMenu
-        pageTitle={pageTitle}
-        viewNavbar={viewNavbar}
-        toggleNavbarCallback={toggleNavbar}
-      ></NavMenu> */}
       <Routes>
         <Route
-          path="/routines"
+          path="/"
           element={
             <AllRoutines
+              pageTitle={pageTitle}
+              viewNavbar={viewNavbar}
+              toggleNavbar={toggleNavbar}
               routines={routines}
-              selectedRoutine={selectedRoutine}
-              // setSelectedRoutine={setSelectedRoutine}
               updateRoutine={updateRoutine}
               deleteRoutine={deleteRoutine}
-              pageTitle={pageTitle}
-              toggleNavbar={toggleNavbar}
-              viewNavbar={viewNavbar}
+              selectedRoutine={selectedRoutine}
+              setSelectedRoutine={setSelectedRoutine}
             />
           }
         />
-        <Route path="/taskbank" element={<PageNotFound />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/settings" element={<PageNotFound />} />
+        <Route
+          path="/taskbank"
+          element={
+            <PageNotFound
+              pageTitle={pageTitle}
+              viewNavbar={viewNavbar}
+              toggleNavbar={toggleNavbar}
+            />
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <About
+              pageTitle={pageTitle}
+              viewNavbar={viewNavbar}
+              toggleNavbar={toggleNavbar}
+            />
+          }
+        />
+        <Route
+          path="/settings"
+          element={
+            <PageNotFound
+              pageTitle={pageTitle}
+              viewNavbar={viewNavbar}
+              toggleNavbar={toggleNavbar}
+            />
+          }
+        />
         <Route
           path="/routines/:routine_id/edit"
           element={
             <EditRoutine
+              pageTitle={pageTitle}
+              viewNavbar={viewNavbar}
+              toggleNavbar={toggleNavbar}
               selectedRoutine={selectedRoutine}
               setSelectedRoutine={setSelectedRoutine}
               fetchOneRoutine={fetchOneRoutine}
@@ -193,8 +218,27 @@ function App() {
             />
           }
         />
-        <Route path="/routines/:routine_id/play" element={<PlayRoutine />} />
-        <Route path="*" element={<PageNotFound />} />
+        <Route
+          path="/routines/:routine_id/play"
+          element={
+            <PlayRoutine
+              pageTitle={pageTitle}
+              viewNavbar={viewNavbar}
+              toggleNavbar={toggleNavbar}
+              selectedRoutine={selectedRoutine}
+            />
+          }
+        />
+        <Route
+          path="*"
+          element={
+            <PageNotFound
+              pageTitle={pageTitle}
+              viewNavbar={viewNavbar}
+              toggleNavbar={toggleNavbar}
+            />
+          }
+        />
       </Routes>
     </div>
   );

@@ -1,8 +1,11 @@
-import NewRoutineForm from "../components/NewRoutineForm";
+import "../styles/EditRoutine.css";
 import React from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
+
+import NavMenu from "../components/NavMenu";
+import NewRoutineForm from "../components/NewRoutineForm";
 
 // The EditRoutine page is accessed when a user clicks on a routine to edit or
 // when a user navigates to a specific edit route. As such, the routine fetched
@@ -29,6 +32,14 @@ const EditRoutine = (props) => {
 
   return (
     <>
+      <header className="navbar">
+        <NavMenu
+          selectedRoutine={props.selectedRoutine}
+          pageTitle={props.pageTitle}
+          viewNavbar={props.viewNavbar}
+          toggleNavbar={props.toggleNavbar}
+        ></NavMenu>
+      </header>
       <main className="edit-routine-container">
         <h2>Edit Routine: {props.selectedRoutine.title}</h2>
         <p>You can do this, I believe in you.</p>
@@ -62,13 +73,16 @@ const EditRoutine = (props) => {
 };
 
 EditRoutine.propTypes = {
-  selectedRoutine: PropTypes.object.isRequired,
-  setSelectedRoutine: PropTypes.func.isRequired,
+  pageTitle: PropTypes.string.isRequired,
+  viewNavbar: PropTypes.bool.isRequired,
+  toggleNavbar: PropTypes.func.isRequired,
   fetchOneRoutine: PropTypes.func.isRequired,
   updateRoutine: PropTypes.func.isRequired,
   addTask: PropTypes.func.isRequired,
   updateTask: PropTypes.func.isRequired,
   deleteTask: PropTypes.func.isRequired,
+  selectedRoutine: PropTypes.object.isRequired,
+  setSelectedRoutine: PropTypes.func.isRequired,
 };
 
 export default EditRoutine;

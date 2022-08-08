@@ -4,3 +4,25 @@
     line-height: 1.5;
     margin: 0 auto;
 }
+
+
+/* for managing add new routine form, per inspo board
+h3 {
+    font-size: 20px;
+    margin: 0px;
+}
+
+input[type=text] {
+    width: 200px;
+    height: 12px;
+    padding: 5px;
+    border: 2px solid white;
+    font-size: 16px;
+    color: black;
+    font-family: Patrick Hand;
+} 
+
+.boardform-container {
+    display: inline-block;
+    margin: 0px;
+} */
