@@ -8,7 +8,7 @@ import AllRoutines from "./pages/AllRoutines";
 import EditRoutine from "./pages/EditRoutine";
 import PlayRoutine from "./pages/PlayRoutine";
 import About from "./pages/About";
-import PageNotFound from "./pages/404Page";
+import Page404 from "./pages/Page404";
 
 function App() {
   const URL = "https://ontime-planner.herokuapp.com";
@@ -216,9 +216,9 @@ function App() {
             />
           }
         />
-        <Route path="/taskbank" element={<PageNotFound />} />
+        <Route path="/taskbank" element={<Page404 />} />
         <Route path="/about" element={<About />} />
-        <Route path="/settings" element={<PageNotFound />} />
+        <Route path="/settings" element={<Page404 />} />
         <Route
           path="/routines/:routine_id/edit"
           element={
@@ -247,7 +247,7 @@ function App() {
             />
           }
         />
-        <Route path="*" element={<PageNotFound />} />
+        <Route path="*" element={<Page404 />} />
       </Routes>
     </div>
   );

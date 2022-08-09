@@ -1,7 +1,7 @@
-import "../styles/404Page.css";
+import "../styles/Page404.css";
 import React from "react";
 
-const PageNotFound = (props) => {
+const Page404 = (props) => {
   return (
     <>
       <main className="page404-container">
@@ -12,4 +12,4 @@ const PageNotFound = (props) => {
   );
 };
 
-export default PageNotFound;
+export default Page404;
