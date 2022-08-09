@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 
-// import NavMenu from "../components/NavMenu";
 import NewRoutineForm from "../components/NewRoutineForm";
 
 // The EditRoutine page is accessed when a user clicks on a routine to edit or
@@ -12,80 +11,87 @@ import NewRoutineForm from "../components/NewRoutineForm";
 // is based on the routineId in the browserURL.
 
 const EditRoutine = (props) => {
-  const [routineForm, setRoutineForm] = useState({});
-
   const { routine_id } = useParams();
-
-  // const selectedRoutineCopy = JSON.parse(JSON.stringify(props.selectedRoutine));
-  // setRoutineForm(selectedRoutineCopy);
 
   useEffect(() => props.fetchOneRoutine(routine_id), []);
 
-  // useEffect(() => {
-  //   let ignore = false;
-  //   async function fetchData() {
-  //     const result = await props.fetchOneRoutine(routine_id);
-  //     if (!ignore) setRoutineForm(result.data);
-  //   }
-  //   fetchData();
-  //   return () => {
-  //     ignore = true;
-  //   };
-  // }, []);
+  const convertForSubmit = (form) => {
+    if (form.complete_time.meridiem === "PM") {
+      form.complete_time = {
+        hour: parseInt(form.complete_time.hour) + 12,
+        minute: parseInt(form.complete_time.minute),
+      };
+    } else {
+      form.complete_time = {
+        hour: parseInt(form.complete_time.hour),
+        minute: parseInt(form.complete_time.minute),
+      };
+    }
+    return form;
+  };
 
   const onFormChange = (event) => {
     const stateName = event.target.name;
     const inputValue = event.target.value;
 
-    const newRoutineForm = { ...routineForm };
+    const newRoutineForm = { ...props.selectedRoutine };
     newRoutineForm[stateName] = inputValue;
 
-    setRoutineForm(newRoutineForm);
+    props.setSelectedRoutine(newRoutineForm);
   };
 
   const handleEditRoutine = (event) => {
     event.preventDefault();
-    props.updateRoutine(routineForm);
+    const submitRoutine = convertForSubmit(
+      props.selectedRoutine,
+      props.routine_id
+    );
+    props.updateRoutine(routine_id, submitRoutine);
+    console.log(submitRoutine);
   };
 
-  return (
-    <>
-      <main className="edit-routine-container">
-        <h2>Edit Routine: {props.selectedRoutine.title}</h2>
-        <p>You can do this, I believe in you.</p>
-        <section className="routineform-container">
-          <form onSubmit={handleEditRoutine}>
-            <NewRoutineForm
-              routineForm={routineForm}
-              setRoutineForm={setRoutineForm}
-              onFormChange={onFormChange}
-            ></NewRoutineForm>
-            <div className="button-container">
-              <input
-                className="startButton"
-                type="submit"
-                value="Update Routine"
-                // disabled={
-                //   routineForm.title.length < 1 ||
-                //   routineForm.title.length > 40 ||
-                //   routineForm.description.length > 110
-                // }
-              ></input>
-            </div>
-          </form>
-        </section>
-        <section>
-          <h2>List your tasks here!</h2>
-        </section>
-      </main>
-    </>
-  );
+  if (props.isLoading) {
+    return <h1>Loading...</h1>;
+  } else {
+    return (
+      <>
+        <main className="edit-routine-container">
+          <h2>Edit Routine: {props.selectedRoutine.title}</h2>
+          <p>You can do this, I believe in you.</p>
+          <section className="routineform-container">
+            <form onSubmit={handleEditRoutine}>
+              <NewRoutineForm
+                selectedRoutine={props.selectedRoutine}
+                setSelectedRoutine={props.setSelectedRoutine}
+                onFormChange={onFormChange}
+              ></NewRoutineForm>
+              <div className="button-container">
+                <input
+                  className="startButton"
+                  type="submit"
+                  value="Update Routine"
+                  disabled={
+                    props.selectedRoutine.title.length < 1 ||
+                    props.selectedRoutine.title.length > 40 ||
+                    props.selectedRoutine.description.length > 110
+                  }
+                ></input>
+              </div>
+            </form>
+          </section>
+          <section>
+            <h2>List your tasks here!</h2>
+          </section>
+        </main>
+      </>
+    );
+  }
 };
 
 EditRoutine.propTypes = {
-  setSelectedRoutine: PropTypes.func.isRequired,
   selectedRoutine: PropTypes.object.isRequired,
-  // routineLoading: PropTypes.bool.isRequired,
+  setSelectedRoutine: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
   fetchOneRoutine: PropTypes.func.isRequired,
   updateRoutine: PropTypes.func.isRequired,
   addTask: PropTypes.func.isRequired,
