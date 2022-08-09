@@ -11,22 +11,15 @@ import menu from "../assets/menu.svg";
 
 // The NavBar is a menu component that can collapse and expande (default is
 // collapsed). It is rendered as a fragmen inside the header component of
-// applicable pages.
+// applicable pages. The whole nav system can be hidden on particular pages.
 
 const NavMenu = (props) => {
-  // const showFormOnClick = () => {
-  //   props.toggleAddRoutineForm();
-  // };
-
   return (
     <header className={props.viewNavSystem ? "nav-system" : "nav-hidden"}>
       <Link to="#" className="left-button">
         <img src={menu} alt="menu icon" onClick={props.toggleNavMenu} />
       </Link>
       <h1 className="page-title">{props.pageTitle}</h1>
-      {/* <button className="right-button" onClick={showFormOnClick}>
-            <img src={add} alt="add icon" />
-        </button> */}
 
       {/* collapsible menu component here */}
       <nav className={props.expandNavMenu ? "menu" : "menu-hidden"}>

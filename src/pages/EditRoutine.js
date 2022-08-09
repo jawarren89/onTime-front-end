@@ -8,6 +8,8 @@ import PageHeader from "../components/PageHeader";
 import NewRoutineForm from "../components/NewRoutineForm";
 import TaskList from "../components/TaskList";
 
+import add from "../assets/plus-circle.svg";
+
 // The EditRoutine page is accessed when a user clicks on a routine to edit or
 // when a user navigates to a specific edit route. As such, the routine fetched
 // is based on the routineId in the browserURL.
@@ -16,6 +18,10 @@ const EditRoutine = (props) => {
   const { routine_id } = useParams();
 
   useEffect(() => props.fetchOneRoutine(routine_id), []);
+
+  const showFormOnClick = () => {
+    props.toggleAddTaskForm();
+  };
 
   const convertForSubmit = (form) => {
     if (form.complete_time.meridiem === "PM") {
@@ -95,6 +101,11 @@ const EditRoutine = (props) => {
               deleteTask={props.deleteTask}
             ></TaskList>
           </section>
+          <div>
+            <button className="right-button" onClick={showFormOnClick}>
+              <img src={add} alt="add icon" />
+            </button>
+          </div>
         </main>
       </>
     );

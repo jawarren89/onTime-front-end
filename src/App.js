@@ -4,7 +4,6 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import axios from "axios";
 
 import NavMenu from "./components/NavMenu";
-import PageHeader from "./components/PageHeader";
 import AllRoutines from "./pages/AllRoutines";
 import EditRoutine from "./pages/EditRoutine";
 import PlayRoutine from "./pages/PlayRoutine";

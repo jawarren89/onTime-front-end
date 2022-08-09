@@ -2,9 +2,11 @@ import "../styles/AllRoutines.css";
 import React from "react";
 import { useState } from "react";
 import PropTypes from "prop-types";
-import RoutineList from "../components/RoutineList";
 
+import RoutineList from "../components/RoutineList";
 import NewRoutineForm from "../components/NewRoutineForm";
+
+import add from "../assets/plus-circle.svg";
 
 // The AllRoutines page component is the page that loads as a "home" page.
 // It shows all the routines stored in the database, and allows them to
@@ -12,6 +14,10 @@ import NewRoutineForm from "../components/NewRoutineForm";
 // routine to the list (tasks are added separately by editing the routine).
 
 const AllRoutines = (props) => {
+  const showFormOnClick = () => {
+    props.toggleAddRoutineForm();
+  };
+
   return (
     <>
       <main className="routines-container">
@@ -29,6 +35,11 @@ const AllRoutines = (props) => {
           updateRoutine={props.updateRoutine}
           deleteRoutine={props.deleteRoutine}
         ></RoutineList>
+        <div>
+          <button className="right-button" onClick={showFormOnClick}>
+            <img src={add} alt="add icon" />
+          </button>
+        </div>
       </main>
     </>
   );
