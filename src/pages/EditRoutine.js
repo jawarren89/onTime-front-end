@@ -42,10 +42,10 @@ const EditRoutine = (props) => {
     const stateName = event.target.name;
     const inputValue = event.target.value;
 
-    const newRoutineForm = { ...props.selectedRoutine };
-    newRoutineForm[stateName] = inputValue;
+    const updateRoutineForm = { ...props.selectedRoutine };
+    updateRoutineForm[stateName] = inputValue;
 
-    props.setSelectedRoutine(newRoutineForm);
+    props.setSelectedRoutine(updateRoutineForm);
   };
 
   const handleEditRoutine = (event) => {

@@ -2,7 +2,7 @@
 // converts it into a list of two-digit strings for hours, minutes, and
 // meridiem (AM/PM).
 
-const TimeToCivilian = (time) => {
+export const TimeToCivilian = (time) => {
   const militaryParser = (time) => {
     if (time.hour > 12) {
       return [time.hour - 12, "PM"];
@@ -31,4 +31,17 @@ const TimeToCivilian = (time) => {
   }
 };
 
-export default TimeToCivilian;
+export const TimeToMilitary = (targetId, targetValue, meridiem) => {
+  if (targetValue === "--") {
+    return { id: targetId, value: 0 };
+  } else if (targetId === "hour") {
+    if (meridiem === "PM") {
+      return { id: targetId, value: parseInt(targetValue) + 12 };
+    }
+    return { id: targetId, value: parseInt(targetValue) };
+  } else if (targetId === "minute") {
+    return { id: targetId, value: parseInt(targetValue) };
+  } else if (targetId === "meridiem") {
+    return 0;
+  }
+};

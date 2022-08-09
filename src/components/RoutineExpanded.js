@@ -1,6 +1,5 @@
 import "../styles/RoutineExpanded.css";
 import React from "react";
-import { useState } from "react";
 import PropTypes from "prop-types";
 
 import TimeSelector from "./TimeSelector";
@@ -11,57 +10,10 @@ import TimeSelector from "./TimeSelector";
 // as the form submission event.
 
 const RoutineExpanded = (props) => {
-  const [timeForm, setTimeForm] = useState(props.complete_time);
-
-  // const [timeForm, setTimeForm] = useState({
-  //   routine_id: props.routine_id,
-  //   complete_time: props.complete_time,
-  // });
-
-  const convertForSubmit = (form, routine_id) => {
-    if (form.meridiem === "PM") {
-      const timeData = {
-        routine_id: routine_id,
-        complete_time: {
-          hour: parseInt(form.hour) + 12,
-          minute: parseInt(form.minute),
-        },
-      };
-      return timeData;
-    } else {
-      const timeData = {
-        routine_id: routine_id,
-        complete_time: {
-          hour: parseInt(form.hour),
-          minute: parseInt(form.minute),
-        },
-      };
-      return timeData;
-    }
-  };
-
-  // const convertForSubmit = (form) => {
-  //   if (form.complete_time.meridiem === "PM") {
-  //     form.complete_time = {
-  //       hour: parseInt(form.complete_time.hour) + 12,
-  //       minute: parseInt(form.complete_time.minute),
-  //     };
-  //   } else {
-  //     form.complete_time = {
-  //       hour: parseInt(form.complete_time.hour),
-  //       minute: parseInt(form.complete_time.minute),
-  //     };
-  //   }
-  //   return form;
-  // };
-
-  //Convert back to military time before submitting.
   const handleSubmitTime = (event) => {
     event.preventDefault();
-    const submitTime = convertForSubmit(timeForm, props.routine_id);
-    // const submitTime = convertForSubmit(timeForm);
-    props.updateRoutine(props.routine_id, submitTime);
-    console.log(submitTime);
+    props.updateRoutine(props.routine_id, props.selectedRoutine);
+    console.log(props.selectedRoutine);
   };
 
   return (
@@ -82,8 +34,8 @@ const RoutineExpanded = (props) => {
           <div className="complete-by-text">Complete by:</div>
           <form className="complete-by-form" onSubmit={handleSubmitTime}>
             <TimeSelector
-              timeForm={timeForm}
-              setTimeForm={setTimeForm}
+              selectedRoutine={props.selectedRoutine}
+              setSelectedRoutine={props.setSelectedRoutine}
             ></TimeSelector>
             <input
               className="update-button"
@@ -102,8 +54,9 @@ RoutineExpanded.propTypes = {
   description: PropTypes.string,
   total_time: PropTypes.number,
   tasks: PropTypes.array.isRequired,
-  complete_time: PropTypes.object.isRequired,
+  complete_time: PropTypes.object,
   selectedRoutine: PropTypes.object.isRequired,
+  setSelectedRoutine: PropTypes.func.isRequired,
   updateRoutine: PropTypes.func.isRequired,
 };
 

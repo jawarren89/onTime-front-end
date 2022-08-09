@@ -9,20 +9,19 @@ import EditRoutine from "./pages/EditRoutine";
 import PlayRoutine from "./pages/PlayRoutine";
 import About from "./pages/About";
 import PageNotFound from "./pages/404Page";
-import TimeToCivilian from "./components/TimeToCivilian";
 
 function App() {
   const URL = "https://ontime-planner.herokuapp.com";
 
   const [routines, setRoutines] = useState([]);
   const [selectedRoutine, setSelectedRoutine] = useState({
-    routine_id: "",
+    routine_id: 0,
     title: "",
     description: "",
     destination: "",
-    complete_time: "",
-    start_time: "",
-    total_time: "",
+    complete_time: {},
+    start_time: {},
+    total_time: 0,
     tasks: [],
   });
   const [isLoading, setIsLoading] = useState(false);
@@ -40,12 +39,6 @@ function App() {
       .get(`${URL}/routines`)
       .then((response) => {
         const updatedRoutines = response.data;
-
-        for (const routine of updatedRoutines) {
-          routine.start_time = TimeToCivilian(routine.start_time);
-          routine.complete_time = TimeToCivilian(routine.complete_time);
-        }
-
         setRoutines(updatedRoutines);
         console.log("fetchAllRoutines request");
         console.log(updatedRoutines);
@@ -60,10 +53,6 @@ function App() {
       .get(`${URL}/routines/${routineId}`)
       .then((response) => {
         const oneRoutine = response.data;
-
-        oneRoutine.start_time = TimeToCivilian(oneRoutine.start_time);
-        oneRoutine.complete_time = TimeToCivilian(oneRoutine.complete_time);
-
         setSelectedRoutine(oneRoutine);
         console.log("fetchOneRoutine request");
         console.log(oneRoutine);

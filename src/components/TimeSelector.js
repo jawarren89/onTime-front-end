@@ -4,19 +4,22 @@ import "../styles/TimeSelector.css";
 import React from "react";
 import PropTypes from "prop-types";
 
+import { TimeToCivilian } from "./TimeConversions";
+import { TimeToMilitary } from "./TimeConversions";
 import TimeDropdown from "./TimeDropdown";
 
 // The TimeSelector component is a 3-part dropdown to select hours, minutes,
 // and meridiem. Dropdown options are listed here and mapped into the
 // individual TimeDropdown components.
 
-// Default time values shown are passed through the state timeForm, which is
-// is managed at the level above. It is an object that contains the routine_id,
-//  the routine's complete_time, and possibly other attributes.
+// Default time values shown are passed through the state selectedRoutine, which is
+// is managed in App.js. It is an object that contains the routine_id,
+// the routine's complete_time, and every other routine attribute.
 
 // The value of each timeForm object MUST be passed as strings to be compatible
-// across the hr/min/meridiem values in TimeSelector. They are converted in
-// the timeForm state.
+// across the hr/min/meridiem values in TimeSelector. They are converted back to
+// military time on form change before utilizing setSelectedRoutine to update
+// the state of the form.
 
 const TimeSelector = (props) => {
   const hoursOptions = [
@@ -35,7 +38,6 @@ const TimeSelector = (props) => {
     "12",
   ];
 
-  // is the only way to get this list to type out all the strings?
   const minutesOptions = [
     "--",
     "00",
@@ -102,11 +104,17 @@ const TimeSelector = (props) => {
 
   const meridiemOptions = ["AM", "PM"];
 
+  const civCompleteTime = TimeToCivilian(props.selectedRoutine.complete_time);
+
   const onTimeChange = (event) => {
-    const newTimeForm = { ...props.timeForm };
-    newTimeForm[event.target.id] = event.target.value;
-    // newTimeForm.complete_time[event.target.id] = event.target.value;
-    props.setTimeForm(newTimeForm);
+    const updateRoutineForm = JSON.parse(JSON.stringify(props.selectedRoutine));
+    const eventConvert = TimeToMilitary(
+      event.target.id,
+      event.target.value,
+      civCompleteTime.meridiem
+    );
+    updateRoutineForm.complete_time[eventConvert.id] = eventConvert.value;
+    props.setSelectedRoutine(updateRoutineForm);
   };
 
   return (
@@ -115,24 +123,21 @@ const TimeSelector = (props) => {
         id="hour"
         label="hour"
         options={hoursOptions}
-        value={props.timeForm.hour}
-        // value={props.timeForm.complete_time.hour}
+        value={civCompleteTime.hour}
         onChange={onTimeChange}
       ></TimeDropdown>
       <TimeDropdown
         id="minute"
         label="minute"
         options={minutesOptions}
-        value={props.timeForm.minute}
-        // value={props.timeForm.complete_time.minute}
+        value={civCompleteTime.minute}
         onChange={onTimeChange}
       ></TimeDropdown>
       <TimeDropdown
         id="meridiem"
         label="meridiem"
         options={meridiemOptions}
-        value={props.timeForm.meridiem}
-        // value={props.timeForm.complete_time.meridiem}
+        value={civCompleteTime.meridiem}
         onChange={onTimeChange}
       ></TimeDropdown>
     </div>
@@ -140,8 +145,8 @@ const TimeSelector = (props) => {
 };
 
 TimeSelector.propTypes = {
-  timeForm: PropTypes.object.isRequired,
-  setTimeForm: PropTypes.func.isRequired,
+  selectedRoutine: PropTypes.object.isRequired,
+  setSelectedRoutine: PropTypes.func.isRequired,
 };
 
 export default TimeSelector;

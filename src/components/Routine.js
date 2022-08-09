@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
+import { TimeToCivilian } from "./TimeConversions";
 import RoutineExpanded from "./RoutineExpanded";
 
 import play from "../assets/play.svg";
@@ -42,6 +43,9 @@ const Routine = (props) => {
 
   const isActive = props.expandedRow === props.routine_id;
 
+  const civStartTime = TimeToCivilian(props.start_time);
+  const civCompleteTime = TimeToCivilian(props.complete_time);
+
   return (
     <div className="routine-item-container">
       <ul className={isActive ? "routine expanded" : "routine"}>
@@ -73,12 +77,12 @@ const Routine = (props) => {
         </div>
         <div className="times-container" onClick={expandRow}>
           <li className="time-start">
-            Start: {props.start_time.hour}:{props.start_time.minute}{" "}
-            {props.start_time.meridiem}
+            Start: {civStartTime.hour}:{civStartTime.minute}{" "}
+            {civStartTime.meridiem}
           </li>
           <li className="time-complete">
-            Complete: {props.complete_time.hour}:{props.complete_time.minute}{" "}
-            {props.complete_time.meridiem}
+            Complete: {civCompleteTime.hour}:{civCompleteTime.minute}{" "}
+            {civCompleteTime.meridiem}
           </li>
         </div>
       </ul>
@@ -91,6 +95,7 @@ const Routine = (props) => {
             description={props.description}
             complete_time={props.complete_time}
             selectedRoutine={props.selectedRoutine}
+            setSelectedRoutine={props.setSelectedRoutine}
             updateRoutine={props.updateRoutine}
           ></RoutineExpanded>
         ) : (
@@ -106,8 +111,8 @@ Routine.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   destination: PropTypes.string,
-  complete_time: PropTypes.object.isRequired,
-  start_time: PropTypes.object.isRequired,
+  complete_time: PropTypes.object,
+  start_time: PropTypes.object,
   total_time: PropTypes.number,
   tasks: PropTypes.array.isRequired,
   selectedRoutine: PropTypes.object.isRequired,
