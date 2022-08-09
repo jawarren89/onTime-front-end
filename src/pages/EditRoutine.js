@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 
+import PageHeader from "../components/PageHeader";
 import NewRoutineForm from "../components/NewRoutineForm";
 
 // The EditRoutine page is accessed when a user clicks on a routine to edit or
@@ -55,6 +56,10 @@ const EditRoutine = (props) => {
   } else {
     return (
       <>
+        <PageHeader
+          pageTitle={props.selectedRoutine.title}
+          viewNavSystem={props.viewNavSystem}
+        ></PageHeader>
         <main className="edit-routine-container">
           <h2>Edit Routine: {props.selectedRoutine.title}</h2>
           <p>You can do this, I believe in you.</p>

@@ -1,0 +1,26 @@
+.header {
+    font-family: 'Cairo', Arial, sans-serif;
+    margin: 0;
+    background-color: var(--bluegreen);
+    height: 56px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.header-hidden {
+    position: fixed;
+    top: -100%;
+}
+
+.page-title {
+    color: var(--indigo);
+    padding: 0 0 0 2rem;
+    margin-right: 20vw;
+}
+
+.left-button {
+    margin-left: 2rem;
+    font-size: 2rem;
+    background: none;
+}

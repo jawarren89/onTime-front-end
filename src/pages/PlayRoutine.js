@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-// import NavMenu from "../components/NavMenu";
+import PageHeader from "../components/PageHeader";
 import ProgressTimer from "../components/ProgressTimer";
 
 import play from "../assets/play.svg";
@@ -9,13 +9,10 @@ import play from "../assets/play.svg";
 const PlayRoutine = (props) => {
   return (
     <>
-      {/* <header className="navbar">
-        <NavMenu
-          pageTitle={props.pageTitle}
-          viewNavbar={props.viewNavbar}
-          toggleNavbar={props.toggleNavbar}
-        ></NavMenu>
-      </header> */}
+      <PageHeader
+        pageTitle={props.selectedRoutine.title}
+        viewNavSystem={props.viewNavSystem}
+      ></PageHeader>
       <main className="play-routine-container">
         <h2>Routine will play on this screen!</h2>
         <p>You can do this, I believe in you.</p>

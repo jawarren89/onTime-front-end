@@ -3,13 +3,14 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import axios from "axios";
 
+import NavMenu from "./components/NavMenu";
+import PageHeader from "./components/PageHeader";
 import AllRoutines from "./pages/AllRoutines";
 import EditRoutine from "./pages/EditRoutine";
 import PlayRoutine from "./pages/PlayRoutine";
 import About from "./pages/About";
 import PageNotFound from "./pages/404Page";
 import TimeToCivilian from "./components/TimeToCivilian";
-import NavMenu from "./components/NavMenu";
 
 function App() {
   const URL = "https://ontime-planner.herokuapp.com";
@@ -28,11 +29,12 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
 
   const [pageTitle, setPageTitle] = useState("onTime");
-  const [viewNavbar, setViewNavbar] = useState(false);
+  const [expandNavMenu, setExpandNavMenu] = useState(false);
+  const [viewNavSystem, setViewNavSystem] = useState(true);
   const [showAddRoutine, setAddRoutine] = useState(false);
 
   const toggleAddRoutineForm = () => setAddRoutine(!showAddRoutine);
-  const toggleNavbar = () => setViewNavbar(!viewNavbar);
+  const toggleNavMenu = () => setExpandNavMenu(!expandNavMenu);
 
   const fetchAllRoutines = () => {
     axios
@@ -181,12 +183,24 @@ function App() {
   useEffect(() => {
     if (location.pathname === "/") {
       setPageTitle("Routines");
+      setViewNavSystem(true);
     } else if (location.pathname === "/taskbank") {
       setPageTitle("Task Bank");
+      setViewNavSystem(true);
     } else if (location.pathname === "/about") {
       setPageTitle("About");
+      setViewNavSystem(true);
     } else if (location.pathname === "/settings") {
       setPageTitle("Settings");
+      setViewNavSystem(true);
+    } else if (
+      location.pathname.includes("edit") ||
+      location.pathname.includes("play")
+    ) {
+      setPageTitle(selectedRoutine.title);
+      setViewNavSystem(false);
+    } else {
+      setViewNavSystem(true);
     }
   }, [location]);
 
@@ -196,8 +210,9 @@ function App() {
     <div className="App">
       <NavMenu
         pageTitle={pageTitle}
-        viewNavbar={viewNavbar}
-        toggleNavbar={toggleNavbar}
+        viewNavSystem={viewNavSystem}
+        expandNavMenu={expandNavMenu}
+        toggleNavMenu={toggleNavMenu}
       ></NavMenu>
       <Routes>
         <Route
@@ -229,10 +244,21 @@ function App() {
               addTask={addTask}
               updateTask={updateTask}
               deleteTask={deleteTask}
+              pageTitle={pageTitle}
+              viewNavSystem={viewNavSystem}
             />
           }
         />
-        <Route path="/routines/:routine_id/play" element={<PlayRoutine />} />
+        <Route
+          path="/routines/:routine_id/play"
+          element={
+            <PlayRoutine
+              selectedRoutine={selectedRoutine}
+              pageTitle={pageTitle}
+              viewNavSystem={viewNavSystem}
+            />
+          }
+        />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>

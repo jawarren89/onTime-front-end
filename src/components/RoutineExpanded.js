@@ -75,7 +75,9 @@ const RoutineExpanded = (props) => {
             Total time: {props.total_time ? props.total_time : "--"}
           </li>
         </div>
-        <li className="description">Description: {props.description}</li>
+        <li className="description">
+          Description: {props.description} | {props.selectedRoutine.description}
+        </li>
         <li className="time-selector-container">
           <div className="complete-by-text">Complete by:</div>
           <form className="complete-by-form" onSubmit={handleSubmitTime}>

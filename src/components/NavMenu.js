@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import NavMenuData from "./NavMenuData";
 import PropTypes from "prop-types";
 
-// import add from "../assets/plus-circle.svg";
 import menu from "../assets/menu.svg";
 
 // The NavBar is a menu component that can collapse and expande (default is
@@ -20,21 +19,20 @@ const NavMenu = (props) => {
   // };
 
   return (
-    <div className="navbar">
-      <Link to="#" className="menu-bars">
-        <img src={menu} alt="menu icon" onClick={props.toggleNavbar} />
+    <header className={props.viewNavSystem ? "nav-system" : "nav-hidden"}>
+      <Link to="#" className="left-button">
+        <img src={menu} alt="menu icon" onClick={props.toggleNavMenu} />
       </Link>
-      <h1 className="current-page-title">{props.pageTitle}</h1>
-
-      {/* <button className="add-button" onClick={showFormOnClick}>
-          <img src={add} alt="add icon" />
-      </button> */}
+      <h1 className="page-title">{props.pageTitle}</h1>
+      {/* <button className="right-button" onClick={showFormOnClick}>
+            <img src={add} alt="add icon" />
+        </button> */}
 
       {/* collapsible menu component here */}
-      <nav className={props.viewNavbar ? "nav-menu active" : "nav-menu"}>
-        <ul className="nav-menu-items" onClick={props.toggleNavbar}>
+      <nav className={props.expandNavMenu ? "menu" : "menu-hidden"}>
+        <ul className="menu-items" onClick={props.toggleNavMenu}>
           <li className="navbar-toggle">
-            <Link to="#" className="menu-bars">
+            <Link to="#" className="left-button">
               <img src={menu} alt="menu icon" />
             </Link>
             <h1 className="app-title">onTime</h1>
@@ -51,14 +49,15 @@ const NavMenu = (props) => {
           })}
         </ul>
       </nav>
-    </div>
+    </header>
   );
 };
 
 NavMenu.propTypes = {
   pageTitle: PropTypes.string.isRequired,
-  viewNavbar: PropTypes.bool.isRequired,
-  toggleNavbar: PropTypes.func.isRequired,
+  viewNavSystem: PropTypes.bool.isRequired,
+  expandNavMenu: PropTypes.bool.isRequired,
+  toggleNavMenu: PropTypes.func.isRequired,
 };
 
 export default NavMenu;
