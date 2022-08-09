@@ -1,0 +1,24 @@
+.playroutine-container * {
+    border: 1px solid blue;
+}
+
+.playroutine-container {
+    max-width: 60em;
+    height: 100vh;
+    line-height: 1.5;
+    margin: 0 auto;
+}
+
+.play-header {
+    font-family: 'Cairo', Arial, Helvetica, sans-serif;
+    color: var(--indigo);
+    padding-bottom: 1em;
+    text-align: center;
+}
+
+/* .circle {
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    justify-items: flex-end;
+} */

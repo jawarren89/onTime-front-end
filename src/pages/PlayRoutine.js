@@ -1,3 +1,5 @@
+import "../styles/PlayRoutine.css";
+
 import React from "react";
 import PropTypes from "prop-types";
 
@@ -13,14 +15,16 @@ const PlayRoutine = (props) => {
         pageTitle={props.selectedRoutine.title}
         viewNavSystem={props.viewNavSystem}
       ></PageHeader>
-      <main className="play-routine-container">
-        <h2>Routine will play on this screen!</h2>
+      <main className="playroutine-container">
+        <h2 className="play-header">Routine will play on this screen!</h2>
         <p>You can do this, I believe in you.</p>
         <button className="play">
           <img src={play} alt="play icon" />
         </button>
         <section>
-          <ProgressTimer percentage={85} colour={"teal"}></ProgressTimer>
+          <div className="circle">
+            <ProgressTimer percentage={85} colour={"teal"}></ProgressTimer>
+          </div>
         </section>
       </main>
     </>
