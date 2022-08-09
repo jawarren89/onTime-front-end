@@ -13,6 +13,13 @@ export const TimeToCivilian = (time) => {
 
   if (time) {
     const civilian = militaryParser(time);
+    if (time.hour === 0 && time.minute === 0) {
+      return {
+        hour: "--",
+        minute: "--",
+        meridiem: "--",
+      };
+    }
     if (time.minute < 10) {
       return {
         hour: civilian[0].toString(),
@@ -31,17 +38,17 @@ export const TimeToCivilian = (time) => {
   }
 };
 
-export const TimeToMilitary = (targetId, targetValue, meridiem) => {
+export const TimeToMilitary = (targetId, targetValue, civCompleteTime) => {
   if (targetValue === "--") {
     return { id: targetId, value: 0 };
   } else if (targetId === "hour") {
-    if (meridiem === "PM") {
+    if (civCompleteTime.meridiem === "PM") {
       return { id: targetId, value: parseInt(targetValue) + 12 };
     }
     return { id: targetId, value: parseInt(targetValue) };
   } else if (targetId === "minute") {
     return { id: targetId, value: parseInt(targetValue) };
   } else if (targetId === "meridiem") {
-    return 0;
+    return { id: "hour", value: civCompleteTime.hour };
   }
 };

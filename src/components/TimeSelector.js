@@ -34,7 +34,7 @@ const TimeSelector = (props) => {
     const eventConvert = TimeToMilitary(
       event.target.id,
       event.target.value,
-      civCompleteTime.meridiem
+      civCompleteTime
     );
     updateRoutineForm.complete_time[eventConvert.id] = eventConvert.value;
     props.setSelectedRoutine(updateRoutineForm);
