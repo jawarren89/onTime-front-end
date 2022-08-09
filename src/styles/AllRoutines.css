@@ -10,19 +10,18 @@
 h3 {
     font-size: 20px;
     margin: 0px;
-}
+} */
 
-input[type=text] {
-    width: 200px;
-    height: 12px;
+/* input[type=text] {
+    width: 80vw;
+    height: 24px;
     padding: 5px;
-    border: 2px solid white;
+    border: 2px solid var(--aliceblue);
     font-size: 16px;
-    color: black;
-    font-family: Patrick Hand;
-} 
+    color: var(--text);
+}  */
 
-.boardform-container {
+/* .boardform-container {
     display: inline-block;
     margin: 0px;
 } */

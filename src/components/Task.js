@@ -46,8 +46,8 @@ const Task = (props) => {
           </button>
         </div>
         <div className="times-container" onClick={expandRow}>
+          <li className="total-time">Total Time:</li>
           <li className="time-start">Start:</li>
-          <li className="time-complete">Total Time:</li>
         </div>
       </ul>
       <div className="expanded-task-container">

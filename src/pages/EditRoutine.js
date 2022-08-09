@@ -61,8 +61,10 @@ const EditRoutine = (props) => {
           pageTitle={props.selectedRoutine.title}
           viewNavSystem={props.viewNavSystem}
         ></PageHeader>
-        <main className="edit-routine-container">
-          <h2>Edit Routine: {props.selectedRoutine.title}</h2>
+        <main className="editpage-container">
+          <h2 className="section-header">
+            Edit Routine: {props.selectedRoutine.title}
+          </h2>
           <p>You can do this, I believe in you.</p>
           <section className="routineform-container">
             <form onSubmit={handleEditRoutine}>
@@ -75,7 +77,7 @@ const EditRoutine = (props) => {
                 <input
                   className="startButton"
                   type="submit"
-                  value="Update Routine"
+                  value="Update"
                   disabled={
                     props.selectedRoutine.title.length < 1 ||
                     props.selectedRoutine.title.length > 40 ||
@@ -86,7 +88,7 @@ const EditRoutine = (props) => {
             </form>
           </section>
           <section>
-            <h2>List your tasks here!</h2>
+            <h2 className="section-header">List your tasks here!</h2>
             <TaskList
               tasks={props.selectedRoutine.tasks}
               updateTask={props.updateTask}

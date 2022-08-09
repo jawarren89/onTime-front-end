@@ -1,3 +1,13 @@
-hedaer {
-    top: -100%;
+.editpage-container {
+    max-width: 60em;
+    height: 100vh;
+    line-height: 1.5;
+    margin: 0 auto;
+}
+
+.section-header {
+    font-family: 'Cairo', Arial, Helvetica, sans-serif;
+    color: var(--indigo);
+    padding-bottom: 1em;
+    text-align: center;
 }
