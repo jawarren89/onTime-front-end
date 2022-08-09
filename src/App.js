@@ -17,6 +17,7 @@ function App() {
   const [selectedRoutine, setSelectedRoutine] = useState({});
   const [pageTitle, setPageTitle] = useState("onTime");
   const [viewNavbar, setViewNavbar] = useState(true);
+  const [routineLoading, setRoutineLoading] = useState(false);
 
   const toggleNavbar = () => setViewNavbar(!viewNavbar);
 
@@ -53,6 +54,9 @@ function App() {
         console.log("fetchOneRoutine request");
         console.log(oneRoutine);
       })
+      // .then(() => {
+      //   setRoutineLoading(false);
+      // })
       .catch((error) => {
         console.log(error);
       });
@@ -232,6 +236,7 @@ function App() {
               toggleNavbar={toggleNavbar}
               selectedRoutine={selectedRoutine}
               setSelectedRoutine={setSelectedRoutine}
+              routineLoading={routineLoading}
               fetchOneRoutine={fetchOneRoutine}
               updateRoutine={updateRoutine}
               addTask={addTask}

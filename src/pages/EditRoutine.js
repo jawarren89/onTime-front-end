@@ -12,12 +12,26 @@ import NewRoutineForm from "../components/NewRoutineForm";
 // is based on the routineId in the browserURL.
 
 const EditRoutine = (props) => {
+  const [routineForm, setRoutineForm] = useState({});
+
   const { routine_id } = useParams();
+
+  // const selectedRoutineCopy = JSON.parse(JSON.stringify(props.selectedRoutine));
+  // setRoutineForm(selectedRoutineCopy);
+
   useEffect(() => props.fetchOneRoutine(routine_id), []);
 
-  const [routineForm, setRoutineForm] = useState({ ...props.selectedRoutine });
-  // const selectedRoutineCopy = JSON.parse(JSON.stringify(props.selectedRoutine));
-  // useEffect(() => setRoutineForm(selectedRoutineCopy), []);
+  // useEffect(() => {
+  //   let ignore = false;
+  //   async function fetchData() {
+  //     const result = await props.fetchOneRoutine(routine_id);
+  //     if (!ignore) setRoutineForm(result.data);
+  //   }
+  //   fetchData();
+  //   return () => {
+  //     ignore = true;
+  //   };
+  // }, []);
 
   const onFormChange = (event) => {
     const stateName = event.target.name;
@@ -27,7 +41,6 @@ const EditRoutine = (props) => {
     newRoutineForm[stateName] = inputValue;
 
     setRoutineForm(newRoutineForm);
-    props.setSelectedRoutine(newRoutineForm);
   };
 
   const handleEditRoutine = (event) => {
@@ -80,13 +93,14 @@ EditRoutine.propTypes = {
   pageTitle: PropTypes.string.isRequired,
   viewNavbar: PropTypes.bool.isRequired,
   toggleNavbar: PropTypes.func.isRequired,
+  setSelectedRoutine: PropTypes.func.isRequired,
+  selectedRoutine: PropTypes.object.isRequired,
+  routineLoading: PropTypes.bool.isRequired,
   fetchOneRoutine: PropTypes.func.isRequired,
   updateRoutine: PropTypes.func.isRequired,
   addTask: PropTypes.func.isRequired,
   updateTask: PropTypes.func.isRequired,
   deleteTask: PropTypes.func.isRequired,
-  setSelectedRoutine: PropTypes.func.isRequired,
-  selectedRoutine: PropTypes.object.isRequired,
 };
 
 export default EditRoutine;

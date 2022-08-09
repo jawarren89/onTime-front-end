@@ -13,6 +13,11 @@ import TimeSelector from "./TimeSelector";
 const RoutineExpanded = (props) => {
   const [timeForm, setTimeForm] = useState(props.complete_time);
 
+  // const [timeForm, setTimeForm] = useState({
+  //   routine_id: props.routine_id,
+  //   complete_time: props.complete_time,
+  // });
+
   const convertForSubmit = (form, routine_id) => {
     if (form.meridiem === "PM") {
       const timeData = {
@@ -35,10 +40,26 @@ const RoutineExpanded = (props) => {
     }
   };
 
-  //Convert back to military time and add routine_id before submitting.
+  // const convertForSubmit = (form) => {
+  //   if (form.complete_time.meridiem === "PM") {
+  //     form.complete_time = {
+  //       hour: parseInt(form.complete_time.hour) + 12,
+  //       minute: parseInt(form.complete_time.minute),
+  //     };
+  //   } else {
+  //     form.complete_time = {
+  //       hour: parseInt(form.complete_time.hour),
+  //       minute: parseInt(form.complete_time.minute),
+  //     };
+  //   }
+  //   return form;
+  // };
+
+  //Convert back to military time before submitting.
   const handleSubmitTime = (event) => {
     event.preventDefault();
     const submitTime = convertForSubmit(timeForm, props.routine_id);
+    // const submitTime = convertForSubmit(timeForm);
     props.updateRoutine(props.routine_id, submitTime);
     console.log(submitTime);
   };

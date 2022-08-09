@@ -11,12 +11,12 @@ import TimeDropdown from "./TimeDropdown";
 // individual TimeDropdown components.
 
 // Default time values shown are passed through the state timeForm, which is
-// is managed at the level above. It is an object of the routine's complete_time
+// is managed at the level above. It is an object that contains the routine_id,
+//  the routine's complete_time, and possibly other attributes.
 
-// complete_time : { hour: "", minute: "", meridiem: ""}
-
-// timeForm object values MUST be passed as strings to be compatible across the
-// hr/min/meridiem values in TimeSelector.
+// The value of each timeForm object MUST be passed as strings to be compatible
+// across the hr/min/meridiem values in TimeSelector. They are converted in
+// the timeForm state.
 
 const TimeSelector = (props) => {
   const hoursOptions = [
@@ -105,6 +105,8 @@ const TimeSelector = (props) => {
   const onTimeChange = (event) => {
     const newTimeForm = { ...props.timeForm };
     newTimeForm[event.target.id] = event.target.value;
+    // newTimeForm.complete_time[event.target.id] = event.target.value;
+
     props.setTimeForm(newTimeForm);
   };
 
@@ -112,16 +114,18 @@ const TimeSelector = (props) => {
     <div className="time-dropdowns">
       <TimeDropdown
         id="hour"
-        label="hours"
+        label="hour"
         options={hoursOptions}
         value={props.timeForm.hour}
+        // value={props.timeForm.complete_time.hour}
         onChange={onTimeChange}
       ></TimeDropdown>
       <TimeDropdown
         id="minute"
-        label="minutes"
+        label="minute"
         options={minutesOptions}
         value={props.timeForm.minute}
+        // value={props.timeForm.complete_time.minute}
         onChange={onTimeChange}
       ></TimeDropdown>
       <TimeDropdown
@@ -129,6 +133,7 @@ const TimeSelector = (props) => {
         label="meridiem"
         options={meridiemOptions}
         value={props.timeForm.meridiem}
+        // value={props.timeForm.complete_time.meridiem}
         onChange={onTimeChange}
       ></TimeDropdown>
     </div>
@@ -138,8 +143,6 @@ const TimeSelector = (props) => {
 TimeSelector.propTypes = {
   timeForm: PropTypes.object.isRequired,
   setTimeForm: PropTypes.func.isRequired,
-  // routineForm: PropTypes.object.isRequired,
-  // setRoutineForm: PropTypes.func.isRequired,
 };
 
 export default TimeSelector;
