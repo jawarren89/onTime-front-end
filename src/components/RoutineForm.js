@@ -1,17 +1,14 @@
-import "../styles/NewRoutineForm.css";
+import "../styles/RoutineForm.css";
 import React from "react";
 import PropTypes from "prop-types";
 
 import TimeSelector from "./TimeSelector";
 
-// The NewRoutineForm component is used on the EditRoutine page and to add a
-// new routine on the AllRoutines page. The values shown for title and
-// description are managed in a routineForm state one level about where the form
-// is rendered. The form renders a TimeSelector component also, using times
-// passed through routineForm. **REMINDER** these times in
-// routineForm must be civilian.
+// The RoutineForm component is used both to add a routine on the AllRoutines
+// page, and to edit an existing routine on the EditRoutine page. The values
+// are managed with selectedRoutine state in App.js.
 
-const NewRoutineForm = (props) => {
+const RoutineForm = (props) => {
   return (
     <div>
       <div className="input-container">
@@ -45,10 +42,10 @@ const NewRoutineForm = (props) => {
   );
 };
 
-NewRoutineForm.propTypes = {
+RoutineForm.propTypes = {
   selectedRoutine: PropTypes.object.isRequired,
   setSelectedRoutine: PropTypes.func.isRequired,
   onFormChange: PropTypes.func.isRequired,
 };
 
-export default NewRoutineForm;
+export default RoutineForm;

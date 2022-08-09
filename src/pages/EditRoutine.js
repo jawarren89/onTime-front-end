@@ -1,11 +1,10 @@
 import "../styles/EditRoutine.css";
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import PageHeader from "../components/PageHeader";
-import NewRoutineForm from "../components/NewRoutineForm";
+import RoutineForm from "../components/RoutineForm";
 import TaskList from "../components/TaskList";
 
 import add from "../assets/plus-circle.svg";
@@ -74,11 +73,11 @@ const EditRoutine = (props) => {
           <p>You can do this, I believe in you.</p>
           <section className="routineform-container">
             <form onSubmit={handleEditRoutine}>
-              <NewRoutineForm
+              <RoutineForm
                 selectedRoutine={props.selectedRoutine}
                 setSelectedRoutine={props.setSelectedRoutine}
                 onFormChange={onFormChange}
-              ></NewRoutineForm>
+              ></RoutineForm>
               <div className="button-container">
                 <input
                   className="startButton"

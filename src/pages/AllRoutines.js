@@ -1,10 +1,9 @@
 import "../styles/AllRoutines.css";
 import React from "react";
-import { useState } from "react";
 import PropTypes from "prop-types";
 
 import RoutineList from "../components/RoutineList";
-import NewRoutineForm from "../components/NewRoutineForm";
+import RoutineForm from "../components/RoutineForm";
 
 import add from "../assets/plus-circle.svg";
 
@@ -26,7 +25,7 @@ const AllRoutines = (props) => {
             props.showAddRoutine ? "routine-form expanded" : "routine-form"
           }
         >
-          {/* <NewRoutineForm></NewRoutineForm> */}
+          {/* <RoutineForm></RoutineForm> */}
         </section>
         <RoutineList
           routines={props.routines}
