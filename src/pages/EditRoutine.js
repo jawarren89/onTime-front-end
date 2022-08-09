@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 
 import PageHeader from "../components/PageHeader";
 import NewRoutineForm from "../components/NewRoutineForm";
+import TaskList from "../components/TaskList";
 
 // The EditRoutine page is accessed when a user clicks on a routine to edit or
 // when a user navigates to a specific edit route. As such, the routine fetched
@@ -86,6 +87,11 @@ const EditRoutine = (props) => {
           </section>
           <section>
             <h2>List your tasks here!</h2>
+            <TaskList
+              tasks={props.selectedRoutine.tasks}
+              updateTask={props.updateTask}
+              deleteTask={props.deleteTask}
+            ></TaskList>
           </section>
         </main>
       </>

@@ -1,27 +1,22 @@
-import "../styles/RoutineExpanded.css";
+import "../styles/TaskExpanded.css";
 import React from "react";
 import { useState } from "react";
 import PropTypes from "prop-types";
 
 import TimeSelector from "./TimeSelector";
 
-// The RoutineExpanded component holds additional data about each routine,
+// The TaskExpanded component holds additional data about each task,
 // and allows the user to update the CompleteBy time using the TimeSelector
 // component. The state of the TimeSelector component is managed here, as well
 // as the form submission event.
 
-const RoutineExpanded = (props) => {
-  const [timeForm, setTimeForm] = useState(props.complete_time);
+const TaskExpanded = (props) => {
+  const [taskForm, setTaskForm] = useState(props.time);
 
-  // const [timeForm, setTimeForm] = useState({
-  //   routine_id: props.routine_id,
-  //   complete_time: props.complete_time,
-  // });
-
-  const convertForSubmit = (form, routine_id) => {
+  const convertForSubmit = (form, task_id) => {
     if (form.meridiem === "PM") {
       const timeData = {
-        routine_id: routine_id,
+        task_id: task_id,
         complete_time: {
           hour: parseInt(form.hour) + 12,
           minute: parseInt(form.minute),
@@ -30,7 +25,7 @@ const RoutineExpanded = (props) => {
       return timeData;
     } else {
       const timeData = {
-        routine_id: routine_id,
+        task_id: task_id,
         complete_time: {
           hour: parseInt(form.hour),
           minute: parseInt(form.minute),
@@ -58,32 +53,21 @@ const RoutineExpanded = (props) => {
   //Convert back to military time before submitting.
   const handleSubmitTime = (event) => {
     event.preventDefault();
-    const submitTime = convertForSubmit(timeForm, props.routine_id);
+    const submitTime = convertForSubmit(taskForm, props.task_id);
     // const submitTime = convertForSubmit(timeForm);
-    props.updateRoutine(props.routine_id, submitTime);
+    props.updateTask(props.task_id, submitTime);
     console.log(submitTime);
   };
 
   return (
     <div className="drop-down-container">
       <ul className="drop-down">
-        <div className="drop-row1">
-          <li className="total-tasks">
-            Tasks: {props.tasks.length ? props.tasks.length : "--"}
-          </li>
-          <li className="total-time">
-            Total time: {props.total_time ? props.total_time : "--"}
-          </li>
-        </div>
-        <li className="description">
-          Description: {props.description} | {props.selectedRoutine.description}
-        </li>
         <li className="time-selector-container">
-          <div className="complete-by-text">Complete by:</div>
+          <div className="complete-by-text">Time:</div>
           <form className="complete-by-form" onSubmit={handleSubmitTime}>
             <TimeSelector
-              timeForm={timeForm}
-              setTimeForm={setTimeForm}
+              timeForm={taskForm}
+              setTimeForm={setTaskForm}
             ></TimeSelector>
             <input
               className="update-button"
@@ -97,14 +81,10 @@ const RoutineExpanded = (props) => {
   );
 };
 
-RoutineExpanded.propTypes = {
-  routine_id: PropTypes.number.isRequired,
-  description: PropTypes.string,
-  total_time: PropTypes.number,
-  tasks: PropTypes.array.isRequired,
-  complete_time: PropTypes.object.isRequired,
-  selectedRoutine: PropTypes.object.isRequired,
-  updateRoutine: PropTypes.func.isRequired,
+TaskExpanded.propTypes = {
+  task_id: PropTypes.number.isRequired,
+  time: PropTypes.number,
+  updateTask: PropTypes.func.isRequired,
 };
 
-export default RoutineExpanded;
+export default TaskExpanded;
