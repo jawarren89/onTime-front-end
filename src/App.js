@@ -9,16 +9,20 @@ import PlayRoutine from "./pages/PlayRoutine";
 import About from "./pages/About";
 import PageNotFound from "./pages/404Page";
 import TimeToCivilian from "./components/TimeToCivilian";
+import NavMenu from "./components/NavMenu";
 
 function App() {
   const URL = "https://ontime-planner.herokuapp.com";
 
   const [routines, setRoutines] = useState([]);
   const [selectedRoutine, setSelectedRoutine] = useState({});
-  const [pageTitle, setPageTitle] = useState("onTime");
-  const [viewNavbar, setViewNavbar] = useState(true);
-  const [routineLoading, setRoutineLoading] = useState(false);
+  // const [routineLoading, setRoutineLoading] = useState(false);
 
+  const [pageTitle, setPageTitle] = useState("onTime");
+  const [viewNavbar, setViewNavbar] = useState(false);
+  const [showAddRoutine, setAddRoutine] = useState(false);
+
+  const toggleAddRoutineForm = () => setAddRoutine(!showAddRoutine);
   const toggleNavbar = () => setViewNavbar(!viewNavbar);
 
   const fetchAllRoutines = () => {
@@ -181,62 +185,36 @@ function App() {
 
   return (
     <div className="App">
+      <NavMenu
+        pageTitle={pageTitle}
+        viewNavbar={viewNavbar}
+        toggleNavbar={toggleNavbar}
+      ></NavMenu>
       <Routes>
         <Route
           path="/"
           element={
             <AllRoutines
-              pageTitle={pageTitle}
-              viewNavbar={viewNavbar}
-              toggleNavbar={toggleNavbar}
               selectedRoutine={selectedRoutine}
               setSelectedRoutine={setSelectedRoutine}
               routines={routines}
               updateRoutine={updateRoutine}
               deleteRoutine={deleteRoutine}
+              showAddRoutine={showAddRoutine}
             />
           }
         />
-        <Route
-          path="/taskbank"
-          element={
-            <PageNotFound
-              pageTitle={pageTitle}
-              viewNavbar={viewNavbar}
-              toggleNavbar={toggleNavbar}
-            />
-          }
-        />
-        <Route
-          path="/about"
-          element={
-            <About
-              pageTitle={pageTitle}
-              viewNavbar={viewNavbar}
-              toggleNavbar={toggleNavbar}
-            />
-          }
-        />
-        <Route
-          path="/settings"
-          element={
-            <PageNotFound
-              pageTitle={pageTitle}
-              viewNavbar={viewNavbar}
-              toggleNavbar={toggleNavbar}
-            />
-          }
-        />
+        <Route path="/taskbank" element={<PageNotFound />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/settings" element={<PageNotFound />} />
         <Route
           path="/routines/:routine_id/edit"
           element={
             <EditRoutine
-              pageTitle={pageTitle}
-              viewNavbar={viewNavbar}
-              toggleNavbar={toggleNavbar}
+              toggleAddRoutineForm={toggleAddRoutineForm}
               selectedRoutine={selectedRoutine}
               setSelectedRoutine={setSelectedRoutine}
-              routineLoading={routineLoading}
+              // routineLoading={routineLoading}
               fetchOneRoutine={fetchOneRoutine}
               updateRoutine={updateRoutine}
               addTask={addTask}
@@ -245,26 +223,8 @@ function App() {
             />
           }
         />
-        <Route
-          path="/routines/:routine_id/play"
-          element={
-            <PlayRoutine
-              pageTitle={pageTitle}
-              viewNavbar={viewNavbar}
-              toggleNavbar={toggleNavbar}
-            />
-          }
-        />
-        <Route
-          path="*"
-          element={
-            <PageNotFound
-              pageTitle={pageTitle}
-              viewNavbar={viewNavbar}
-              toggleNavbar={toggleNavbar}
-            />
-          }
-        />
+        <Route path="/routines/:routine_id/play" element={<PlayRoutine />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>
   );

@@ -36,10 +36,10 @@ const NewRoutineForm = (props) => {
         />
       </div>
       <div>Complete by:</div>
-      {/* <TimeSelector
+      <TimeSelector
         timeForm={props.routineForm}
         setTimeForm={props.setRoutineForm}
-      ></TimeSelector> */}
+      ></TimeSelector>
     </div>
   );
 };

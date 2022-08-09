@@ -1,19 +1,9 @@
 import "../styles/About.css";
 import React from "react";
-import PropTypes from "prop-types";
-
-import NavMenu from "../components/NavMenu";
 
 const About = (props) => {
   return (
     <>
-      <header className="navbar">
-        <NavMenu
-          pageTitle={props.pageTitle}
-          viewNavbar={props.viewNavbar}
-          toggleNavbar={props.toggleNavbar}
-        ></NavMenu>
-      </header>
       <main className="about-page-container">
         <section className="about-section">
           <h2 className="section-header">About onTime</h2>
@@ -73,12 +63,6 @@ const About = (props) => {
       </main>
     </>
   );
-};
-
-About.propTypes = {
-  pageTitle: PropTypes.string.isRequired,
-  viewNavbar: PropTypes.bool.isRequired,
-  toggleNavbar: PropTypes.func.isRequired,
 };
 
 export default About;

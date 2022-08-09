@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import NavMenuData from "./NavMenuData";
 import PropTypes from "prop-types";
 
+// import add from "../assets/plus-circle.svg";
 import menu from "../assets/menu.svg";
 
 // The NavBar is a menu component that can collapse and expande (default is
@@ -14,14 +15,20 @@ import menu from "../assets/menu.svg";
 // applicable pages.
 
 const NavMenu = (props) => {
+  // const showFormOnClick = () => {
+  //   props.toggleAddRoutineForm();
+  // };
+
   return (
-    <React.Fragment>
-      {/* <div className="left-header"> */}
+    <div className="navbar">
       <Link to="#" className="menu-bars">
         <img src={menu} alt="menu icon" onClick={props.toggleNavbar} />
       </Link>
       <h1 className="current-page-title">{props.pageTitle}</h1>
-      {/* </div> */}
+
+      {/* <button className="add-button" onClick={showFormOnClick}>
+          <img src={add} alt="add icon" />
+      </button> */}
 
       {/* collapsible menu component here */}
       <nav className={props.viewNavbar ? "nav-menu active" : "nav-menu"}>
@@ -44,7 +51,7 @@ const NavMenu = (props) => {
           })}
         </ul>
       </nav>
-    </React.Fragment>
+    </div>
   );
 };
 

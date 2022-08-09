@@ -106,7 +106,6 @@ const TimeSelector = (props) => {
     const newTimeForm = { ...props.timeForm };
     newTimeForm[event.target.id] = event.target.value;
     // newTimeForm.complete_time[event.target.id] = event.target.value;
-
     props.setTimeForm(newTimeForm);
   };
 
