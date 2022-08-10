@@ -9,9 +9,7 @@ import chevron_right from "../assets/chevron-right.svg";
 import chevron_down from "../assets/chevron-down.svg";
 
 // The task component displays each task, with an optionally expanded
-// component (called TaskExpanded) if the task is selected. Displayed
-// times from the Task object are converted and displayed in civilian times,
-// and are passed as such to the option TaskEpanded component.
+// component (called TaskExpanded) if the task is selected.
 
 const Task = (props) => {
   const deleteOnClick = () => {
@@ -21,8 +19,21 @@ const Task = (props) => {
   const expandRow = () => {
     if (props.expandedTask === props.task_id) {
       props.setExpandedRow(0);
+      props.setSelectedTask({
+        task_id: 0,
+        routine_id: 0,
+        title: "",
+        start_time: { hour: 0, minute: 0 },
+      });
     } else {
+      props.setShowAddForm(false);
       props.setExpandedRow(props.task_id);
+      props.setSelectedTask({
+        task_id: props.task_id,
+        routine_id: props.routine_id,
+        title: props.title,
+        start_time: props.start_time,
+      });
     }
   };
 
@@ -57,6 +68,8 @@ const Task = (props) => {
             time={props.time}
             selectedRoutine={props.selectedRoutine}
             setSelectedRoutine={props.setSelectedRoutine}
+            selectedTask={props.selectedTask}
+            setSelectedTask={props.setSelectedTask}
             updateTask={props.updateTask}
           ></TaskExpanded>
         ) : (
@@ -78,8 +91,12 @@ Task.propTypes = {
   }),
   selectedRoutine: PropTypes.object.isRequired,
   setSelectedRoutine: PropTypes.func.isRequired,
+  selectedTask: PropTypes.object.isRequired,
+  setSelectedTask: PropTypes.func.isRequired,
   expandedRow: PropTypes.number.isRequired,
   setExpandedRow: PropTypes.func.isRequired,
+  // showAddForm: PropTypes.bool.isRequired,
+  setShowAddForm: PropTypes.func.isRequired,
   updateTask: PropTypes.func.isRequired,
   deleteTask: PropTypes.func.isRequired,
 };

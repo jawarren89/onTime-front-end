@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 
 import RoutineForm from "../components/RoutineForm";
 import TaskList from "../components/TaskList";
+import TaskForm from "../components/TaskForm";
 
 import add from "../assets/plus-circle.svg";
 
@@ -17,11 +18,12 @@ const EditRoutine = (props) => {
 
   useEffect(() => props.fetchOneRoutine(routine_id), []);
 
-  const showFormOnClick = () => {
-    props.toggleAddTaskForm();
+  const showAddTaskOnClick = () => {
+    props.setExpandedRow(0);
+    props.setShowAddForm(!props.showAddForm);
   };
 
-  const onFormChange = (event) => {
+  const onRoutineDetailChange = (event) => {
     const updateRoutineForm = JSON.parse(JSON.stringify(props.selectedRoutine));
     updateRoutineForm[event.target.name] = event.target.value;
     props.setSelectedRoutine(updateRoutineForm);
@@ -33,8 +35,26 @@ const EditRoutine = (props) => {
       props.selectedRoutine.routine_id,
       props.selectedRoutine
     );
-    console.log("POST: new Routine Added");
+    console.log("PUT: routine complete_time updated");
     console.log(props.selectedRoutine);
+  };
+
+  const onAddTaskChange = (event) => {
+    const newTaskForm = { ...props.newTask };
+    newTaskForm[event.target.name] = event.target.value;
+    props.setNewTask(newTaskForm);
+  };
+
+  const submitNewTask = (event) => {
+    event.preventDefault();
+    props.addTask(props.newTask);
+    props.setNewTask({
+      title: "",
+      time: 0,
+      start_time: { hour: 0, minute: 0 },
+    });
+    console.log("POST: new task added");
+    console.log(props.newTask);
   };
 
   if (props.isLoading) {
@@ -56,7 +76,7 @@ const EditRoutine = (props) => {
               <RoutineForm
                 selectedRoutine={props.selectedRoutine}
                 setSelectedRoutine={props.setSelectedRoutine}
-                onFormChange={onFormChange}
+                onFormChange={onRoutineDetailChange}
               ></RoutineForm>
               <div className="button-container">
                 <input
@@ -74,21 +94,44 @@ const EditRoutine = (props) => {
           </section>
           <section>
             <h2 className="editpage-header">List your tasks here!</h2>
-            <TaskList
-              selectedRoutine={props.selectedRoutine}
-              setSelectedRoutine={props.setSelectedRoutine}
-              expandedRow={props.expandedRow}
-              setExpandedRow={props.setExpandedRow}
-              tasks={props.selectedRoutine.tasks}
-              updateTask={props.updateTask}
-              deleteTask={props.deleteTask}
-            ></TaskList>
+            <div>
+              <button className="add-button" onClick={showAddTaskOnClick}>
+                <img src={add} alt="add icon" />
+              </button>
+            </div>
+            {props.showAddForm ? (
+              <form className="task-form expanded" onSubmit={submitNewTask}>
+                <TaskForm
+                  selectedTask={props.selectedTask}
+                  onFormChange={onAddTaskChange}
+                ></TaskForm>
+                <input
+                  className="add-button"
+                  type="submit"
+                  value="Add Task"
+                  disabled={
+                    props.newTask.title.length < 1 ||
+                    props.newTask.title.length > 40
+                  }
+                ></input>
+              </form>
+            ) : (
+              ""
+            )}
           </section>
-          <div>
-            <button className="add-button" onClick={showFormOnClick}>
-              <img src={add} alt="add icon" />
-            </button>
-          </div>
+          <TaskList
+            selectedRoutine={props.selectedRoutine}
+            setSelectedRoutine={props.setSelectedRoutine}
+            selectedTask={props.selectedTask}
+            setSelectedTask={props.setSelectedTask}
+            expandedRow={props.expandedRow}
+            setExpandedRow={props.setExpandedRow}
+            // showAddForm={props.showAddForm}
+            setShowAddForm={props.setShowAddForm}
+            tasks={props.selectedRoutine.tasks}
+            updateTask={props.updateTask}
+            deleteTask={props.deleteTask}
+          ></TaskList>
         </main>
       </>
     );
@@ -99,8 +142,14 @@ EditRoutine.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   selectedRoutine: PropTypes.object.isRequired,
   setSelectedRoutine: PropTypes.func.isRequired,
+  selectedTask: PropTypes.object.isRequired,
+  setSelectedTask: PropTypes.func.isRequired,
   expandedRow: PropTypes.number.isRequired,
   setExpandedRow: PropTypes.func.isRequired,
+  showAddForm: PropTypes.bool.isRequired,
+  setShowAddForm: PropTypes.func.isRequired,
+  newTask: PropTypes.object.isRequired,
+  setNewTask: PropTypes.func.isRequired,
   fetchOneRoutine: PropTypes.func.isRequired,
   updateRoutine: PropTypes.func.isRequired,
   addTask: PropTypes.func.isRequired,

@@ -13,7 +13,7 @@ import add from "../assets/plus-circle.svg";
 // routine to the list (tasks are added separately by editing the routine).
 
 const AllRoutines = (props) => {
-  const showFormOnClick = () => {
+  const showAddRoutineOnClick = () => {
     props.setExpandedRow(0);
     // props.setSelectedRoutine({
     //   routine_id: 0,
@@ -25,10 +25,10 @@ const AllRoutines = (props) => {
     //   total_time: 0,
     //   tasks: [],
     // });
-    props.setShowRoutineForm(!props.showRoutineForm);
+    props.setShowAddForm(!props.showAddForm);
   };
 
-  const onFormChange = (event) => {
+  const onAddRoutineChange = (event) => {
     const newRoutineForm = { ...props.newRoutine };
     newRoutineForm[event.target.name] = event.target.value;
     props.setNewRoutine(newRoutineForm);
@@ -58,11 +58,11 @@ const AllRoutines = (props) => {
         <main className="allroutines-container">
           <section>
             <div>
-              <button className="add-button" onClick={showFormOnClick}>
+              <button className="add-button" onClick={showAddRoutineOnClick}>
                 <img src={add} alt="add icon" />
               </button>
             </div>
-            {props.showRoutineForm ? (
+            {props.showAddForm ? (
               <form
                 className="routine-form expanded"
                 onSubmit={submitNewRoutine}
@@ -70,7 +70,7 @@ const AllRoutines = (props) => {
                 <RoutineForm
                   selectedRoutine={props.newRoutine}
                   setSelectedRoutine={props.setNewRoutine}
-                  onFormChange={onFormChange}
+                  onFormChange={onAddRoutineChange}
                 ></RoutineForm>
                 <input
                   className="add-button"
@@ -93,6 +93,7 @@ const AllRoutines = (props) => {
             setSelectedRoutine={props.setSelectedRoutine}
             expandedRow={props.expandedRow}
             setExpandedRow={props.setExpandedRow}
+            setShowAddForm={props.setShowAddForm}
             updateRoutine={props.updateRoutine}
             deleteRoutine={props.deleteRoutine}
           ></RoutineList>
@@ -108,8 +109,8 @@ AllRoutines.propTypes = {
   setSelectedRoutine: PropTypes.func.isRequired,
   expandedRow: PropTypes.number.isRequired,
   setExpandedRow: PropTypes.func.isRequired,
-  showRoutineForm: PropTypes.bool.isRequired,
-  setShowRoutineForm: PropTypes.func.isRequired,
+  showAddForm: PropTypes.bool.isRequired,
+  setShowAddForm: PropTypes.func.isRequired,
   newRoutine: PropTypes.object.isRequired,
   setNewRoutine: PropTypes.func.isRequired,
   routines: PropTypes.arrayOf(

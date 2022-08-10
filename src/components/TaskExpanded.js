@@ -1,74 +1,28 @@
 import "../styles/TaskExpanded.css";
 import React from "react";
-import { useState } from "react";
 import PropTypes from "prop-types";
 
-import TimeSelector from "./TimeSelector";
-
 // The TaskExpanded component holds additional data about each task,
-// and allows the user to update the CompleteBy time using the TimeSelector
-// component. The state of the TimeSelector component is managed here, as well
-// as the form submission event.
+// and allows the user to update the total time for a task.
 
 const TaskExpanded = (props) => {
-  const [taskForm, setTaskForm] = useState(props.time);
-
-  const convertForSubmit = (form, task_id) => {
-    if (form.meridiem === "PM") {
-      const timeData = {
-        task_id: task_id,
-        complete_time: {
-          hour: parseInt(form.hour) + 12,
-          minute: parseInt(form.minute),
-        },
-      };
-      return timeData;
-    } else {
-      const timeData = {
-        task_id: task_id,
-        complete_time: {
-          hour: parseInt(form.hour),
-          minute: parseInt(form.minute),
-        },
-      };
-      return timeData;
-    }
-  };
-
-  // const convertForSubmit = (form) => {
-  //   if (form.complete_time.meridiem === "PM") {
-  //     form.complete_time = {
-  //       hour: parseInt(form.complete_time.hour) + 12,
-  //       minute: parseInt(form.complete_time.minute),
-  //     };
-  //   } else {
-  //     form.complete_time = {
-  //       hour: parseInt(form.complete_time.hour),
-  //       minute: parseInt(form.complete_time.minute),
-  //     };
-  //   }
-  //   return form;
-  // };
-
-  //Convert back to military time before submitting.
-  const handleSubmitTime = (event) => {
+  const submitTimeUpdate = (event) => {
     event.preventDefault();
-    const submitTime = convertForSubmit(taskForm, props.task_id);
-    // const submitTime = convertForSubmit(timeForm);
-    props.updateTask(props.task_id, submitTime);
-    console.log(submitTime);
+    props.updateRoutine(props.routine_id, props.selectedRoutine);
+    console.log("PUT: total task time updated");
+    console.log(props.selectedRoutine);
   };
 
   return (
     <div className="drop-down-container">
       <ul className="drop-down">
         <li className="time-selector-container">
-          <div className="complete-by-text">Time:</div>
-          <form className="complete-by-form" onSubmit={handleSubmitTime}>
-            <TimeSelector
-              selectedRoutine={props.selectedRoutine}
-              setSelectedRoutine={props.setSelectedRoutine}
-            ></TimeSelector>
+          <div className="complete-by-text">Total Time:</div>
+          <form className="complete-by-form" onSubmit={submitTimeUpdate}>
+            {/* <TaskForm
+              selectedTask={props.selectedTask}
+              onFormChange={onAddTaskChange}
+            ></TaskForm> */}
             <input
               className="update-button"
               type="submit"

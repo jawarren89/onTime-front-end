@@ -20,8 +20,12 @@ const TaskList = (props) => {
         deleteTask={props.deleteTask}
         selectedRoutine={props.selectedRoutine}
         setSelectedRoutine={props.setSelectedRoutine}
+        selectedTask={props.selectedTask}
+        setSelectedTask={props.setSelectedTask}
         expandedRow={props.expandedRow}
         setExpandedRow={props.setExpandedRow}
+        // showAddForm={props.showAddForm}
+        setShowAddForm={props.setShowAddForm}
       ></Task>
     );
   });
@@ -36,8 +40,12 @@ const TaskList = (props) => {
 TaskList.propTypes = {
   selectedRoutine: PropTypes.object.isRequired,
   setSelectedRoutine: PropTypes.func.isRequired,
+  selectedTask: PropTypes.object.isRequired,
+  setSelectedTask: PropTypes.func.isRequired,
   expandedRow: PropTypes.number.isRequired,
   setExpandedRow: PropTypes.func.isRequired,
+  // showAddForm: PropTypes.bool.isRequired,
+  setShowAddForm: PropTypes.func.isRequired,
   tasks: PropTypes.arrayOf(
     PropTypes.shape({
       task_id: PropTypes.number.isRequired,

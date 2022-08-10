@@ -33,15 +33,19 @@ function App() {
     start_time: { hour: 0, minute: 0 },
   };
 
+  // Utilities
   const [isLoading, setIsLoading] = useState(true);
   const [pageTitle, setPageTitle] = useState("onTime");
   const [expandNavMenu, setExpandNavMenu] = useState(false);
   const [viewNavSystem, setViewNavSystem] = useState(true);
-  const [expandedRow, setExpandedRow] = useState(0);
 
+  // Used by both routines and tasks
+  const [expandedRow, setExpandedRow] = useState(0);
+  const [showAddForm, setShowAddForm] = useState(false);
+
+  // Routines
   const [routines, setRoutines] = useState([]);
   const [selectedRoutine, setSelectedRoutine] = useState(defaultRoutine);
-  const [showRoutineForm, setShowRoutineForm] = useState(false);
   const [newRoutine, setNewRoutine] = useState({
     title: "",
     description: "",
@@ -49,7 +53,12 @@ function App() {
     complete_time: { hour: 0, minute: 0 },
   });
 
+  // Tasks
   const [selectedTask, setSelectedTask] = useState(defaultTask);
+  const [newTask, setNewTask] = useState({
+    title: "",
+    time: { hour: 0, minute: 0 },
+  });
   const [completeTasks, setCompleteTasks] = useState([]);
   const [incompleteTasks, setIncompleteTasks] = useState([]);
 
@@ -92,7 +101,7 @@ function App() {
       .post(`${URL}/routines`, routineData)
       .then((response) => {
         console.log(response.data);
-        setShowRoutineForm(false);
+        setShowAddForm(false);
         fetchAllRoutines();
       })
       .catch((error) => {
@@ -141,6 +150,7 @@ function App() {
       .post(`${URL}/tasks`, taskData)
       .then((response) => {
         console.log(response.data);
+        setShowAddForm(false);
       })
       .catch((error) => {
         console.log(error);
@@ -197,6 +207,7 @@ function App() {
       setPageTitle("Routines");
       setViewNavSystem(true);
       setExpandedRow(0);
+      setShowAddForm(false);
     } else if (location.pathname === "/taskbank") {
       setPageTitle("Task Bank");
       setViewNavSystem(true);
@@ -212,6 +223,7 @@ function App() {
     ) {
       setPageTitle(selectedRoutine.title);
       setViewNavSystem(false);
+      setShowAddForm(false);
     } else {
       setViewNavSystem(true);
     }
@@ -240,8 +252,8 @@ function App() {
               setSelectedRoutine={setSelectedRoutine}
               expandedRow={expandedRow}
               setExpandedRow={setExpandedRow}
-              showRoutineForm={showRoutineForm}
-              setShowRoutineForm={setShowRoutineForm}
+              showAddForm={showAddForm}
+              setShowAddForm={setShowAddForm}
               newRoutine={newRoutine}
               setNewRoutine={setNewRoutine}
               routines={routines}
@@ -263,8 +275,14 @@ function App() {
               viewNavSystem={viewNavSystem}
               selectedRoutine={selectedRoutine}
               setSelectedRoutine={setSelectedRoutine}
+              selectedTask={selectedTask}
+              setSelectedTask={setSelectedTask}
               expandedRow={expandedRow}
               setExpandedRow={setExpandedRow}
+              showAddForm={showAddForm}
+              setShowAddForm={setShowAddForm}
+              newTask={newTask}
+              setNewTask={setNewTask}
               fetchOneRoutine={fetchOneRoutine}
               updateRoutine={updateRoutine}
               addTask={addTask}

@@ -24,6 +24,7 @@ const RoutineList = (props) => {
         setSelectedRoutine={props.setSelectedRoutine}
         expandedRow={props.expandedRow}
         setExpandedRow={props.setExpandedRow}
+        setShowAddForm={props.setShowAddForm}
         updateRoutine={props.updateRoutine}
         deleteRoutine={props.deleteRoutine}
       ></Routine>
@@ -42,6 +43,7 @@ RoutineList.propTypes = {
   setSelectedRoutine: PropTypes.func.isRequired,
   expandedRow: PropTypes.number.isRequired,
   setExpandedRow: PropTypes.func.isRequired,
+  setShowAddForm: PropTypes.func.isRequired,
   routines: PropTypes.arrayOf(
     PropTypes.shape({
       routine_id: PropTypes.number.isRequired,
