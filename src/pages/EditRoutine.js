@@ -13,6 +13,9 @@ import add from "../assets/plus-circle.svg";
 // when a user navigates to a specific edit route. As such, the routine fetched
 // is based on the routineId in the browserURL.
 
+// Users can update the title, description, and complete_time of the routine.
+// Associated tasks can be added, updated, deleted, and reordered.
+
 const EditRoutine = (props) => {
   const { routine_id } = useParams();
 

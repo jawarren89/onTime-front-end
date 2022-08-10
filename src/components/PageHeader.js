@@ -6,8 +6,9 @@ import PropTypes from "prop-types";
 
 import close from "../assets/x.svg";
 
-// The PageHeader component appears on Edit and Play Routine pages in
-// lieu of the regular header/menu navigation system.
+// The PageHeader component appears on Edit and Play Routine pages and
+// is conditionally rendered in lieu of the regular header/menu
+//navigation system.
 
 const PageHeader = (props) => {
   return (

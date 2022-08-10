@@ -6,7 +6,7 @@ import TimeSelector from "./TimeSelector";
 
 // The RoutineForm component is used to add a routine on the AllRoutines
 // page and to edit an existing routine on the EditRoutine page. The values
-// are managed with selectedRoutine state in App.js.
+// are managed with selectedRoutine state in App.
 
 const RoutineForm = (props) => {
   return (

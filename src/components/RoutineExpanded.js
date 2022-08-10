@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import TimeSelector from "./TimeSelector";
 
 // The RoutineExpanded component holds additional data about each routine,
-// and allows the user to update the CompleteBy time using the TimeSelector
+// and allows the user to update the complete_by time using the TimeSelector
 // component.
 
 const RoutineExpanded = (props) => {

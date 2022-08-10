@@ -95,7 +95,6 @@ Task.propTypes = {
   setSelectedTask: PropTypes.func.isRequired,
   expandedRow: PropTypes.number.isRequired,
   setExpandedRow: PropTypes.func.isRequired,
-  // showAddForm: PropTypes.bool.isRequired,
   setShowAddForm: PropTypes.func.isRequired,
   updateTask: PropTypes.func.isRequired,
   deleteTask: PropTypes.func.isRequired,

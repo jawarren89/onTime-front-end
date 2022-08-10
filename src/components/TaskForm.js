@@ -2,9 +2,9 @@ import "../styles/RoutineForm.css";
 import React from "react";
 import PropTypes from "prop-types";
 
-// The TaskForm component is used to add or edit a task to a specific
-// routine on the EditRoutine page. The values are managed with
-// selectedTask state in App.js.
+// The TaskForm component is used to add or edit a task related
+// to a specific routine on the EditRoutine page. The values are
+// managed with selectedTask state.
 
 const TaskForm = (props) => {
   return (

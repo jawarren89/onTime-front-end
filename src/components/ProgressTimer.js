@@ -1,5 +1,9 @@
 import React from "react";
 
+// The ProgressTimer component renders an svg circle of a given color.
+// The amount of color filling the circle will change depending on what
+// percentage of a task is left to complete.
+
 const ProgressTimer = ({ percentage, colour }) => {
   const cleanPercentage = ({ percentage }) => {
     const isNegativeOrNaN = !Number.isFinite(+percentage) || percentage < 0; // we can set non-numbers to 0 here

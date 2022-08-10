@@ -2,6 +2,9 @@
 // converts it into a list of two-digit strings for hours, minutes, and
 // meridiem (AM/PM).
 
+//TimeToMilitary takes inputted hours, minutes, and meridiem from the
+// TimeSelector input and converts the three values back into military time.
+
 export const TimeToCivilian = (time) => {
   const militaryParser = (time) => {
     if (time.hour > 12) {

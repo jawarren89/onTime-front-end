@@ -8,7 +8,7 @@ import RoutineForm from "../components/RoutineForm";
 import add from "../assets/plus-circle.svg";
 
 // The AllRoutines page component is the page that loads as a "home" page.
-// It shows all the routines stored in the database, and allows them to
+// It shows all the routines stored in the database, and allows users to
 // play, edit, or delete a routine. The page allows a user to add a new
 // routine to the list (tasks are added separately by editing the routine).
 

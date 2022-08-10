@@ -2,10 +2,8 @@ import React from "react";
 import Routine from "./Routine.js";
 import PropTypes from "prop-types";
 
-// The RoutineList component maps all fetched routine data in App.js
-// (passed as props.routines) into individual routine components. It
-// also manages the state of which routine is currently set to expanded.
-// Only one routine can be expanded at a time.
+// The RoutineList component maps all fetched routine data in App
+// (passed as props.routines) into individual routine components.
 
 const RoutineList = (props) => {
   const routineComponents = props.routines.map((routine) => {

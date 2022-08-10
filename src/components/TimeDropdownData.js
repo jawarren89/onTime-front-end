@@ -1,3 +1,6 @@
+// TimeDropdown Data provides the options for hours, minutes, and meridiem to the
+// TimeSelector component, where they are mapped to the TimeDropdown selectors.
+
 export const hoursOptions = [
   "--",
   "1",

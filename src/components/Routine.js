@@ -13,9 +13,7 @@ import chevron_right from "../assets/chevron-right.svg";
 import chevron_down from "../assets/chevron-down.svg";
 
 // The Routine component displays each routine, with an optionally expanded
-// component (called RoutineExpanded) if the routine is selected. Displayed
-// times from the Routine object are converted and displayed in civilian times,
-// and are passed as such to the option RoutineEpanded component.
+// component (called RoutineExpanded) if the routine is selected.
 
 const Routine = (props) => {
   const deleteOnClick = () => {
