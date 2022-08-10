@@ -110,7 +110,7 @@ const EditRoutine = (props) => {
                   onFormChange={onAddTaskChange}
                 ></TaskForm>
                 <input
-                  className="add-button"
+                  className="submit-button"
                   type="submit"
                   value="Add Task"
                   disabled={

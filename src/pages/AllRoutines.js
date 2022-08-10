@@ -73,7 +73,7 @@ const AllRoutines = (props) => {
                   onFormChange={onAddRoutineChange}
                 ></RoutineForm>
                 <input
-                  className="add-button"
+                  className="submit-button"
                   type="submit"
                   value="Create Routine"
                   disabled={
