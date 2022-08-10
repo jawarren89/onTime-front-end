@@ -8,11 +8,6 @@
     align-items: center;
 }
 
-.header-hidden {
-    position: fixed;
-    top: -100%;
-}
-
 .page-title {
     color: var(--indigo);
     padding: 0 0 0 2rem;

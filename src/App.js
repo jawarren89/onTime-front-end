@@ -4,6 +4,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import axios from "axios";
 
 import NavMenu from "./components/NavMenu";
+import PageHeader from "./components/PageHeader";
 import AllRoutines from "./pages/AllRoutines";
 import EditRoutine from "./pages/EditRoutine";
 import PlayRoutine from "./pages/PlayRoutine";
@@ -13,25 +14,31 @@ import Page404 from "./pages/Page404";
 function App() {
   const URL = "https://ontime-planner.herokuapp.com";
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [pageTitle, setPageTitle] = useState("onTime");
+  const [expandNavMenu, setExpandNavMenu] = useState(false);
+  const [viewNavSystem, setViewNavSystem] = useState(true);
+
   const [routines, setRoutines] = useState([]);
   const [selectedRoutine, setSelectedRoutine] = useState({
     routine_id: 0,
     title: "",
     description: "",
     destination: "",
-    complete_time: {},
-    start_time: {},
+    complete_time: { hour: 0, minute: 0 },
+    start_time: { hour: 0, minute: 0 },
     total_time: 0,
     tasks: [],
   });
-  const [isLoading, setIsLoading] = useState(false);
+  const [expandedRow, setExpandedRow] = useState(0);
+  const [showRoutineForm, setShowRoutineForm] = useState(false);
+  const [newRoutine, setNewRoutine] = useState({
+    title: "",
+    description: "",
+    destination: "",
+    complete_time: { hour: 0, minute: 0 },
+  });
 
-  const [pageTitle, setPageTitle] = useState("onTime");
-  const [expandNavMenu, setExpandNavMenu] = useState(false);
-  const [viewNavSystem, setViewNavSystem] = useState(true);
-  const [showAddRoutine, setAddRoutine] = useState(false);
-
-  const toggleAddRoutineForm = () => setAddRoutine(!showAddRoutine);
   const toggleNavMenu = () => setExpandNavMenu(!expandNavMenu);
 
   const fetchAllRoutines = () => {
@@ -70,6 +77,8 @@ function App() {
       .post(`${URL}/routines`, routineData)
       .then((response) => {
         console.log(response.data);
+        setShowRoutineForm(false);
+        fetchAllRoutines();
       })
       .catch((error) => {
         console.log(error);
@@ -196,23 +205,33 @@ function App() {
 
   return (
     <div className="App">
-      <NavMenu
-        pageTitle={pageTitle}
-        viewNavSystem={viewNavSystem}
-        expandNavMenu={expandNavMenu}
-        toggleNavMenu={toggleNavMenu}
-      ></NavMenu>
+      {viewNavSystem ? (
+        <NavMenu
+          pageTitle={pageTitle}
+          expandNavMenu={expandNavMenu}
+          toggleNavMenu={toggleNavMenu}
+        ></NavMenu>
+      ) : (
+        <PageHeader pageTitle={selectedRoutine.title}></PageHeader>
+      )}
       <Routes>
         <Route
           path="/"
           element={
             <AllRoutines
+              isLoading={isLoading}
               selectedRoutine={selectedRoutine}
               setSelectedRoutine={setSelectedRoutine}
+              expandedRow={expandedRow}
+              setExpandedRow={setExpandedRow}
+              showRoutineForm={showRoutineForm}
+              setShowRoutineForm={setShowRoutineForm}
+              newRoutine={newRoutine}
+              setNewRoutine={setNewRoutine}
               routines={routines}
+              addRoutine={addRoutine}
               updateRoutine={updateRoutine}
               deleteRoutine={deleteRoutine}
-              showAddRoutine={showAddRoutine}
             />
           }
         />
@@ -223,17 +242,16 @@ function App() {
           path="/routines/:routine_id/edit"
           element={
             <EditRoutine
-              toggleAddRoutineForm={toggleAddRoutineForm}
+              isLoading={isLoading}
+              pageTitle={pageTitle}
+              viewNavSystem={viewNavSystem}
               selectedRoutine={selectedRoutine}
               setSelectedRoutine={setSelectedRoutine}
-              isLoading={isLoading}
               fetchOneRoutine={fetchOneRoutine}
               updateRoutine={updateRoutine}
               addTask={addTask}
               updateTask={updateTask}
               deleteTask={deleteTask}
-              pageTitle={pageTitle}
-              viewNavSystem={viewNavSystem}
             />
           }
         />
@@ -241,9 +259,9 @@ function App() {
           path="/routines/:routine_id/play"
           element={
             <PlayRoutine
-              selectedRoutine={selectedRoutine}
+              isLoading={isLoading}
               pageTitle={pageTitle}
-              viewNavSystem={viewNavSystem}
+              selectedRoutine={selectedRoutine}
             />
           }
         />

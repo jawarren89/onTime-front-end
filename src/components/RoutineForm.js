@@ -10,7 +10,7 @@ import TimeSelector from "./TimeSelector";
 
 const RoutineForm = (props) => {
   return (
-    <div>
+    <React.Fragment>
       <div className="input-container">
         <label htmlFor="title">Title: </label>
         <input
@@ -34,11 +34,10 @@ const RoutineForm = (props) => {
       </div>
       <div>Complete by:</div>
       <TimeSelector
-        timeForm={props.selectedRoutine.complete_time}
-        setTimeForm={props.setSelectedRoutine}
-        onChange={props.onFormChange}
+        selectedRoutine={props.selectedRoutine}
+        setSelectedRoutine={props.setSelectedRoutine}
       ></TimeSelector>
-    </div>
+    </React.Fragment>
   );
 };
 

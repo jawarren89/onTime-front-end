@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import PageHeader from "../components/PageHeader";
 import RoutineForm from "../components/RoutineForm";
 import TaskList from "../components/TaskList";
 
@@ -22,39 +21,17 @@ const EditRoutine = (props) => {
     props.toggleAddTaskForm();
   };
 
-  const convertForSubmit = (form) => {
-    if (form.complete_time.meridiem === "PM") {
-      form.complete_time = {
-        hour: parseInt(form.complete_time.hour) + 12,
-        minute: parseInt(form.complete_time.minute),
-      };
-    } else {
-      form.complete_time = {
-        hour: parseInt(form.complete_time.hour),
-        minute: parseInt(form.complete_time.minute),
-      };
-    }
-    return form;
-  };
-
   const onFormChange = (event) => {
-    const stateName = event.target.name;
-    const inputValue = event.target.value;
-
-    const updateRoutineForm = { ...props.selectedRoutine };
-    updateRoutineForm[stateName] = inputValue;
-
+    const updateRoutineForm = JSON.parse(JSON.stringify(props.selectedRoutine));
+    updateRoutineForm[event.target.name] = event.target.value;
     props.setSelectedRoutine(updateRoutineForm);
   };
 
-  const handleEditRoutine = (event) => {
+  const submitRoutineUpdate = (event) => {
     event.preventDefault();
-    const submitRoutine = convertForSubmit(
-      props.selectedRoutine,
-      props.routine_id
-    );
-    props.updateRoutine(routine_id, submitRoutine);
-    console.log(submitRoutine);
+    props.addRoutine(props.selectedRoutine);
+    console.log("POST: new Routine Added");
+    console.log(props.selectedRoutine);
   };
 
   if (props.isLoading) {
@@ -62,17 +39,13 @@ const EditRoutine = (props) => {
   } else {
     return (
       <>
-        <PageHeader
-          pageTitle={props.selectedRoutine.title}
-          viewNavSystem={props.viewNavSystem}
-        ></PageHeader>
         <main className="editpage-container">
           <h2 className="section-header">
             Edit Routine: {props.selectedRoutine.title}
           </h2>
           <p>You can do this, I believe in you.</p>
           <section className="routineform-container">
-            <form onSubmit={handleEditRoutine}>
+            <form onSubmit={submitRoutineUpdate}>
               <RoutineForm
                 selectedRoutine={props.selectedRoutine}
                 setSelectedRoutine={props.setSelectedRoutine}
@@ -82,7 +55,7 @@ const EditRoutine = (props) => {
                 <input
                   className="startButton"
                   type="submit"
-                  value="Update"
+                  value="Update Details"
                   disabled={
                     props.selectedRoutine.title.length < 1 ||
                     props.selectedRoutine.title.length > 40 ||
@@ -101,7 +74,7 @@ const EditRoutine = (props) => {
             ></TaskList>
           </section>
           <div>
-            <button className="right-button" onClick={showFormOnClick}>
+            <button className="add-button" onClick={showFormOnClick}>
               <img src={add} alt="add icon" />
             </button>
           </div>
@@ -112,10 +85,10 @@ const EditRoutine = (props) => {
 };
 
 EditRoutine.propTypes = {
-  selectedRoutine: PropTypes.object.isRequired,
-  setSelectedRoutine: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
   fetchOneRoutine: PropTypes.func.isRequired,
+  selectedRoutine: PropTypes.object.isRequired,
+  setSelectedRoutine: PropTypes.func.isRequired,
   updateRoutine: PropTypes.func.isRequired,
   addTask: PropTypes.func.isRequired,
   updateTask: PropTypes.func.isRequired,

@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 import Routine from "./Routine.js";
 import PropTypes from "prop-types";
 
@@ -9,8 +8,6 @@ import PropTypes from "prop-types";
 // Only one routine can be expanded at a time.
 
 const RoutineList = (props) => {
-  const [expandedRow, setExpandedRow] = useState(0);
-
   const routineComponents = props.routines.map((routine) => {
     return (
       <Routine
@@ -25,10 +22,10 @@ const RoutineList = (props) => {
         tasks={routine.tasks}
         selectedRoutine={props.selectedRoutine}
         setSelectedRoutine={props.setSelectedRoutine}
+        expandedRow={props.expandedRow}
+        setExpandedRow={props.setExpandedRow}
         updateRoutine={props.updateRoutine}
         deleteRoutine={props.deleteRoutine}
-        expandedRow={expandedRow}
-        setExpandedRow={setExpandedRow}
       ></Routine>
     );
   });
@@ -41,6 +38,10 @@ const RoutineList = (props) => {
 };
 
 RoutineList.propTypes = {
+  selectedRoutine: PropTypes.object.isRequired,
+  setSelectedRoutine: PropTypes.func.isRequired,
+  expandedRow: PropTypes.number.isRequired,
+  setExpandedRow: PropTypes.func.isRequired,
   routines: PropTypes.arrayOf(
     PropTypes.shape({
       routine_id: PropTypes.number.isRequired,
@@ -53,8 +54,6 @@ RoutineList.propTypes = {
       tasks: PropTypes.array.isRequired,
     })
   ),
-  selectedRoutine: PropTypes.object.isRequired,
-  setSelectedRoutine: PropTypes.func.isRequired,
   updateRoutine: PropTypes.func.isRequired,
   deleteRoutine: PropTypes.func.isRequired,
 };

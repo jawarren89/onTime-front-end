@@ -117,10 +117,10 @@ Routine.propTypes = {
   tasks: PropTypes.array.isRequired,
   selectedRoutine: PropTypes.object.isRequired,
   setSelectedRoutine: PropTypes.func.isRequired,
-  updateRoutine: PropTypes.func.isRequired,
-  deleteRoutine: PropTypes.func.isRequired,
   expandedRow: PropTypes.number.isRequired,
   setExpandedRow: PropTypes.func.isRequired,
+  updateRoutine: PropTypes.func.isRequired,
+  deleteRoutine: PropTypes.func.isRequired,
 };
 
 export default Routine;

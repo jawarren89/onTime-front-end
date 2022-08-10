@@ -15,7 +15,7 @@ import menu from "../assets/menu.svg";
 
 const NavMenu = (props) => {
   return (
-    <header className={props.viewNavSystem ? "nav-system" : "nav-hidden"}>
+    <div className="nav-system">
       <Link to="#" className="left-button">
         <img src={menu} alt="menu icon" onClick={props.toggleNavMenu} />
       </Link>
@@ -42,13 +42,13 @@ const NavMenu = (props) => {
           })}
         </ul>
       </nav>
-    </header>
+    </div>
   );
 };
 
 NavMenu.propTypes = {
   pageTitle: PropTypes.string.isRequired,
-  viewNavSystem: PropTypes.bool.isRequired,
+  // viewNavSystem: PropTypes.bool.isRequired,
   expandNavMenu: PropTypes.bool.isRequired,
   toggleNavMenu: PropTypes.func.isRequired,
 };

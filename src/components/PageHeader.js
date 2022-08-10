@@ -11,7 +11,7 @@ import close from "../assets/x.svg";
 
 const PageHeader = (props) => {
   return (
-    <header className={props.viewNavSystem ? "header-hidden" : "header"}>
+    <header className="header">
       <Link to="/" className="left-button">
         <img src={close} alt="x icon" />
       </Link>
@@ -25,7 +25,6 @@ const PageHeader = (props) => {
 
 PageHeader.propTypes = {
   pageTitle: PropTypes.string.isRequired,
-  viewNavSystem: PropTypes.bool.isRequired,
 };
 
 export default PageHeader;
