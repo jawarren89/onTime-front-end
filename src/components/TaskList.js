@@ -7,8 +7,6 @@ import PropTypes from "prop-types";
 // into individual task components.
 
 const TaskList = (props) => {
-  const [expandedTask, setExpandedTask] = useState(0);
-
   const taskComponents = props.tasks.map((task) => {
     return (
       <Task
@@ -20,8 +18,10 @@ const TaskList = (props) => {
         start_time={task.start_time}
         updateTask={props.updateTask}
         deleteTask={props.deleteTask}
-        expandedTask={expandedTask}
-        setExpandedTask={setExpandedTask}
+        selectedRoutine={props.selectedRoutine}
+        setSelectedRoutine={props.setSelectedRoutine}
+        expandedRow={props.expandedRow}
+        setExpandedRow={props.setExpandedRow}
       ></Task>
     );
   });
@@ -34,6 +34,10 @@ const TaskList = (props) => {
 };
 
 TaskList.propTypes = {
+  selectedRoutine: PropTypes.object.isRequired,
+  setSelectedRoutine: PropTypes.func.isRequired,
+  expandedRow: PropTypes.number.isRequired,
+  setExpandedRow: PropTypes.func.isRequired,
   tasks: PropTypes.arrayOf(
     PropTypes.shape({
       task_id: PropTypes.number.isRequired,

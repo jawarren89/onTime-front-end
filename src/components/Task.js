@@ -20,13 +20,13 @@ const Task = (props) => {
 
   const expandRow = () => {
     if (props.expandedTask === props.task_id) {
-      props.setExpandedTask(0);
+      props.setExpandedRow(0);
     } else {
-      props.setExpandedTask(props.task_id);
+      props.setExpandedRow(props.task_id);
     }
   };
 
-  const isActive = props.expandedTask === props.task_id;
+  const isActive = props.expandedRow === props.task_id;
 
   return (
     <div className="task-item-container">
@@ -55,6 +55,8 @@ const Task = (props) => {
           <TaskExpanded
             task_id={props.task_id}
             time={props.time}
+            selectedRoutine={props.selectedRoutine}
+            setSelectedRoutine={props.setSelectedRoutine}
             updateTask={props.updateTask}
           ></TaskExpanded>
         ) : (
@@ -74,10 +76,12 @@ Task.propTypes = {
     hour: PropTypes.number,
     minute: PropTypes.number,
   }),
+  selectedRoutine: PropTypes.object.isRequired,
+  setSelectedRoutine: PropTypes.func.isRequired,
+  expandedRow: PropTypes.number.isRequired,
+  setExpandedRow: PropTypes.func.isRequired,
   updateTask: PropTypes.func.isRequired,
   deleteTask: PropTypes.func.isRequired,
-  expandedTask: PropTypes.number.isRequired,
-  setExpandedTask: PropTypes.func.isRequired,
 };
 
 export default Task;

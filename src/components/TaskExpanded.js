@@ -66,8 +66,8 @@ const TaskExpanded = (props) => {
           <div className="complete-by-text">Time:</div>
           <form className="complete-by-form" onSubmit={handleSubmitTime}>
             <TimeSelector
-              timeForm={taskForm}
-              setTimeForm={setTaskForm}
+              selectedRoutine={props.selectedRoutine}
+              setSelectedRoutine={props.setSelectedRoutine}
             ></TimeSelector>
             <input
               className="update-button"
@@ -84,6 +84,8 @@ const TaskExpanded = (props) => {
 TaskExpanded.propTypes = {
   task_id: PropTypes.number.isRequired,
   time: PropTypes.number,
+  selectedRoutine: PropTypes.object.isRequired,
+  setSelectedRoutine: PropTypes.func.isRequired,
   updateTask: PropTypes.func.isRequired,
 };
 

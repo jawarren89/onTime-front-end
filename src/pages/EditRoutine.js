@@ -75,6 +75,10 @@ const EditRoutine = (props) => {
           <section>
             <h2 className="editpage-header">List your tasks here!</h2>
             <TaskList
+              selectedRoutine={props.selectedRoutine}
+              setSelectedRoutine={props.setSelectedRoutine}
+              expandedRow={props.expandedRow}
+              setExpandedRow={props.setExpandedRow}
               tasks={props.selectedRoutine.tasks}
               updateTask={props.updateTask}
               deleteTask={props.deleteTask}
@@ -93,9 +97,11 @@ const EditRoutine = (props) => {
 
 EditRoutine.propTypes = {
   isLoading: PropTypes.bool.isRequired,
-  fetchOneRoutine: PropTypes.func.isRequired,
   selectedRoutine: PropTypes.object.isRequired,
   setSelectedRoutine: PropTypes.func.isRequired,
+  expandedRow: PropTypes.number.isRequired,
+  setExpandedRow: PropTypes.func.isRequired,
+  fetchOneRoutine: PropTypes.func.isRequired,
   updateRoutine: PropTypes.func.isRequired,
   addTask: PropTypes.func.isRequired,
   updateTask: PropTypes.func.isRequired,

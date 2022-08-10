@@ -14,13 +14,7 @@ import Page404 from "./pages/Page404";
 function App() {
   const URL = "https://ontime-planner.herokuapp.com";
 
-  const [isLoading, setIsLoading] = useState(true);
-  const [pageTitle, setPageTitle] = useState("onTime");
-  const [expandNavMenu, setExpandNavMenu] = useState(false);
-  const [viewNavSystem, setViewNavSystem] = useState(true);
-
-  const [routines, setRoutines] = useState([]);
-  const [selectedRoutine, setSelectedRoutine] = useState({
+  const defaultRoutine = {
     routine_id: 0,
     title: "",
     description: "",
@@ -29,8 +23,24 @@ function App() {
     start_time: { hour: 0, minute: 0 },
     total_time: 0,
     tasks: [],
-  });
+  };
+
+  const defaultTask = {
+    task_id: 0,
+    routine_id: 0,
+    title: "",
+    time: 0,
+    start_time: { hour: 0, minute: 0 },
+  };
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [pageTitle, setPageTitle] = useState("onTime");
+  const [expandNavMenu, setExpandNavMenu] = useState(false);
+  const [viewNavSystem, setViewNavSystem] = useState(true);
   const [expandedRow, setExpandedRow] = useState(0);
+
+  const [routines, setRoutines] = useState([]);
+  const [selectedRoutine, setSelectedRoutine] = useState(defaultRoutine);
   const [showRoutineForm, setShowRoutineForm] = useState(false);
   const [newRoutine, setNewRoutine] = useState({
     title: "",
@@ -39,7 +49,9 @@ function App() {
     complete_time: { hour: 0, minute: 0 },
   });
 
-  const toggleNavMenu = () => setExpandNavMenu(!expandNavMenu);
+  const [selectedTask, setSelectedTask] = useState(defaultTask);
+  const [completeTasks, setCompleteTasks] = useState([]);
+  const [incompleteTasks, setIncompleteTasks] = useState([]);
 
   const fetchAllRoutines = () => {
     axios
@@ -213,7 +225,7 @@ function App() {
         <NavMenu
           pageTitle={pageTitle}
           expandNavMenu={expandNavMenu}
-          toggleNavMenu={toggleNavMenu}
+          setExpandNavMenu={setExpandNavMenu}
         ></NavMenu>
       ) : (
         <PageHeader pageTitle={selectedRoutine.title}></PageHeader>
@@ -251,6 +263,8 @@ function App() {
               viewNavSystem={viewNavSystem}
               selectedRoutine={selectedRoutine}
               setSelectedRoutine={setSelectedRoutine}
+              expandedRow={expandedRow}
+              setExpandedRow={setExpandedRow}
               fetchOneRoutine={fetchOneRoutine}
               updateRoutine={updateRoutine}
               addTask={addTask}
