@@ -9,21 +9,22 @@ import PropTypes from "prop-types";
 
 import menu from "../assets/menu.svg";
 
-// The NavBar is a menu component that can collapse and expande (default is
-// collapsed). It is rendered as a fragmen inside the header component of
-// applicable pages. The whole nav system can be hidden on particular pages.
+// The NavBar is a menu component that can collapse and expand (default is
+// collapsed). It is rendered conditionally.
 
 const NavMenu = (props) => {
+  const toggleNavMenu = () => props.setExpandNavMenu(!props.expandNavMenu);
+
   return (
     <div className="nav-system">
       <Link to="#" className="left-button">
-        <img src={menu} alt="menu icon" onClick={props.toggleNavMenu} />
+        <img src={menu} alt="menu icon" onClick={toggleNavMenu} />
       </Link>
       <h1 className="page-title">{props.pageTitle}</h1>
 
       {/* collapsible menu component here */}
       <nav className={props.expandNavMenu ? "menu" : "menu-hidden"}>
-        <ul className="menu-items" onClick={props.toggleNavMenu}>
+        <ul className="menu-items" onClick={toggleNavMenu}>
           <li className="navbar-toggle">
             <Link to="#" className="left-button">
               <img src={menu} alt="menu icon" />
@@ -48,9 +49,8 @@ const NavMenu = (props) => {
 
 NavMenu.propTypes = {
   pageTitle: PropTypes.string.isRequired,
-  // viewNavSystem: PropTypes.bool.isRequired,
   expandNavMenu: PropTypes.bool.isRequired,
-  toggleNavMenu: PropTypes.func.isRequired,
+  setExpandNavMenu: PropTypes.func.isRequired,
 };
 
 export default NavMenu;
