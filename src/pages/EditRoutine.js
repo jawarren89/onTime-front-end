@@ -80,7 +80,7 @@ const EditRoutine = (props) => {
               ></RoutineForm>
               <div className="button-container">
                 <input
-                  className="startButton"
+                  className="update-button"
                   type="submit"
                   value="Update Details"
                   disabled={
@@ -103,6 +103,7 @@ const EditRoutine = (props) => {
               <form className="task-form expanded" onSubmit={submitNewTask}>
                 <TaskForm
                   selectedTask={props.selectedTask}
+                  setSelectedTask={props.setSelectedTask}
                   onFormChange={onAddTaskChange}
                 ></TaskForm>
                 <input
@@ -111,7 +112,8 @@ const EditRoutine = (props) => {
                   value="Add Task"
                   disabled={
                     props.newTask.title.length < 1 ||
-                    props.newTask.title.length > 40
+                    props.newTask.title.length > 40 ||
+                    props.newTask.time < 0
                   }
                 ></input>
               </form>
@@ -126,7 +128,6 @@ const EditRoutine = (props) => {
             setSelectedTask={props.setSelectedTask}
             expandedRow={props.expandedRow}
             setExpandedRow={props.setExpandedRow}
-            // showAddForm={props.showAddForm}
             setShowAddForm={props.setShowAddForm}
             tasks={props.selectedRoutine.tasks}
             updateTask={props.updateTask}

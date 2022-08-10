@@ -10,9 +10,20 @@ const TaskForm = (props) => {
   return (
     <React.Fragment>
       <div className="input-container">
-        <label htmlFor="hour">hours: </label>
+        <label htmlFor="title">Title: </label>
         <input
           type="text"
+          name="title"
+          placeholder="title required"
+          value={props.selectedTask.title}
+          onChange={props.onFormChange}
+          className="input-title"
+        />
+      </div>
+      <div className="input-container">
+        <label htmlFor="hour">Hours: </label>
+        <input
+          type="number"
           name="hour"
           placeholder="0"
           value={props.selectedTask.time}
@@ -21,9 +32,9 @@ const TaskForm = (props) => {
         />
       </div>
       <div>
-        <label htmlFor="minute">minutes: </label>
+        <label htmlFor="minute">Minutes: </label>
         <input
-          type="text"
+          type="number"
           name="minute"
           placeholder="0"
           value={props.selectedTask.time}
@@ -36,6 +47,7 @@ const TaskForm = (props) => {
 
 TaskForm.propTypes = {
   selectedTask: PropTypes.object.isRequired,
+  setSelectedTask: PropTypes.func.isRequired,
   onFormChange: PropTypes.func.isRequired,
 };
 

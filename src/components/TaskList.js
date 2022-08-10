@@ -24,7 +24,6 @@ const TaskList = (props) => {
         setSelectedTask={props.setSelectedTask}
         expandedRow={props.expandedRow}
         setExpandedRow={props.setExpandedRow}
-        // showAddForm={props.showAddForm}
         setShowAddForm={props.setShowAddForm}
       ></Task>
     );
@@ -44,7 +43,6 @@ TaskList.propTypes = {
   setSelectedTask: PropTypes.func.isRequired,
   expandedRow: PropTypes.number.isRequired,
   setExpandedRow: PropTypes.func.isRequired,
-  // showAddForm: PropTypes.bool.isRequired,
   setShowAddForm: PropTypes.func.isRequired,
   tasks: PropTypes.arrayOf(
     PropTypes.shape({
