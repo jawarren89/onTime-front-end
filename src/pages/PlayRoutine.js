@@ -3,14 +3,17 @@ import "../styles/PlayRoutine.css";
 import React from "react";
 import PropTypes from "prop-types";
 
-import PageHeader from "../components/PageHeader";
 import ProgressTimer from "../components/ProgressTimer";
 
 import play from "../assets/play.svg";
 
 const PlayRoutine = (props) => {
   if (props.isLoading) {
-    return <h1>Loading...</h1>;
+    return (
+      <main className="loading-container">
+        <h1 className="loading">Loading...</h1>
+      </main>
+    );
   } else {
     return (
       <>

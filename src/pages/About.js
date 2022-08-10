@@ -4,9 +4,9 @@ import React from "react";
 const About = (props) => {
   return (
     <>
-      <main className="about-page-container">
+      <main className="aboutpage-container">
         <section className="about-section">
-          <h2 className="section-header">About onTime</h2>
+          <h2 className="about-header">About onTime</h2>
           <p className="about-content">
             onTime is a time visualization tool and routine planner for daily
             tasks and events. It allows users to back-plan departures and prep
@@ -55,7 +55,7 @@ const About = (props) => {
           </p>
         </section>
         <section className="authors-section">
-          <h2 className="section-header">Who are we?</h2>
+          <h2 className="about-header">Who are we?</h2>
           <p className="about-content">
             That feels like an existential question, don't you think?
           </p>

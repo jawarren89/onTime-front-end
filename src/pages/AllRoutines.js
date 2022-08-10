@@ -47,11 +47,15 @@ const AllRoutines = (props) => {
   };
 
   if (props.isLoading) {
-    return <h1>Loading...</h1>;
+    return (
+      <main className="loading-container">
+        <h1 className="loading">Loading...</h1>
+      </main>
+    );
   } else {
     return (
       <>
-        <main className="routines-container">
+        <main className="allroutines-container">
           <section>
             <div>
               <button className="add-button" onClick={showFormOnClick}>

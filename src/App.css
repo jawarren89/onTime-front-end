@@ -22,8 +22,40 @@
   padding: 0;
 }
 
+.loading-container, .page404-container {
+  height: 100vh;
+  line-height: 1.5;
+  padding: 33vh 0;
+  margin: 0 auto;
+  text-align: center;
+  background-color: var(--aliceblue)
+}
 
+.loading, .page404-title {
+  font-family: 'Cairo', Arial, Helvetica, sans-serif;
+  color: var(--indigo);
+}
 
+.allroutines-container, 
+.playroutine-container, 
+.editpage-container, 
+.aboutpage-container {
+  max-width: 60em;
+  height: 100vh;
+  line-height: 1.5;
+  padding: 2em 2em;
+  margin: 0 auto;
+
+}
+
+.play-header,
+.editpage-header,
+.about-header {
+  font-family: 'Cairo', Arial, Helvetica, sans-serif;
+  color: var(--indigo);
+  padding-bottom: 1em;
+  text-align: center;
+}
 
 
 

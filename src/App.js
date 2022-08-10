@@ -14,7 +14,7 @@ import Page404 from "./pages/Page404";
 function App() {
   const URL = "https://ontime-planner.herokuapp.com";
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [pageTitle, setPageTitle] = useState("onTime");
   const [expandNavMenu, setExpandNavMenu] = useState(false);
   const [viewNavSystem, setViewNavSystem] = useState(true);
@@ -49,6 +49,9 @@ function App() {
         setRoutines(updatedRoutines);
         console.log("fetchAllRoutines request");
         console.log(updatedRoutines);
+      })
+      .then(() => {
+        setIsLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -181,6 +184,7 @@ function App() {
     if (location.pathname === "/") {
       setPageTitle("Routines");
       setViewNavSystem(true);
+      setExpandedRow(0);
     } else if (location.pathname === "/taskbank") {
       setPageTitle("Task Bank");
       setViewNavSystem(true);

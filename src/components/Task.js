@@ -69,7 +69,7 @@ Task.propTypes = {
   task_id: PropTypes.number.isRequired,
   routine_id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  time: PropTypes.object.isRequired,
+  time: PropTypes.number.isRequired,
   start_time: PropTypes.shape({
     hour: PropTypes.number,
     minute: PropTypes.number,

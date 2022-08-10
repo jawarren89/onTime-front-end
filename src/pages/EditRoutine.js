@@ -29,18 +29,25 @@ const EditRoutine = (props) => {
 
   const submitRoutineUpdate = (event) => {
     event.preventDefault();
-    props.addRoutine(props.selectedRoutine);
+    props.updateRoutine(
+      props.selectedRoutine.routine_id,
+      props.selectedRoutine
+    );
     console.log("POST: new Routine Added");
     console.log(props.selectedRoutine);
   };
 
   if (props.isLoading) {
-    return <h1>Loading...</h1>;
+    return (
+      <main className="loading-container">
+        <h1 className="loading">Loading...</h1>
+      </main>
+    );
   } else {
     return (
       <>
         <main className="editpage-container">
-          <h2 className="section-header">
+          <h2 className="editpage-header">
             Edit Routine: {props.selectedRoutine.title}
           </h2>
           <p>You can do this, I believe in you.</p>
@@ -66,7 +73,7 @@ const EditRoutine = (props) => {
             </form>
           </section>
           <section>
-            <h2 className="section-header">List your tasks here!</h2>
+            <h2 className="editpage-header">List your tasks here!</h2>
             <TaskList
               tasks={props.selectedRoutine.tasks}
               updateTask={props.updateTask}
