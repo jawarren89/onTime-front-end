@@ -3,9 +3,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
+import RoutineExpanded from "./RoutineExpanded";
+
 import { TimeToCivilian } from "./TimeConversions";
 import { defaultRoutine } from "./Constants";
-import RoutineExpanded from "./RoutineExpanded";
 
 import play from "../assets/play.svg";
 import edit from "../assets/edit-2.svg";

@@ -31,18 +31,16 @@ function App() {
   const [selectedRoutine, setSelectedRoutine] = useState(defaultRoutine);
 
   // Tasks
+  const [tasks, setTasks] = useState([]);
   const [selectedTask, setSelectedTask] = useState(defaultTask);
-  // const [newTask, setNewTask] = useState({
-  //   title: "",
-  //   time: 0,
-  //   start_time: { hour: 0, minute: 0, meridiem: "" },
-  // });
 
   // PlayRoutine
   const [nowPlaying, setNowPlaying] = useState(defaultTask);
   const [progressPercent, setProgressPercent] = useState(100);
   const [completeTasks, setCompleteTasks] = useState([defaultTask]);
   const [incompleteTasks, setIncompleteTasks] = useState([defaultTask]);
+
+  // ---------------------------------------------------------------------- //
 
   const fetchAllRoutines = () => {
     axios
@@ -67,8 +65,10 @@ function App() {
       .then((response) => {
         const oneRoutine = response.data;
         setSelectedRoutine(oneRoutine);
+        setTasks(oneRoutine.tasks);
         console.log("fetchOneRoutine request");
         console.log(oneRoutine);
+        console.log(oneRoutine.tasks);
       })
       .then(() => {
         setIsLoading(false);
@@ -193,6 +193,8 @@ function App() {
       });
   };
 
+  // ---------------------------------------------------------------------- //
+
   let location = useLocation();
   useEffect(() => {
     if (location.pathname === "/") {
@@ -215,13 +217,18 @@ function App() {
     ) {
       setPageTitle(selectedRoutine.title);
       setViewNavSystem(false);
+      setExpandedRow(0);
       setShowAddForm(false);
     } else {
       setViewNavSystem(true);
     }
   }, [location]);
 
+  // ---------------------------------------------------------------------- //
+
   useEffect(() => fetchAllRoutines(), []);
+
+  // ---------------------------------------------------------------------- //
 
   return (
     <div className="App">
@@ -261,8 +268,6 @@ function App() {
           element={
             <EditRoutine
               isLoading={isLoading}
-              pageTitle={pageTitle}
-              viewNavSystem={viewNavSystem}
               selectedRoutine={selectedRoutine}
               setSelectedRoutine={setSelectedRoutine}
               selectedTask={selectedTask}
@@ -271,10 +276,9 @@ function App() {
               setExpandedRow={setExpandedRow}
               showAddForm={showAddForm}
               setShowAddForm={setShowAddForm}
-              // newTask={newTask}
-              // setNewTask={setNewTask}
               fetchOneRoutine={fetchOneRoutine}
               updateRoutine={updateRoutine}
+              tasks={tasks}
               addTask={addTask}
               updateTask={updateTask}
               deleteTask={deleteTask}

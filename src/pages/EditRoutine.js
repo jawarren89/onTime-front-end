@@ -19,8 +19,6 @@ import add from "../assets/plus-circle.svg";
 const EditRoutine = (props) => {
   const { routine_id } = useParams();
 
-  useEffect(() => props.fetchOneRoutine(routine_id), []);
-
   const showAddTaskOnClick = () => {
     props.setExpandedRow(0);
     props.setShowAddForm(!props.showAddForm);
@@ -58,6 +56,9 @@ const EditRoutine = (props) => {
     props.addTask(newTask);
     console.log(newTask);
   };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => props.fetchOneRoutine(routine_id), []);
 
   if (props.isLoading) {
     return (
@@ -131,7 +132,7 @@ const EditRoutine = (props) => {
             expandedRow={props.expandedRow}
             setExpandedRow={props.setExpandedRow}
             setShowAddForm={props.setShowAddForm}
-            tasks={props.selectedRoutine.tasks}
+            tasks={props.tasks}
             updateTask={props.updateTask}
             deleteTask={props.deleteTask}
           ></TaskList>
@@ -153,6 +154,7 @@ EditRoutine.propTypes = {
   setShowAddForm: PropTypes.func.isRequired,
   fetchOneRoutine: PropTypes.func.isRequired,
   updateRoutine: PropTypes.func.isRequired,
+  tasks: PropTypes.array.isRequired,
   addTask: PropTypes.func.isRequired,
   updateTask: PropTypes.func.isRequired,
   deleteTask: PropTypes.func.isRequired,

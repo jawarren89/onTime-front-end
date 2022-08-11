@@ -3,6 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import TaskExpanded from "./TaskExpanded";
+
 import { defaultTask } from "./Constants";
 
 import trash from "../assets/trash-2.svg";
@@ -18,7 +19,7 @@ const Task = (props) => {
   };
 
   const expandRow = () => {
-    if (props.expandedTask === props.task_id) {
+    if (props.expandedRow === props.task_id) {
       props.setExpandedRow(0);
       props.setSelectedTask(defaultTask);
     } else {
@@ -45,7 +46,7 @@ const Task = (props) => {
           onClick={expandRow}
         />
         <li className="task-title" onClick={expandRow}>
-          {props.title}
+          {props.title} | {props.time} minutes
         </li>
         <div className="button-container">
           <button className="delete" onClick={deleteOnClick}>
@@ -53,8 +54,11 @@ const Task = (props) => {
           </button>
         </div>
         <div className="times-container" onClick={expandRow}>
-          <li className="total-time">Total Time:</li>
-          <li className="time-start">Start:</li>
+          {/* <li className="total-time">Total Time: {props.time}</li> */}
+          <li className="time-start">
+            Start: {props.start_time.hour}:{props.start_time.minute}{" "}
+            {props.start_time.meridiem}
+          </li>
         </div>
       </ul>
       <div className="expanded-task-container">
