@@ -44,7 +44,7 @@ const RoutineForm = (props) => {
 RoutineForm.propTypes = {
   selectedRoutine: PropTypes.object.isRequired,
   setSelectedRoutine: PropTypes.func.isRequired,
-  onFormChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default RoutineForm;

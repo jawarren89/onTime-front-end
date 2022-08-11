@@ -5,6 +5,8 @@ import PropTypes from "prop-types";
 import RoutineList from "../components/RoutineList";
 import RoutineForm from "../components/RoutineForm";
 
+import { defaultRoutine } from "../components/Constants";
+
 import add from "../assets/plus-circle.svg";
 
 // The AllRoutines page component is the page that loads as a "home" page.
@@ -15,37 +17,25 @@ import add from "../assets/plus-circle.svg";
 const AllRoutines = (props) => {
   const showAddRoutineOnClick = () => {
     props.setExpandedRow(0);
-    // props.setSelectedRoutine({
-    //   routine_id: 0,
-    //   title: "",
-    //   description: "",
-    //   destination: "",
-    //   complete_time: { hour: 0, minute: 0 },
-    //   start_time: { hour: 0, minute: 0 },
-    //   total_time: 0,
-    //   tasks: [],
-    // });
+    props.setSelectedRoutine(defaultRoutine);
     props.setShowAddForm(!props.showAddForm);
   };
 
   // AddRoutine change event managed here and not in the component because
   // RoutineForm is used both as an "add" and "edit" form.
   const onAddRoutineChange = (event) => {
-    const newRoutineForm = { ...props.newRoutine };
+    const newRoutineForm = JSON.parse(JSON.stringify(props.selectedRoutine));
     newRoutineForm[event.target.name] = event.target.value;
-    props.setNewRoutine(newRoutineForm);
+    props.setSelectedRoutine(newRoutineForm);
   };
 
   const submitNewRoutine = (event) => {
     event.preventDefault();
-    props.addRoutine(props.newRoutine);
-    props.setNewRoutine({
-      title: "",
-      description: "",
-      complete_time: { hour: 0, minute: 0 },
-    });
+    const addRoutine = JSON.parse(JSON.stringify(props.selectedRoutine));
+    delete addRoutine.routine_id;
+    props.addRoutine(addRoutine);
     console.log("POST: new routine added");
-    console.log(props.newRoutine);
+    console.log(props.addRoutine);
   };
 
   if (props.isLoading) {
@@ -70,8 +60,8 @@ const AllRoutines = (props) => {
                 onSubmit={submitNewRoutine}
               >
                 <RoutineForm
-                  selectedRoutine={props.newRoutine}
-                  setSelectedRoutine={props.setNewRoutine}
+                  selectedRoutine={props.selectedRoutine}
+                  setSelectedRoutine={props.setSelectedRoutine}
                   onChange={onAddRoutineChange}
                 ></RoutineForm>
                 <input
@@ -79,9 +69,9 @@ const AllRoutines = (props) => {
                   type="submit"
                   value="Create Routine"
                   disabled={
-                    props.newRoutine.title.length < 1 ||
-                    props.newRoutine.title.length > 40 ||
-                    props.newRoutine.description.length > 110
+                    props.selectedRoutine.title.length < 1 ||
+                    props.selectedRoutine.title.length > 40 ||
+                    props.selectedRoutine.description.length > 110
                   }
                 ></input>
               </form>
@@ -113,8 +103,6 @@ AllRoutines.propTypes = {
   setExpandedRow: PropTypes.func.isRequired,
   showAddForm: PropTypes.bool.isRequired,
   setShowAddForm: PropTypes.func.isRequired,
-  newRoutine: PropTypes.object.isRequired,
-  setNewRoutine: PropTypes.func.isRequired,
   routines: PropTypes.arrayOf(
     PropTypes.shape({
       routine_id: PropTypes.number.isRequired,

@@ -11,27 +11,10 @@ import PlayRoutine from "./pages/PlayRoutine";
 import About from "./pages/About";
 import Page404 from "./pages/Page404";
 
+import { defaultTask, defaultRoutine } from "./components/Constants";
+
 function App() {
   const URL = "https://ontime-planner.herokuapp.com";
-
-  const defaultRoutine = {
-    routine_id: 0,
-    title: "",
-    description: "",
-    destination: "",
-    complete_time: { hour: 0, minute: 0, meridiem: "" },
-    start_time: { hour: 0, minute: 0, meridiem: "" },
-    total_time: 0,
-    tasks: [],
-  };
-
-  const defaultTask = {
-    task_id: 0,
-    routine_id: 0,
-    title: "",
-    time: 0,
-    start_time: { hour: 0, minute: 0, meridiem: "" },
-  };
 
   // Utilities
   const [isLoading, setIsLoading] = useState(true);
@@ -46,12 +29,6 @@ function App() {
   // Routines
   const [routines, setRoutines] = useState([]);
   const [selectedRoutine, setSelectedRoutine] = useState(defaultRoutine);
-  const [newRoutine, setNewRoutine] = useState({
-    title: "",
-    description: "",
-    destination: "",
-    complete_time: { hour: 0, minute: 0, meridiem: "" },
-  });
 
   // Tasks
   const [selectedTask, setSelectedTask] = useState(defaultTask);
@@ -60,12 +37,12 @@ function App() {
     time: 0,
     start_time: { hour: 0, minute: 0, meridiem: "" },
   });
-  const [completeTasks, setCompleteTasks] = useState([
-    { task: "", time: 0, start_time: { hour: 0, minute: 0, meridiem: "" } },
-  ]);
-  const [incompleteTasks, setIncompleteTasks] = useState([
-    { task: "", time: 0, start_time: { hour: 0, minute: 0, meridiem: "" } },
-  ]);
+
+  // PlayRoutine
+  const [nowPlaying, setNowPlaying] = useState(defaultTask);
+  const [progressPercent, setProgressPercent] = useState(100);
+  const [completeTasks, setCompleteTasks] = useState([defaultTask]);
+  const [incompleteTasks, setIncompleteTasks] = useState([defaultTask]);
 
   const fetchAllRoutines = () => {
     axios
@@ -199,7 +176,12 @@ function App() {
     axios
       .get(`${URL}/routines/init/${routineId}`)
       .then((response) => {
-        console.log(response.data);
+        const initiatedRoutine = response.data;
+        setNowPlaying(initiatedRoutine.current_task);
+        setCompleteTasks(initiatedRoutine.complete_tasks);
+        setIncompleteTasks(initiatedRoutine.incomplete_tasks);
+        setProgressPercent(initiatedRoutine.percent);
+        console.log(initiatedRoutine);
       })
       .catch((error) => {
         console.log(error);
@@ -259,8 +241,6 @@ function App() {
               setExpandedRow={setExpandedRow}
               showAddForm={showAddForm}
               setShowAddForm={setShowAddForm}
-              newRoutine={newRoutine}
-              setNewRoutine={setNewRoutine}
               routines={routines}
               addRoutine={addRoutine}
               updateRoutine={updateRoutine}

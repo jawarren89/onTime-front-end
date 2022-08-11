@@ -1,6 +1,25 @@
 // TimeDropdown Data provides the options for hours, minutes, and meridiem to the
 // TimeSelector component, where they are mapped to the TimeDropdown selectors.
 
+export const defaultRoutine = {
+  routine_id: 0,
+  title: "",
+  description: "",
+  destination: "",
+  complete_time: { hour: 0, minute: 0, meridiem: "" },
+  start_time: { hour: 0, minute: 0, meridiem: "" },
+  total_time: 0,
+  tasks: [],
+};
+
+export const defaultTask = {
+  task_id: 0,
+  routine_id: 0,
+  title: "",
+  time: 0,
+  start_time: { hour: 0, minute: 0, meridiem: "" },
+};
+
 export const hoursOptions = [
   "--",
   "1",

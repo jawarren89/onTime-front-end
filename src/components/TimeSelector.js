@@ -1,15 +1,11 @@
-// source: https://www.robinwieruch.de/react-dropdown/
+// dropdowns sourced from: https://www.robinwieruch.de/react-dropdown/
 
 import "../styles/TimeSelector.css";
 import React from "react";
 import PropTypes from "prop-types";
 
-import { TimeToCivilian, TimeToMilitary } from "./TimeConversions";
-import {
-  hoursOptions,
-  minutesOptions,
-  meridiemOptions,
-} from "./TimeDropdownData";
+import { TimeToCivilian } from "./TimeConversions";
+import { hoursOptions, minutesOptions, meridiemOptions } from "./Constants";
 
 import TimeDropdown from "./TimeDropdown";
 
