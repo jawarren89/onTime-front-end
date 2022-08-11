@@ -55,7 +55,7 @@ function App() {
         setIsLoading(false);
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.response.data);
       });
   };
 
@@ -74,7 +74,7 @@ function App() {
         setIsLoading(false);
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.response.data);
       });
   };
 
@@ -89,7 +89,7 @@ function App() {
         fetchAllRoutines();
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.response.data);
       });
   };
 
@@ -102,7 +102,7 @@ function App() {
         fetchAllRoutines();
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.response.data);
       });
   };
 
@@ -114,7 +114,7 @@ function App() {
         fetchAllRoutines();
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.response.data);
       });
   };
 
@@ -126,7 +126,7 @@ function App() {
         console.log(response.data);
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.response.data);
       });
   };
 
@@ -140,7 +140,7 @@ function App() {
         setShowAddForm(false);
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.response.data);
       });
   };
 
@@ -151,7 +151,7 @@ function App() {
         console.log(response.data);
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.response.data);
       });
   };
 
@@ -162,7 +162,7 @@ function App() {
         console.log(response.data);
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.response.data);
       });
   };
 
@@ -173,7 +173,7 @@ function App() {
         console.log(response.data);
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.response.data);
       });
   };
 
@@ -189,7 +189,7 @@ function App() {
         console.log(initiatedRoutine);
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.response.data);
       });
   };
 

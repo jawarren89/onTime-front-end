@@ -7,6 +7,8 @@ import RoutineForm from "../components/RoutineForm";
 import TaskList from "../components/TaskList";
 import TaskForm from "../components/TaskForm";
 
+import { defaultTask } from "../components/Constants";
+
 import add from "../assets/plus-circle.svg";
 
 // The EditRoutine page is accessed when a user clicks on a routine to edit or
@@ -21,6 +23,7 @@ const EditRoutine = (props) => {
 
   const showAddTaskOnClick = () => {
     props.setExpandedRow(0);
+    props.setSelectedTask(defaultTask);
     props.setShowAddForm(!props.showAddForm);
   };
 
@@ -44,21 +47,27 @@ const EditRoutine = (props) => {
   // AddTask change event managed here and not in the component because
   // TaskForm is used both as an "add" and "edit" form.
   const onAddTaskChange = (event) => {
-    const newTaskForm = JSON.parse(JSON.stringify(props.selectedRoutine));
+    const newTaskForm = JSON.parse(JSON.stringify(props.selectedTask));
     newTaskForm[event.target.name] = event.target.value;
     props.setSelectedTask(newTaskForm);
+    console.log(newTaskForm);
   };
 
   const submitNewTask = (event) => {
     event.preventDefault();
     const newTask = JSON.parse(JSON.stringify(props.selectedTask));
     delete newTask.task_id;
+    newTask["routine_id"] = props.selectedRoutine.routine_id;
+    newTask.time = parseInt(newTask.time);
     props.addTask(newTask);
+    props.setSelectedTask(defaultTask);
     console.log(newTask);
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => props.fetchOneRoutine(routine_id), []);
+
+  // ---------------------------------------------------------------------- //
 
   if (props.isLoading) {
     return (

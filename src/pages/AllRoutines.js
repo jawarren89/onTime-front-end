@@ -34,6 +34,7 @@ const AllRoutines = (props) => {
     const newRoutine = JSON.parse(JSON.stringify(props.selectedRoutine));
     delete newRoutine.routine_id;
     props.addRoutine(newRoutine);
+    props.setSelectedRoutine(defaultRoutine);
     console.log(newRoutine);
   };
 

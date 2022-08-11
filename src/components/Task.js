@@ -36,6 +36,8 @@ const Task = (props) => {
 
   const isActive = props.expandedRow === props.task_id;
 
+  // ---------------------------------------------------------------------- //
+
   return (
     <div className="task-item-container">
       <ul className={isActive ? "task expanded" : "task"}>

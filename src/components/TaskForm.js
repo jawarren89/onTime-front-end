@@ -32,11 +32,11 @@ const TaskForm = (props) => {
         />
       </div> */}
       <div>
-        <label htmlFor="minute">Minutes: </label>
+        <label htmlFor="time">Minutes: </label>
         <input
           type="number"
           min="1"
-          name="minute"
+          name="time"
           placeholder="time required"
           value={props.selectedTask.time}
           onChange={props.onChange}
