@@ -188,7 +188,7 @@ function App() {
       .get(`${URL}/routines/init/${routineId}`)
       .then((response) => {
         const initiatedRoutine = response.data;
-        setNowPlaying(initiatedRoutine.current_task);
+        setSelectedTask(initiatedRoutine.current_task);
         setCompleteTasks(initiatedRoutine.complete_tasks);
         setIncompleteTasks(initiatedRoutine.incomplete_tasks);
         setProgressPercent(initiatedRoutine.percent);
@@ -296,9 +296,13 @@ function App() {
           element={
             <PlayRoutine
               isLoading={isLoading}
-              selectedTask={selectedRoutine}
+              selectedTask={selectedTask}
+              selectedRoutine={selectedRoutine}
+              progressPercent={progressPercent}
               completeTasks={completeTasks}
               incompleteTasks={incompleteTasks}
+              initiateRoutine={initiateRoutine}
+              fetchInitiatedRoutine={fetchInitiatedRoutine}
             />
           }
         />

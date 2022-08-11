@@ -9,6 +9,10 @@ import play from "../assets/play.svg";
 import PlayTaskList from "../components/PlayTaskList";
 
 const PlayRoutine = (props) => {
+  const startRoutine = () => {
+    props.initiateRoutine(props.selectedRoutine.routine_id);
+  };
+
   if (props.isLoading) {
     return (
       <main className="loading-container">
@@ -21,7 +25,7 @@ const PlayRoutine = (props) => {
         <main className="playroutine-container">
           <h2 className="play-header">{props.selectedTask.title}!</h2>
           <p>You can do this, I believe in you.</p>
-          <button className="play">
+          <button className="play" onClick={startRoutine}>
             <img src={play} alt="play icon" />
           </button>
           <section>
@@ -42,8 +46,12 @@ const PlayRoutine = (props) => {
 PlayRoutine.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   selectedTask: PropTypes.object.isRequired,
+  selectedRoutine: PropTypes.object.isRequired,
+  progressPercent: PropTypes.number.isRequired,
   completeTasks: PropTypes.array.isRequired,
   incompleteTasks: PropTypes.array.isRequired,
+  initiateRoutine: PropTypes.func.isRequired,
+  fetchInitiatedRoutine: PropTypes.func.isRequired,
 };
 
 export default PlayRoutine;
