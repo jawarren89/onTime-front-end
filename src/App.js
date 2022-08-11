@@ -35,7 +35,6 @@ function App() {
   const [selectedTask, setSelectedTask] = useState(defaultTask);
 
   // PlayRoutine
-  const [nowPlaying, setNowPlaying] = useState(defaultTask);
   const [progressPercent, setProgressPercent] = useState(100);
   const [completeTasks, setCompleteTasks] = useState([defaultTask]);
   const [incompleteTasks, setIncompleteTasks] = useState([defaultTask]);
@@ -120,8 +119,6 @@ function App() {
       });
   };
 
-  // ---------------------------------------------------------------------- //
-
   // Task Requests //
 
   // Gets all tasks or, optionally, all tasks associated with a routine
@@ -129,7 +126,10 @@ function App() {
     axios
       .get(`${URL}/tasks`, { params: { routine_id: routineId } })
       .then((response) => {
-        console.log(response.data);
+        const tasks = response.data;
+        setTasks(tasks);
+        console.log("fetchRoutineTasks request");
+        console.log(tasks);
       })
       .catch((error) => {
         console.log(error.response.data);
@@ -172,10 +172,13 @@ function App() {
       });
   };
 
+  // Play Requests //
+
   const initiateRoutine = (routineId) => {
     axios
       .put(`${URL}/routines/init/${routineId}`, {})
       .then((response) => {
+        console.log(`routine ${routineId} initiated`);
         console.log(response.data);
       })
       .catch((error) => {
@@ -303,6 +306,7 @@ function App() {
               incompleteTasks={incompleteTasks}
               initiateRoutine={initiateRoutine}
               fetchInitiatedRoutine={fetchInitiatedRoutine}
+              fetchOneRoutine={fetchOneRoutine}
             />
           }
         />
