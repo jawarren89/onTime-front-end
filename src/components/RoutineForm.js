@@ -18,7 +18,7 @@ const RoutineForm = (props) => {
           name="title"
           placeholder="title required"
           value={props.selectedRoutine.title}
-          onChange={props.onFormChange}
+          onChange={props.onChange}
           className="input-title"
         />
       </div>
@@ -29,7 +29,7 @@ const RoutineForm = (props) => {
           name="description"
           placeholder="add a description (optional)"
           value={props.selectedRoutine.description}
-          onChange={props.onFormChange}
+          onChange={props.onChange}
         />
       </div>
       <div>Complete by:</div>

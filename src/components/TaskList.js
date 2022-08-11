@@ -1,10 +1,9 @@
 import React from "react";
-import { useState } from "react";
 import Task from "./Task.js";
 import PropTypes from "prop-types";
 
-// The TaskList component maps all fetched tasks associated with a task
-// into individual task components.
+// The TaskList component maps all fetched tasks associated with a
+// routine nto individual task components.
 
 const TaskList = (props) => {
   const taskComponents = props.tasks.map((task) => {

@@ -19,8 +19,8 @@ function App() {
     title: "",
     description: "",
     destination: "",
-    complete_time: { hour: 0, minute: 0 },
-    start_time: { hour: 0, minute: 0 },
+    complete_time: { hour: 0, minute: 0, meridiem: "" },
+    start_time: { hour: 0, minute: 0, meridiem: "" },
     total_time: 0,
     tasks: [],
   };
@@ -30,7 +30,7 @@ function App() {
     routine_id: 0,
     title: "",
     time: 0,
-    start_time: { hour: 0, minute: 0 },
+    start_time: { hour: 0, minute: 0, meridiem: "" },
   };
 
   // Utilities
@@ -50,17 +50,22 @@ function App() {
     title: "",
     description: "",
     destination: "",
-    complete_time: { hour: 0, minute: 0 },
+    complete_time: { hour: 0, minute: 0, meridiem: "" },
   });
 
   // Tasks
   const [selectedTask, setSelectedTask] = useState(defaultTask);
   const [newTask, setNewTask] = useState({
     title: "",
-    time: { hour: 0, minute: 0 },
+    time: 0,
+    start_time: { hour: 0, minute: 0, meridiem: "" },
   });
-  const [completeTasks, setCompleteTasks] = useState([]);
-  const [incompleteTasks, setIncompleteTasks] = useState([]);
+  const [completeTasks, setCompleteTasks] = useState([
+    { task: "", time: 0, start_time: { hour: 0, minute: 0, meridiem: "" } },
+  ]);
+  const [incompleteTasks, setIncompleteTasks] = useState([
+    { task: "", time: 0, start_time: { hour: 0, minute: 0, meridiem: "" } },
+  ]);
 
   const fetchAllRoutines = () => {
     axios
@@ -296,8 +301,9 @@ function App() {
           element={
             <PlayRoutine
               isLoading={isLoading}
-              pageTitle={pageTitle}
-              selectedRoutine={selectedRoutine}
+              selectedTask={selectedRoutine}
+              completeTasks={completeTasks}
+              incompleteTasks={incompleteTasks}
             />
           }
         />

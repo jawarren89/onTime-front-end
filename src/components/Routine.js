@@ -28,8 +28,8 @@ const Routine = (props) => {
         title: "",
         description: "",
         destination: "",
-        complete_time: { hour: 0, minute: 0 },
-        start_time: { hour: 0, minute: 0 },
+        complete_time: { hour: 0, minute: 0, meridiem: "" },
+        start_time: { hour: 0, minute: 0, meridiem: "" },
         total_time: 0,
         tasks: [],
       });

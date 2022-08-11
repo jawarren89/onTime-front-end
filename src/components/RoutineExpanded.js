@@ -2,6 +2,7 @@ import "../styles/RoutineExpanded.css";
 import React from "react";
 import PropTypes from "prop-types";
 
+import { TimeToMilitary } from "./TimeConversions";
 import TimeSelector from "./TimeSelector";
 
 // The RoutineExpanded component holds additional data about each routine,
@@ -11,9 +12,12 @@ import TimeSelector from "./TimeSelector";
 const RoutineExpanded = (props) => {
   const submitTimeUpdate = (event) => {
     event.preventDefault();
-    props.updateRoutine(props.routine_id, props.selectedRoutine);
+    const updateRoutineForm = JSON.parse(JSON.stringify(props.selectedRoutine));
+    const time = TimeToMilitary(props.selectedRoutine.complete_time);
+    updateRoutineForm.complete_time = time;
+    props.updateRoutine(props.routine_id, updateRoutineForm);
     console.log("PUT: routine complete_time updated");
-    console.log(props.selectedRoutine);
+    console.log(updateRoutineForm);
   };
 
   return (

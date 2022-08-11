@@ -28,6 +28,8 @@ const AllRoutines = (props) => {
     props.setShowAddForm(!props.showAddForm);
   };
 
+  // AddRoutine change event managed here and not in the component because
+  // RoutineForm is used both as an "add" and "edit" form.
   const onAddRoutineChange = (event) => {
     const newRoutineForm = { ...props.newRoutine };
     newRoutineForm[event.target.name] = event.target.value;
@@ -70,7 +72,7 @@ const AllRoutines = (props) => {
                 <RoutineForm
                   selectedRoutine={props.newRoutine}
                   setSelectedRoutine={props.setNewRoutine}
-                  onFormChange={onAddRoutineChange}
+                  onChange={onAddRoutineChange}
                 ></RoutineForm>
                 <input
                   className="submit-button"

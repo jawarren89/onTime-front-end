@@ -1,39 +1,30 @@
-// TimeToCivilian takes a 24hr time, as retrieved via an axios call, and
-// converts it into a list of two-digit strings for hours, minutes, and
-// meridiem (AM/PM).
+// TimeToCivilian takes 12hr time and meridiem, as retrieved via an axios call,
+// and converts it into a list of two-digit strings for hours, minutes, and
+// meridiem (AM/PM). If time is null, it returns "--" values for display.
 
-//TimeToMilitary takes inputted hours, minutes, and meridiem from the
-// TimeSelector input and converts the three values back into military time.
+// TimeToMilitary takes inputted hours, minutes, and meridiem from the
+// TimeSelector and converts the three values back into 24 hour integer
+// time (without a meridiem string) for an axios call.
 
 export const TimeToCivilian = (time) => {
-  const militaryParser = (time) => {
-    if (time.hour > 12) {
-      return [time.hour - 12, "PM"];
-    } else {
-      return [time.hour, "AM"];
-    }
-  };
-
   if (time) {
-    const civilian = militaryParser(time);
     if (time.hour === 0 && time.minute === 0) {
       return {
         hour: "--",
         minute: "--",
         meridiem: "--",
       };
-    }
-    if (time.minute < 10) {
+    } else if (time.minute < 10) {
       return {
-        hour: civilian[0].toString(),
+        hour: time.hour.toString(),
         minute: "0" + time.minute,
-        meridiem: civilian[1].toString(),
+        meridiem: time.meridiem,
       };
     } else {
       return {
-        hour: civilian[0].toString(),
+        hour: time.hour.toString(),
         minute: time.minute.toString(),
-        meridiem: civilian[1].toString(),
+        meridiem: time.meridiem,
       };
     }
   } else {
@@ -41,17 +32,18 @@ export const TimeToCivilian = (time) => {
   }
 };
 
-export const TimeToMilitary = (targetId, targetValue, civCompleteTime) => {
-  if (targetValue === "--") {
-    return { id: targetId, value: 0 };
-  } else if (targetId === "hour") {
-    if (civCompleteTime.meridiem === "PM") {
-      return { id: targetId, value: parseInt(targetValue) + 12 };
-    }
-    return { id: targetId, value: parseInt(targetValue) };
-  } else if (targetId === "minute") {
-    return { id: targetId, value: parseInt(targetValue) };
-  } else if (targetId === "meridiem") {
-    return { id: "hour", value: civCompleteTime.hour };
+export const TimeToMilitary = (state) => {
+  if (state.hour === "--") {
+    return { hour: 0, minute: 0 };
+  } else if (state.meridiem === "PM") {
+    return {
+      hour: parseInt(state.hour) + 12,
+      minute: parseInt(state.minute),
+    };
+  } else {
+    return {
+      hour: parseInt(state.hour),
+      minute: parseInt(state.minute),
+    };
   }
 };

@@ -7,6 +7,12 @@ import PropTypes from "prop-types";
 // managed with selectedTask state.
 
 const TaskForm = (props) => {
+  const onAddTaskChange = (event) => {
+    const newTaskForm = { ...props.newTask };
+    newTaskForm[event.target.name] = event.target.value;
+    props.setNewTask(newTaskForm);
+  };
+
   return (
     <React.Fragment>
       <div className="input-container">
@@ -16,7 +22,7 @@ const TaskForm = (props) => {
           name="title"
           placeholder="title required"
           value={props.selectedTask.title}
-          onChange={props.onFormChange}
+          onChange={onAddTaskChange}
           className="input-title"
         />
       </div>
@@ -27,7 +33,7 @@ const TaskForm = (props) => {
           name="hour"
           placeholder="0"
           value={props.selectedTask.time}
-          onChange={props.onFormChange}
+          onChange={onAddTaskChange}
           className="input-title"
         />
       </div>
@@ -38,7 +44,8 @@ const TaskForm = (props) => {
           name="minute"
           placeholder="0"
           value={props.selectedTask.time}
-          onChange={props.onFormChange}
+          onChange={onAddTaskChange}
+          className="input-title"
         />
       </div>
     </React.Fragment>

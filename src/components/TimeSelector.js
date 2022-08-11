@@ -26,14 +26,19 @@ import TimeDropdown from "./TimeDropdown";
 const TimeSelector = (props) => {
   const civCompleteTime = TimeToCivilian(props.selectedRoutine.complete_time);
 
+  // onTimeChange managed here and not at component level because component is
+  // used in multiple places but submitted in combination with other forms.
   const onTimeChange = (event) => {
     const updateRoutineForm = JSON.parse(JSON.stringify(props.selectedRoutine));
-    const eventConvert = TimeToMilitary(
-      event.target.id,
-      event.target.value,
-      civCompleteTime
-    );
-    updateRoutineForm.complete_time[eventConvert.id] = eventConvert.value;
+    if (event.target.value === "--") {
+      updateRoutineForm.complete_time[event.target.id] = 0;
+    } else if (event.target.id === "minute" || event.target.id === "hour") {
+      updateRoutineForm.complete_time[event.target.id] = parseInt(
+        event.target.value
+      );
+    } else {
+      updateRoutineForm.complete_time[event.target.id] = event.target.value;
+    }
     props.setSelectedRoutine(updateRoutineForm);
   };
 

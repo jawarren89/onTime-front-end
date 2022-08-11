@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import ProgressTimer from "../components/ProgressTimer";
 
 import play from "../assets/play.svg";
+import PlayTaskList from "../components/PlayTaskList";
 
 const PlayRoutine = (props) => {
   if (props.isLoading) {
@@ -18,7 +19,7 @@ const PlayRoutine = (props) => {
     return (
       <>
         <main className="playroutine-container">
-          <h2 className="play-header">Routine will play on this screen!</h2>
+          <h2 className="play-header">{props.selectedTask.title}!</h2>
           <p>You can do this, I believe in you.</p>
           <button className="play">
             <img src={play} alt="play icon" />
@@ -28,6 +29,10 @@ const PlayRoutine = (props) => {
               <ProgressTimer percentage={85} colour={"teal"}></ProgressTimer>
             </div>
           </section>
+          {/* <section> */}
+          {/* <PlayTaskList tasks={props.completeTasks}></PlayTaskList>
+            <PlayTaskList tasks={props.incompleteTasks}></PlayTaskList>
+          </section> */}
         </main>
       </>
     );
@@ -36,8 +41,9 @@ const PlayRoutine = (props) => {
 
 PlayRoutine.propTypes = {
   isLoading: PropTypes.bool.isRequired,
-  pageTitle: PropTypes.string.isRequired,
-  selectedRoutine: PropTypes.object.isRequired,
+  selectedTask: PropTypes.object.isRequired,
+  completeTasks: PropTypes.array.isRequired,
+  incompleteTasks: PropTypes.array.isRequired,
 };
 
 export default PlayRoutine;

@@ -26,6 +26,8 @@ const EditRoutine = (props) => {
     props.setShowAddForm(!props.showAddForm);
   };
 
+  // EditRoutineDetail change event managed here and not in the component because
+  // RoutineForm is used both as an "add" and "edit" form.
   const onRoutineDetailChange = (event) => {
     const updateRoutineForm = JSON.parse(JSON.stringify(props.selectedRoutine));
     updateRoutineForm[event.target.name] = event.target.value;
@@ -42,19 +44,13 @@ const EditRoutine = (props) => {
     console.log(props.selectedRoutine);
   };
 
-  const onAddTaskChange = (event) => {
-    const newTaskForm = { ...props.newTask };
-    newTaskForm[event.target.name] = event.target.value;
-    props.setNewTask(newTaskForm);
-  };
-
   const submitNewTask = (event) => {
     event.preventDefault();
     props.addTask(props.newTask);
     props.setNewTask({
       title: "",
       time: 0,
-      start_time: { hour: 0, minute: 0 },
+      start_time: { hour: 0, minute: 0, meridiem: "" },
     });
     console.log("POST: new task added");
     console.log(props.newTask);
@@ -79,7 +75,7 @@ const EditRoutine = (props) => {
               <RoutineForm
                 selectedRoutine={props.selectedRoutine}
                 setSelectedRoutine={props.setSelectedRoutine}
-                onFormChange={onRoutineDetailChange}
+                onChange={onRoutineDetailChange}
               ></RoutineForm>
               <div className="button-container">
                 <input
@@ -97,7 +93,7 @@ const EditRoutine = (props) => {
           </section>
           <section>
             <h2 className="editpage-header">List your tasks here!</h2>
-            <div>
+            <div className="add-button-container">
               <button className="add-button" onClick={showAddTaskOnClick}>
                 <img src={add} alt="add icon" />
               </button>
@@ -107,7 +103,6 @@ const EditRoutine = (props) => {
                 <TaskForm
                   selectedTask={props.selectedTask}
                   setSelectedTask={props.setSelectedTask}
-                  onFormChange={onAddTaskChange}
                 ></TaskForm>
                 <input
                   className="submit-button"
