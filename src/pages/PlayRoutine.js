@@ -8,12 +8,19 @@ import ProgressTimer from "../components/ProgressTimer";
 import PlayTaskList from "../components/PlayTaskList";
 
 import play from "../assets/play.svg";
+import pause from "../assets/pause.svg";
+import skip from "../assets/skip-forward.svg";
 
 const PlayRoutine = (props) => {
   const { routine_id } = useParams();
 
   const startRoutine = () => {
     props.initiateRoutine(props.selectedRoutine.routine_id);
+    props.setIsPlaying(true);
+  };
+
+  const pauseRoutine = () => {
+    props.setIsPlaying(false);
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -30,20 +37,44 @@ const PlayRoutine = (props) => {
     return (
       <>
         <main className="playroutine-container">
-          <h2 className="play-header">{props.selectedRoutine.title}!</h2>
+          {props.isPlaying ? (
+            <h2 className="play-header">Now: {props.selectedTask.title}</h2>
+          ) : (
+            <h2>Press play to start routine</h2>
+          )}
           <p>You can do this, I believe in you.</p>
-          <button className="play" onClick={startRoutine}>
-            <img src={play} alt="play icon" />
-          </button>
           <section>
             <div className="circle">
-              <ProgressTimer percentage={75} colour={"teal"}></ProgressTimer>
+              <ProgressTimer
+                percentage={props.progressPercent}
+                colour={"teal"}
+              ></ProgressTimer>
             </div>
           </section>
-          {/* <section> */}
-          {/* <PlayTaskList tasks={props.completeTasks}></PlayTaskList>
+          <div className="controls">
+            {props.isPlaying ? (
+              <button className="play" onClick={startRoutine}>
+                <img src={pause} alt="pause icon" />
+              </button>
+            ) : (
+              <button>
+                <img src={play} alt="play icon" />
+              </button>
+            )}
+            <button>
+              <img src={skip} alt="skip icon" />
+            </button>
+          </div>
+
+          <h2 className="task-section">List your tasks here!</h2>
+          <section className="incomplete-container">
             <PlayTaskList tasks={props.incompleteTasks}></PlayTaskList>
-          </section> */}
+          </section>
+          <section className="complete-container">
+            <h3 className="complete">Complete</h3>
+            <PlayTaskList tasks={props.completeTasks}></PlayTaskList>
+          </section>
+          <div>Saved Time:</div>
         </main>
       </>
     );
@@ -52,6 +83,8 @@ const PlayRoutine = (props) => {
 
 PlayRoutine.propTypes = {
   isLoading: PropTypes.bool.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
+  setIsPlaying: PropTypes.func.isRequired,
   selectedTask: PropTypes.object.isRequired,
   selectedRoutine: PropTypes.object.isRequired,
   progressPercent: PropTypes.number.isRequired,

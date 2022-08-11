@@ -12,14 +12,9 @@ const PlayTaskList = (props) => {
       <PlayTask
         key={task.task_id}
         task_id={task.task_id}
-        // routine_id={task.routine_id}
         title={task.title}
         time={task.time}
-        // start_time={task.start_time}
-        // selectedRoutine={props.selectedRoutine}
-        // setSelectedRoutine={props.setSelectedRoutine}
-        // selectedTask={props.selectedTask}
-        // setSelectedTask={props.setSelectedTask}
+        start_time={task.start_time}
       ></PlayTask>
     );
   });
@@ -32,20 +27,13 @@ const PlayTaskList = (props) => {
 };
 
 PlayTaskList.propTypes = {
-  // selectedRoutine: PropTypes.object.isRequired,
-  // setSelectedRoutine: PropTypes.func.isRequired,
-  // selectedTask: PropTypes.object.isRequired,
-  // setSelectedTask: PropTypes.func.isRequired,
   tasks: PropTypes.arrayOf(
     PropTypes.shape({
       task_id: PropTypes.number.isRequired,
-      // routine_id: PropTypes.number.isRequired,
+      routine_id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
       time: PropTypes.number.isRequired,
-      // start_time: PropTypes.shape({
-      //   hour: PropTypes.number,
-      //   minute: PropTypes.number,
-      // }),
+      start_time: PropTypes.object,
     })
   ),
 };

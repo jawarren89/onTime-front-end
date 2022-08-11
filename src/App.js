@@ -35,6 +35,7 @@ function App() {
   const [selectedTask, setSelectedTask] = useState(defaultTask);
 
   // PlayRoutine
+  const [isPlaying, setIsPlaying] = useState(false);
   const [progressPercent, setProgressPercent] = useState(100);
   const [completeTasks, setCompleteTasks] = useState([defaultTask]);
   const [incompleteTasks, setIncompleteTasks] = useState([defaultTask]);
@@ -299,6 +300,8 @@ function App() {
           element={
             <PlayRoutine
               isLoading={isLoading}
+              isPlaying={isPlaying}
+              setIsPlaying={setIsPlaying}
               selectedTask={selectedTask}
               selectedRoutine={selectedRoutine}
               progressPercent={progressPercent}

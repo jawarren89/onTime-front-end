@@ -87,7 +87,10 @@ const EditRoutine = (props) => {
             </form>
           </section>
           <section>
-            <h2 className="editpage-header">List your tasks here!</h2>
+            <div className="task-section">
+              <h2>Tasks</h2>
+              <p>(drag to rerder)</p>
+            </div>
             <div className="add-button-container">
               <button className="add-button" onClick={showAddTaskOnClick}>
                 <img src={add} alt="add icon" />
