@@ -40,20 +40,23 @@ const EditRoutine = (props) => {
       props.selectedRoutine.routine_id,
       props.selectedRoutine
     );
-    console.log("PUT: routine complete_time updated");
     console.log(props.selectedRoutine);
+  };
+
+  // AddTask change event managed here and not in the component because
+  // TaskForm is used both as an "add" and "edit" form.
+  const onAddTaskChange = (event) => {
+    const newTaskForm = JSON.parse(JSON.stringify(props.selectedRoutine));
+    newTaskForm[event.target.name] = event.target.value;
+    props.setSelectedTask(newTaskForm);
   };
 
   const submitNewTask = (event) => {
     event.preventDefault();
-    props.addTask(props.newTask);
-    props.setNewTask({
-      title: "",
-      time: 0,
-      start_time: { hour: 0, minute: 0, meridiem: "" },
-    });
-    console.log("POST: new task added");
-    console.log(props.newTask);
+    const newTask = JSON.parse(JSON.stringify(props.selectedTask));
+    delete newTask.task_id;
+    props.addTask(newTask);
+    console.log(newTask);
   };
 
   if (props.isLoading) {
@@ -103,15 +106,16 @@ const EditRoutine = (props) => {
                 <TaskForm
                   selectedTask={props.selectedTask}
                   setSelectedTask={props.setSelectedTask}
+                  onChange={onAddTaskChange}
                 ></TaskForm>
                 <input
                   className="submit-button"
                   type="submit"
                   value="Add Task"
                   disabled={
-                    props.newTask.title.length < 1 ||
-                    props.newTask.title.length > 40 ||
-                    props.newTask.time < 0
+                    props.selectedTask.title.length < 1 ||
+                    props.selectedTask.title.length > 40 ||
+                    props.selectedTask.time < 0
                   }
                 ></input>
               </form>
@@ -147,8 +151,6 @@ EditRoutine.propTypes = {
   setExpandedRow: PropTypes.func.isRequired,
   showAddForm: PropTypes.bool.isRequired,
   setShowAddForm: PropTypes.func.isRequired,
-  newTask: PropTypes.object.isRequired,
-  setNewTask: PropTypes.func.isRequired,
   fetchOneRoutine: PropTypes.func.isRequired,
   updateRoutine: PropTypes.func.isRequired,
   addTask: PropTypes.func.isRequired,

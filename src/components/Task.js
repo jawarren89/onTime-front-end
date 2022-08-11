@@ -3,6 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import TaskExpanded from "./TaskExpanded";
+import { defaultTask } from "./Constants";
 
 import trash from "../assets/trash-2.svg";
 import chevron_right from "../assets/chevron-right.svg";
@@ -19,12 +20,7 @@ const Task = (props) => {
   const expandRow = () => {
     if (props.expandedTask === props.task_id) {
       props.setExpandedRow(0);
-      props.setSelectedTask({
-        task_id: 0,
-        routine_id: 0,
-        title: "",
-        start_time: { hour: 0, minute: 0 },
-      });
+      props.setSelectedTask(defaultTask);
     } else {
       props.setShowAddForm(false);
       props.setExpandedRow(props.task_id);
@@ -85,10 +81,7 @@ Task.propTypes = {
   routine_id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   time: PropTypes.number.isRequired,
-  start_time: PropTypes.shape({
-    hour: PropTypes.number,
-    minute: PropTypes.number,
-  }),
+  start_time: PropTypes.object,
   selectedRoutine: PropTypes.object.isRequired,
   setSelectedRoutine: PropTypes.func.isRequired,
   selectedTask: PropTypes.object.isRequired,

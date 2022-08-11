@@ -2,6 +2,7 @@ import "../styles/RoutineForm.css";
 import React from "react";
 import PropTypes from "prop-types";
 
+import { TimeToCivilian } from "./TimeConversions";
 import TimeSelector from "./TimeSelector";
 
 // The RoutineForm component is used to add a routine on the AllRoutines
@@ -9,6 +10,8 @@ import TimeSelector from "./TimeSelector";
 // are managed with selectedRoutine state in App.
 
 const RoutineForm = (props) => {
+  const civCompleteTime = TimeToCivilian(props.selectedRoutine.complete_time);
+
   return (
     <React.Fragment>
       <div className="input-container">

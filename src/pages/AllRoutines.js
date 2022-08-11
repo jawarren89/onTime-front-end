@@ -31,11 +31,10 @@ const AllRoutines = (props) => {
 
   const submitNewRoutine = (event) => {
     event.preventDefault();
-    const addRoutine = JSON.parse(JSON.stringify(props.selectedRoutine));
-    delete addRoutine.routine_id;
-    props.addRoutine(addRoutine);
-    console.log("POST: new routine added");
-    console.log(props.addRoutine);
+    const newRoutine = JSON.parse(JSON.stringify(props.selectedRoutine));
+    delete newRoutine.routine_id;
+    props.addRoutine(newRoutine);
+    console.log(newRoutine);
   };
 
   if (props.isLoading) {

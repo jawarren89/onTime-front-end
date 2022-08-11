@@ -16,7 +16,6 @@ const RoutineExpanded = (props) => {
     const time = TimeToMilitary(props.selectedRoutine.complete_time);
     updateRoutineForm.complete_time = time;
     props.updateRoutine(props.routine_id, updateRoutineForm);
-    console.log("PUT: routine complete_time updated");
     console.log(updateRoutineForm);
   };
 

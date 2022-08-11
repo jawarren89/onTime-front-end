@@ -32,11 +32,11 @@ function App() {
 
   // Tasks
   const [selectedTask, setSelectedTask] = useState(defaultTask);
-  const [newTask, setNewTask] = useState({
-    title: "",
-    time: 0,
-    start_time: { hour: 0, minute: 0, meridiem: "" },
-  });
+  // const [newTask, setNewTask] = useState({
+  //   title: "",
+  //   time: 0,
+  //   start_time: { hour: 0, minute: 0, meridiem: "" },
+  // });
 
   // PlayRoutine
   const [nowPlaying, setNowPlaying] = useState(defaultTask);
@@ -82,7 +82,9 @@ function App() {
     axios
       .post(`${URL}/routines`, routineData)
       .then((response) => {
+        console.log("POST: new routine added");
         console.log(response.data);
+        setSelectedRoutine(defaultRoutine);
         setShowAddForm(false);
         fetchAllRoutines();
       })
@@ -95,6 +97,7 @@ function App() {
     axios
       .put(`${URL}/routines/${routineId}`, routineData)
       .then((response) => {
+        console.log("PUT: routine complete_time updated");
         console.log(response.data);
         fetchAllRoutines();
       })
@@ -131,7 +134,9 @@ function App() {
     axios
       .post(`${URL}/tasks`, taskData)
       .then((response) => {
+        console.log("POST: new task added");
         console.log(response.data);
+        setSelectedTask(defaultTask);
         setShowAddForm(false);
       })
       .catch((error) => {
@@ -266,8 +271,8 @@ function App() {
               setExpandedRow={setExpandedRow}
               showAddForm={showAddForm}
               setShowAddForm={setShowAddForm}
-              newTask={newTask}
-              setNewTask={setNewTask}
+              // newTask={newTask}
+              // setNewTask={setNewTask}
               fetchOneRoutine={fetchOneRoutine}
               updateRoutine={updateRoutine}
               addTask={addTask}

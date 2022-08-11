@@ -40,7 +40,7 @@ const TaskExpanded = (props) => {
 
 TaskExpanded.propTypes = {
   task_id: PropTypes.number.isRequired,
-  time: PropTypes.number,
+  time: PropTypes.number.isRequired,
   selectedRoutine: PropTypes.object.isRequired,
   setSelectedRoutine: PropTypes.func.isRequired,
   updateTask: PropTypes.func.isRequired,

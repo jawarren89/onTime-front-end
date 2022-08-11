@@ -7,12 +7,6 @@ import PropTypes from "prop-types";
 // managed with selectedTask state.
 
 const TaskForm = (props) => {
-  const onAddTaskChange = (event) => {
-    const newTaskForm = { ...props.newTask };
-    newTaskForm[event.target.name] = event.target.value;
-    props.setNewTask(newTaskForm);
-  };
-
   return (
     <React.Fragment>
       <div className="input-container">
@@ -22,29 +16,30 @@ const TaskForm = (props) => {
           name="title"
           placeholder="title required"
           value={props.selectedTask.title}
-          onChange={onAddTaskChange}
+          onChange={props.onChange}
           className="input-title"
         />
       </div>
-      <div className="input-container">
+      {/* <div className="input-container">
         <label htmlFor="hour">Hours: </label>
         <input
           type="number"
           name="hour"
           placeholder="0"
           value={props.selectedTask.time}
-          onChange={onAddTaskChange}
+          onChange={props.onChange}
           className="input-title"
         />
-      </div>
+      </div> */}
       <div>
         <label htmlFor="minute">Minutes: </label>
         <input
           type="number"
+          min="1"
           name="minute"
-          placeholder="0"
+          placeholder="time required"
           value={props.selectedTask.time}
-          onChange={onAddTaskChange}
+          onChange={props.onChange}
           className="input-title"
         />
       </div>
@@ -55,7 +50,7 @@ const TaskForm = (props) => {
 TaskForm.propTypes = {
   selectedTask: PropTypes.object.isRequired,
   setSelectedTask: PropTypes.func.isRequired,
-  onFormChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default TaskForm;

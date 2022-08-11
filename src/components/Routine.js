@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import { TimeToCivilian } from "./TimeConversions";
+import { defaultRoutine } from "./Constants";
 import RoutineExpanded from "./RoutineExpanded";
 
 import play from "../assets/play.svg";
@@ -23,16 +24,7 @@ const Routine = (props) => {
   const expandRow = () => {
     if (props.expandedRow === props.routine_id) {
       props.setExpandedRow(0);
-      props.setSelectedRoutine({
-        routine_id: 0,
-        title: "",
-        description: "",
-        destination: "",
-        complete_time: { hour: 0, minute: 0, meridiem: "" },
-        start_time: { hour: 0, minute: 0, meridiem: "" },
-        total_time: 0,
-        tasks: [],
-      });
+      props.setSelectedRoutine(defaultRoutine);
     } else {
       props.setShowAddForm(false);
       props.setExpandedRow(props.routine_id);

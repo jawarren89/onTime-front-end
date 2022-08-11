@@ -49,10 +49,7 @@ TaskList.propTypes = {
       routine_id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
       time: PropTypes.number.isRequired,
-      start_time: PropTypes.shape({
-        hour: PropTypes.number,
-        minute: PropTypes.number,
-      }),
+      start_time: PropTypes.object,
     })
   ),
   updateTask: PropTypes.func.isRequired,
