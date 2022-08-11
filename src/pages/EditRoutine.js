@@ -27,14 +27,6 @@ const EditRoutine = (props) => {
     props.setShowAddForm(!props.showAddForm);
   };
 
-  // EditRoutineDetail change event managed here and not in the component because
-  // RoutineForm is used both as an "add" and "edit" form.
-  const onRoutineDetailChange = (event) => {
-    const updateRoutineForm = JSON.parse(JSON.stringify(props.selectedRoutine));
-    updateRoutineForm[event.target.name] = event.target.value;
-    props.setSelectedRoutine(updateRoutineForm);
-  };
-
   const submitRoutineUpdate = (event) => {
     event.preventDefault();
     props.updateRoutine(
@@ -42,15 +34,6 @@ const EditRoutine = (props) => {
       props.selectedRoutine
     );
     console.log(props.selectedRoutine);
-  };
-
-  // AddTask change event managed here and not in the component because
-  // TaskForm is used both as an "add" and "edit" form.
-  const onAddTaskChange = (event) => {
-    const newTaskForm = JSON.parse(JSON.stringify(props.selectedTask));
-    newTaskForm[event.target.name] = event.target.value;
-    props.setSelectedTask(newTaskForm);
-    console.log(newTaskForm);
   };
 
   const submitNewTask = (event) => {
@@ -88,7 +71,7 @@ const EditRoutine = (props) => {
               <RoutineForm
                 selectedRoutine={props.selectedRoutine}
                 setSelectedRoutine={props.setSelectedRoutine}
-                onChange={onRoutineDetailChange}
+                // onChange={onRoutineDetailChange}
               ></RoutineForm>
               <div className="button-container">
                 <input
@@ -116,7 +99,6 @@ const EditRoutine = (props) => {
                 <TaskForm
                   selectedTask={props.selectedTask}
                   setSelectedTask={props.setSelectedTask}
-                  onChange={onAddTaskChange}
                 ></TaskForm>
                 <input
                   className="submit-button"

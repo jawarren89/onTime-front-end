@@ -2,7 +2,6 @@ import "../styles/RoutineForm.css";
 import React from "react";
 import PropTypes from "prop-types";
 
-import { TimeToCivilian } from "./TimeConversions";
 import TimeSelector from "./TimeSelector";
 
 // The RoutineForm component is used to add a routine on the AllRoutines
@@ -10,7 +9,11 @@ import TimeSelector from "./TimeSelector";
 // are managed with selectedRoutine state in App.
 
 const RoutineForm = (props) => {
-  const civCompleteTime = TimeToCivilian(props.selectedRoutine.complete_time);
+  const onRoutineFormChange = (event) => {
+    const routineForm = JSON.parse(JSON.stringify(props.selectedRoutine));
+    routineForm[event.target.name] = event.target.value;
+    props.setSelectedRoutine(routineForm);
+  };
 
   return (
     <React.Fragment>
@@ -21,7 +24,7 @@ const RoutineForm = (props) => {
           name="title"
           placeholder="title required"
           value={props.selectedRoutine.title}
-          onChange={props.onChange}
+          onChange={onRoutineFormChange}
           className="input-title"
         />
       </div>
@@ -32,7 +35,7 @@ const RoutineForm = (props) => {
           name="description"
           placeholder="add a description (optional)"
           value={props.selectedRoutine.description}
-          onChange={props.onChange}
+          onChange={onRoutineFormChange}
         />
       </div>
       <div>Complete by:</div>
@@ -47,7 +50,6 @@ const RoutineForm = (props) => {
 RoutineForm.propTypes = {
   selectedRoutine: PropTypes.object.isRequired,
   setSelectedRoutine: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
 };
 
 export default RoutineForm;
