@@ -42,6 +42,8 @@ function App() {
 
   // ---------------------------------------------------------------------- //
 
+  // Routine Requests //
+
   const fetchAllRoutines = () => {
     axios
       .get(`${URL}/routines`)
@@ -118,7 +120,11 @@ function App() {
       });
   };
 
-  //Gets all tasks or, optionally, all tasks associated with a routine
+  // ---------------------------------------------------------------------- //
+
+  // Task Requests //
+
+  // Gets all tasks or, optionally, all tasks associated with a routine
   const fetchRoutineTasks = (routineId = null) => {
     axios
       .get(`${URL}/tasks`, { params: { routine_id: routineId } })

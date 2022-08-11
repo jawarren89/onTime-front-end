@@ -71,7 +71,6 @@ const EditRoutine = (props) => {
               <RoutineForm
                 selectedRoutine={props.selectedRoutine}
                 setSelectedRoutine={props.setSelectedRoutine}
-                // onChange={onRoutineDetailChange}
               ></RoutineForm>
               <div className="button-container">
                 <input
@@ -106,8 +105,8 @@ const EditRoutine = (props) => {
                   value="Add Task"
                   disabled={
                     props.selectedTask.title.length < 1 ||
-                    props.selectedTask.title.length > 40 ||
-                    props.selectedTask.time < 0
+                    props.selectedTask.title.length > 50 ||
+                    props.selectedTask.time < 1
                   }
                 ></input>
               </form>

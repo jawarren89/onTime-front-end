@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import TaskExpanded from "./TaskExpanded";
 
 import { defaultTask } from "./Constants";
+import { TimeToCivilian } from "./TimeConversions";
 
 import trash from "../assets/trash-2.svg";
 import chevron_right from "../assets/chevron-right.svg";
@@ -36,6 +37,8 @@ const Task = (props) => {
 
   const isActive = props.expandedRow === props.task_id;
 
+  const civStartTime = TimeToCivilian(props.start_time);
+
   // ---------------------------------------------------------------------- //
 
   return (
@@ -58,8 +61,8 @@ const Task = (props) => {
         <div className="times-container" onClick={expandRow}>
           {/* <li className="total-time">Total Time: {props.time}</li> */}
           <li className="time-start">
-            Start: {props.start_time.hour}:{props.start_time.minute}{" "}
-            {props.start_time.meridiem}
+            Start: {civStartTime.hour}:{civStartTime.minute}{" "}
+            {civStartTime.meridiem}
           </li>
         </div>
       </ul>

@@ -10,8 +10,8 @@ const TaskForm = (props) => {
   const onTaskFormChange = (event) => {
     const newTaskForm = JSON.parse(JSON.stringify(props.selectedTask));
     newTaskForm[event.target.name] = event.target.value;
-    props.setSelectedTask(newTaskForm);
     console.log(newTaskForm);
+    props.setSelectedTask(newTaskForm);
   };
 
   return (
