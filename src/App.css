@@ -10,6 +10,16 @@
   --outline: #CACACA;
 }
 
+@font-face {
+  font-family: Cairo;
+  /* src: url(assets/fonts/OpenSans-VariableFont_wdth,wght.ttf); */
+}
+
+@font-face {
+  font-family: Roboto;
+  /* src: url(assets/fonts/SourceSansPro-Light.ttf); */
+}
+
 .App {
   font-family: 'Roboto', Arial, sans-serif;
   font-weight: 400;

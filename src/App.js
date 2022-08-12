@@ -267,6 +267,7 @@ function App() {
               addRoutine={addRoutine}
               updateRoutine={updateRoutine}
               deleteRoutine={deleteRoutine}
+              initiateRoutine={initiateRoutine}
             />
           }
         />
@@ -307,7 +308,7 @@ function App() {
               progressPercent={progressPercent}
               completeTasks={completeTasks}
               incompleteTasks={incompleteTasks}
-              initiateRoutine={initiateRoutine}
+              // initiateRoutine={initiateRoutine}
               fetchInitiatedRoutine={fetchInitiatedRoutine}
               fetchOneRoutine={fetchOneRoutine}
             />

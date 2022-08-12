@@ -81,6 +81,7 @@ const AllRoutines = (props) => {
             setShowAddForm={props.setShowAddForm}
             updateRoutine={props.updateRoutine}
             deleteRoutine={props.deleteRoutine}
+            initiateRoutine={props.initiateRoutine}
           ></RoutineList>
         </main>
       </>
@@ -111,6 +112,7 @@ AllRoutines.propTypes = {
   addRoutine: PropTypes.func.isRequired,
   updateRoutine: PropTypes.func.isRequired,
   deleteRoutine: PropTypes.func.isRequired,
+  initiateRoutine: PropTypes.func.isRequired,
 };
 
 export default AllRoutines;

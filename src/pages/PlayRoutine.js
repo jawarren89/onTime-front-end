@@ -14,14 +14,22 @@ import skip from "../assets/skip-forward.svg";
 const PlayRoutine = (props) => {
   const { routine_id } = useParams();
 
-  const startRoutine = () => {
-    props.initiateRoutine(props.selectedRoutine.routine_id);
-    props.setIsPlaying(true);
-  };
+  // const startRoutine = () => {
+  //   props.initiateRoutine(props.selectedRoutine.routine_id);
+  //   props.setIsPlaying(true);
+  // };
 
-  const pauseRoutine = () => {
-    props.setIsPlaying(false);
-  };
+  // const pauseRoutine = () => {
+  //   props.setIsPlaying(false);
+  // };
+
+  useEffect(() => {
+    const interval = setInterval(
+      () => props.fetchInitiatedRoutine(props.selectedRoutine.routine_id),
+      2000
+    );
+    return () => clearInterval(interval);
+  }, []);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => props.fetchOneRoutine(routine_id), []);
@@ -53,7 +61,7 @@ const PlayRoutine = (props) => {
           </section>
           <div className="controls">
             {props.isPlaying ? (
-              <button className="play" onClick={startRoutine}>
+              <button className="play">
                 <img src={pause} alt="pause icon" />
               </button>
             ) : (
@@ -90,7 +98,7 @@ PlayRoutine.propTypes = {
   progressPercent: PropTypes.number.isRequired,
   completeTasks: PropTypes.array.isRequired,
   incompleteTasks: PropTypes.array.isRequired,
-  initiateRoutine: PropTypes.func.isRequired,
+  // initiateRoutine: PropTypes.func.isRequired,
   fetchInitiatedRoutine: PropTypes.func.isRequired,
   fetchOneRoutine: PropTypes.func.isRequired,
 };

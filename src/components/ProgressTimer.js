@@ -14,7 +14,7 @@ const ProgressTimer = ({ percentage, colour }) => {
   const Circle = ({ colour, percentage }) => {
     const r = 70;
     const circ = 2 * Math.PI * r;
-    const strokePct = ((100 - percentage) * circ) / 100; // where stroke will start, e.g. from 15% to 100%.
+    const strokePct = (percentage * circ) / 100; // where stroke will start, e.g. from 15% to 100%.
     return (
       <circle
         r={r}

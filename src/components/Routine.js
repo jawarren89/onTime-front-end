@@ -18,6 +18,21 @@ import chevron_down from "../assets/chevron-down.svg";
 // component (called RoutineExpanded) if the routine is selected.
 
 const Routine = (props) => {
+  const startRoutine = () => {
+    props.setSelectedRoutine({
+      routine_id: props.routine_id,
+      title: props.title,
+      description: props.description,
+      destination: props.destination,
+      complete_time: props.complete_time,
+      start_time: props.start_time,
+      total_time: props.total_time,
+      tasks: props.tasks,
+    });
+    props.initiateRoutine(props.selectedRoutine.routine_id);
+    // props.setIsPlaying(true);
+  };
+
   const deleteOnClick = () => {
     props.deleteRoutine(props.routine_id);
   };
@@ -42,6 +57,34 @@ const Routine = (props) => {
     }
   };
 
+  // select routine and highlight it before allowing dropdown
+  // const expandRow = () => {
+  //   if (props.expandedRow !== props.routine_id) {
+  //     console.log("select this, close others");
+  //     props.setSelectedRoutine(props.routine_id);
+  //     props.setShowAddForm(false);
+  //     props.setExpandedRow(0);
+  //     props.setSelectedRoutine({
+  //       routine_id: props.routine_id,
+  //       title: props.title,
+  //       description: props.description,
+  //       destination: props.destination,
+  //       complete_time: props.complete_time,
+  //       start_time: props.start_time,
+  //       total_time: props.total_time,
+  //       tasks: props.tasks,
+  //     });
+  //   }
+  //   if (props.selectedRoutine.routine_id === props.routine_id) {
+  //     props.setExpandedRow(props.routine_id);
+  //   }
+  //   if (props.expandedRow === props.routine_id) {
+  //     console.log("you've already selected this, close it please");
+  //     props.setExpandedRow(0);
+  //     props.setSelectedRoutine(defaultRoutine);
+  //   }
+  // };
+
   const isActive = props.expandedRow === props.routine_id;
 
   const civStartTime = TimeToCivilian(props.start_time);
@@ -61,7 +104,7 @@ const Routine = (props) => {
         </li>
         <div className="button-container">
           <Link to={`/routines/${props.routine_id}/play`}>
-            <button className="play">
+            <button className="play" onClick={startRoutine}>
               <img src={play} alt="play icon" />
             </button>
           </Link>
@@ -123,6 +166,7 @@ Routine.propTypes = {
   setShowAddForm: PropTypes.func.isRequired,
   updateRoutine: PropTypes.func.isRequired,
   deleteRoutine: PropTypes.func.isRequired,
+  initiateRoutine: PropTypes.func.isRequired,
 };
 
 export default Routine;
