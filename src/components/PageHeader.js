@@ -1,6 +1,6 @@
 import "../styles/PageHeader.css";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import PropTypes from "prop-types";
 
@@ -11,15 +11,31 @@ import close from "../assets/x.svg";
 //navigation system.
 
 const PageHeader = (props) => {
+  let location = useLocation();
+  const path = () => {
+    if (location.pathname.includes("edit")) {
+      return "edit";
+    } else if (location.pathname.includes("play")) {
+      return "play";
+    }
+  };
+
+  const pageButton = path();
+
   return (
     <header className="header">
       <Link to="/" className="left-button">
         <img src={close} alt="x icon" />
       </Link>
       <h1 className="page-title">{props.pageTitle}</h1>
-      {/* <button className="right-button" onClick={showFormOnClick}>
-            <img src={add} alt="add icon" />
-        </button> */}
+
+      {pageButton === "edit" ? (
+        <Link to={`/`}>
+          <button className="save-routine btn">Save Changes</button>
+        </Link>
+      ) : (
+        <button className="stop-routine btn">End Routine</button>
+      )}
     </header>
   );
 };
