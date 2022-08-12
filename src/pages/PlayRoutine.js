@@ -1,6 +1,5 @@
 import "../styles/PlayRoutine.css";
-
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -8,7 +7,6 @@ import ProgressTimer from "../components/ProgressTimer";
 import PlayTaskList from "../components/PlayTaskList";
 
 import play from "../assets/play.svg";
-import pause from "../assets/pause.svg";
 import skip from "../assets/skip-forward.svg";
 
 const PlayRoutine = (props) => {
@@ -24,9 +22,10 @@ const PlayRoutine = (props) => {
 
   useEffect(() => {
     if (props.isPlaying) {
+      const intervalTime = props.requestInterval;
       let interval = setInterval(
         () => props.fetchInitiatedRoutine(props.selectedRoutine.routine_id),
-        1000
+        { intervalTime }
       );
       return () => clearInterval(interval);
     } else {
@@ -101,9 +100,10 @@ PlayRoutine.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   isPlaying: PropTypes.bool.isRequired,
   setIsPlaying: PropTypes.func.isRequired,
+  requestInterval: PropTypes.number.isRequired,
+  progressPercent: PropTypes.number.isRequired,
   selectedTask: PropTypes.object.isRequired,
   selectedRoutine: PropTypes.object.isRequired,
-  progressPercent: PropTypes.number.isRequired,
   tasks: PropTypes.array.isRequired,
   completeTasks: PropTypes.array.isRequired,
   incompleteTasks: PropTypes.array.isRequired,

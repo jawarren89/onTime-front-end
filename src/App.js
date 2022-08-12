@@ -36,6 +36,7 @@ function App() {
 
   // PlayRoutine
   const [isPlaying, setIsPlaying] = useState(false);
+  const [requestInterval, setRequestInterval] = useState(2000);
   const [progressPercent, setProgressPercent] = useState(100);
   const [completeTasks, setCompleteTasks] = useState([defaultTask]);
   const [incompleteTasks, setIncompleteTasks] = useState([defaultTask]);
@@ -196,6 +197,9 @@ function App() {
         setCompleteTasks(initiatedRoutine.complete_tasks);
         setIncompleteTasks(initiatedRoutine.incomplete_tasks);
 
+        const interval = initiatedRoutine.current_task.time * requestInterval;
+        setRequestInterval(interval);
+
         if (initiatedRoutine.percent <= 100) {
           setProgressPercent(initiatedRoutine.percent);
         } else {
@@ -309,9 +313,10 @@ function App() {
               isLoading={isLoading}
               isPlaying={isPlaying}
               setIsPlaying={setIsPlaying}
+              requestInterval={requestInterval}
+              progressPercent={progressPercent}
               selectedTask={selectedTask}
               selectedRoutine={selectedRoutine}
-              progressPercent={progressPercent}
               tasks={tasks}
               completeTasks={completeTasks}
               incompleteTasks={incompleteTasks}

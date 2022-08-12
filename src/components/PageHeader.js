@@ -27,7 +27,7 @@ const PageHeader = (props) => {
 
   return (
     <header className="header">
-      <Link to="/" className="left-button">
+      <Link to="/" className="left-button" onClick={endRoutine}>
         <img src={close} alt="x icon" />
       </Link>
       <h1 className="page-title">{props.pageTitle}</h1>
@@ -47,7 +47,6 @@ const PageHeader = (props) => {
 
 PageHeader.propTypes = {
   pageTitle: PropTypes.string.isRequired,
-  setIsPlaying: PropTypes.func.isRequired,
 };
 
 export default PageHeader;
