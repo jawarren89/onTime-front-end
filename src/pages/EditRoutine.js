@@ -1,5 +1,5 @@
 import "../styles/EditRoutine.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -21,10 +21,13 @@ import add from "../assets/plus-circle.svg";
 const EditRoutine = (props) => {
   const { routine_id } = useParams();
 
+  const ref = useRef(null);
+
   const showAddTaskOnClick = () => {
     props.setExpandedRow(0);
     props.setSelectedTask(defaultTask);
     props.setShowAddForm(!props.showAddForm);
+    ref.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const submitRoutineUpdate = (event) => {
@@ -50,6 +53,10 @@ const EditRoutine = (props) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => props.fetchOneRoutine(routine_id), []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // ---------------------------------------------------------------------- //
 
   if (props.isLoading) {
@@ -61,7 +68,7 @@ const EditRoutine = (props) => {
   } else {
     return (
       <>
-        <main className="editpage-container">
+        <main className="editpage-container" ref={ref}>
           <h2 className="editpage-header">
             Edit Routine: {props.selectedRoutine.title}
           </h2>

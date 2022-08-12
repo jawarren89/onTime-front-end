@@ -1,5 +1,5 @@
 import "../styles/AllRoutines.css";
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 
 import RoutineList from "../components/RoutineList";
@@ -19,6 +19,7 @@ const AllRoutines = (props) => {
     props.setExpandedRow(0);
     props.setSelectedRoutine(defaultRoutine);
     props.setShowAddForm(!props.showAddForm);
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
 
   const submitNewRoutine = (event) => {
@@ -29,6 +30,10 @@ const AllRoutines = (props) => {
     props.setSelectedRoutine(defaultRoutine);
     console.log(newRoutine);
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // ---------------------------------------------------------------------- //
 
