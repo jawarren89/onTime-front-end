@@ -32,10 +32,6 @@ const PlayRoutine = (props) => {
     }
   }, [props.isPlaying]);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   // ---------------------------------------------------------------------- //
 
   if (props.isLoading) {

@@ -1,14 +1,7 @@
 import "../styles/About.css";
 import React from "react";
-import { useEffect } from "react";
 
 const About = (props) => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  // ---------------------------------------------------------------------- //
-
   return (
     <>
       <main className="aboutpage-container">

@@ -31,10 +31,6 @@ const AllRoutines = (props) => {
     console.log(newRoutine);
   };
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   // ---------------------------------------------------------------------- //
 
   if (props.isLoading) {
