@@ -31,7 +31,7 @@ function App() {
   const [selectedRoutine, setSelectedRoutine] = useState(defaultRoutine);
 
   // Tasks
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState([defaultTask]);
   const [selectedTask, setSelectedTask] = useState(defaultTask);
 
   // PlayRoutine
@@ -309,6 +309,7 @@ function App() {
               selectedTask={selectedTask}
               selectedRoutine={selectedRoutine}
               progressPercent={progressPercent}
+              tasks={tasks}
               completeTasks={completeTasks}
               incompleteTasks={incompleteTasks}
               initiateRoutine={initiateRoutine}

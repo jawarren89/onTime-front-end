@@ -12,6 +12,7 @@ const PlayTaskList = (props) => {
       <PlayTask
         key={task.task_id}
         task_id={task.task_id}
+        routine_id={task.routine_id}
         title={task.title}
         time={task.time}
         start_time={task.start_time}

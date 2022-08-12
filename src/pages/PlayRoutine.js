@@ -79,13 +79,23 @@ const PlayRoutine = (props) => {
           </div>
 
           <h2 className="task-section">List your tasks here!</h2>
-          <section className="incomplete-container">
-            <PlayTaskList tasks={props.incompleteTasks}></PlayTaskList>
-          </section>
-          <section className="complete-container">
-            <h3 className="complete">Complete</h3>
-            <PlayTaskList tasks={props.completeTasks}></PlayTaskList>
-          </section>
+
+          {props.isPlaying ? (
+            <section>
+              <div className="incomplete-container">
+                <PlayTaskList tasks={props.incompleteTasks}></PlayTaskList>
+              </div>
+              <div className="complete-container">
+                <h3 className="complete">Complete</h3>
+                <PlayTaskList tasks={props.completeTasks}></PlayTaskList>
+              </div>
+            </section>
+          ) : (
+            <section className="incomplete-container">
+              <PlayTaskList tasks={props.tasks}></PlayTaskList>
+            </section>
+          )}
+
           <div>Saved Time:</div>
         </main>
       </>
@@ -100,6 +110,7 @@ PlayRoutine.propTypes = {
   selectedTask: PropTypes.object.isRequired,
   selectedRoutine: PropTypes.object.isRequired,
   progressPercent: PropTypes.number.isRequired,
+  tasks: PropTypes.array.isRequired,
   completeTasks: PropTypes.array.isRequired,
   incompleteTasks: PropTypes.array.isRequired,
   initiateRoutine: PropTypes.func.isRequired,

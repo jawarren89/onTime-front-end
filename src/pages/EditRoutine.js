@@ -89,7 +89,7 @@ const EditRoutine = (props) => {
           <section>
             <div className="task-section">
               <h2>Tasks</h2>
-              <p>(drag to rerder)</p>
+              <p>(drag to reorder)</p>
             </div>
             <div className="add-button-container">
               <button className="add-button" onClick={showAddTaskOnClick}>
