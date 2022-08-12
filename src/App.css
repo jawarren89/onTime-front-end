@@ -12,12 +12,12 @@
 
 @font-face {
   font-family: Cairo;
-  /* src: url(assets/fonts/OpenSans-VariableFont_wdth,wght.ttf); */
+  src: url(assets/Cairo-Regular.ttf)
 }
 
 @font-face {
   font-family: Roboto;
-  /* src: url(assets/fonts/SourceSansPro-Light.ttf); */
+  src: url(assets/Roboto-Regular.ttf);
 }
 
 .App {
@@ -96,12 +96,3 @@
 .add-button:active {
   background: red;
 }
-
-/* recommended in tutorial */
-/* .allroutines, .about {
-  display: flex;
-  height: 90vh;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-} */
