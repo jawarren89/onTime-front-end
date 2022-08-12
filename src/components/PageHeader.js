@@ -1,7 +1,6 @@
 import "../styles/PageHeader.css";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-
 import PropTypes from "prop-types";
 
 import close from "../assets/x.svg";
@@ -22,6 +21,10 @@ const PageHeader = (props) => {
 
   const pageButton = path();
 
+  const endRoutine = () => {
+    props.setIsPlaying(false);
+  };
+
   return (
     <header className="header">
       <Link to="/" className="left-button">
@@ -34,7 +37,9 @@ const PageHeader = (props) => {
           <button className="save-routine btn">Save Changes</button>
         </Link>
       ) : (
-        <button className="stop-routine btn">End Routine</button>
+        <button className="stop-routine btn" onClick={endRoutine}>
+          End Routine
+        </button>
       )}
     </header>
   );
@@ -42,6 +47,7 @@ const PageHeader = (props) => {
 
 PageHeader.propTypes = {
   pageTitle: PropTypes.string.isRequired,
+  setIsPlaying: PropTypes.func.isRequired,
 };
 
 export default PageHeader;

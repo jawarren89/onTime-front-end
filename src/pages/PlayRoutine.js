@@ -19,10 +19,6 @@ const PlayRoutine = (props) => {
     props.setIsPlaying(true);
   };
 
-  // const pauseRoutine = () => {
-  //   props.setIsPlaying(false);
-  // };
-
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => props.fetchOneRoutine(routine_id), []);
 

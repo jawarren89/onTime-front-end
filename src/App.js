@@ -253,7 +253,10 @@ function App() {
           setExpandNavMenu={setExpandNavMenu}
         ></NavMenu>
       ) : (
-        <PageHeader pageTitle={selectedRoutine.title}></PageHeader>
+        <PageHeader
+          pageTitle={selectedRoutine.title}
+          setIsPlaying={setIsPlaying}
+        ></PageHeader>
       )}
       <Routes>
         <Route
