@@ -24,12 +24,12 @@ const About = (props) => {
             transitions, onTime can help!
           </p>
           <ul className="features-list">
-            Current features allow users to:
+            Current features allow a user to:
             <li>Create new routines and save them for later use</li>
-            <li>
+            {/* <li>
               Keep a list of favorited tasks for quick access in creating
               routines
-            </li>
+            </li> */}
             <li>
               Easily modify allotted time for each task and instantly update
               total routine time
@@ -44,10 +44,10 @@ const About = (props) => {
             </li>
             <li>See how much time is left on each task</li>
             <li>View task time represented in both analog and digital form</li>
-            <li>
+            {/* <li>
               If a task is completed early, "save" time and skip to the next
               task
-            </li>
+            </li> */}
           </ul>
           <p className="about-content">
             onTime's back-end is written in Python, utilizing Flask and a

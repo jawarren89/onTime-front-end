@@ -1,3 +1,7 @@
+/* additional container and header css in App.js */
+.aboutpage-container {
+    padding: 2em 2em;
+}
 
 .about-content {
     text-align: justify;

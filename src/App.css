@@ -53,7 +53,6 @@
   max-width: 60em;
   height: 100vh;
   line-height: 1.5;
-  /* padding: 2em 2em; */
   margin: 0 auto;
   margin-bottom: 15em;
 }
@@ -94,5 +93,5 @@
 }
 
 .add-button:active {
-  background: red;
+  background: #f37f12;
 }

@@ -1,10 +1,11 @@
+/* additional container and header css in App.js */
+
 /* .playroutine-container * {
     border: 1px solid blue;
 } */
 
-.play-header {
-    font-family: 'Cairo', Arial, Helvetica, sans-serif;
-    color: var(--indigo);
-    padding-bottom: 1em;
-    text-align: center;
-}
+
+
+/* .play-header {
+
+} */
