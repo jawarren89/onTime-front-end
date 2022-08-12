@@ -1,6 +1,6 @@
 import "../styles/PlayRoutine.css";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -14,25 +14,29 @@ import skip from "../assets/skip-forward.svg";
 const PlayRoutine = (props) => {
   const { routine_id } = useParams();
 
-  // const startRoutine = () => {
-  //   props.initiateRoutine(props.selectedRoutine.routine_id);
-  //   props.setIsPlaying(true);
-  // };
+  const startRoutine = () => {
+    props.initiateRoutine(props.selectedRoutine.routine_id);
+    props.setIsPlaying(true);
+  };
 
   // const pauseRoutine = () => {
   //   props.setIsPlaying(false);
   // };
 
-  useEffect(() => {
-    const interval = setInterval(
-      () => props.fetchInitiatedRoutine(props.selectedRoutine.routine_id),
-      2000
-    );
-    return () => clearInterval(interval);
-  }, []);
-
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => props.fetchOneRoutine(routine_id), []);
+
+  useEffect(() => {
+    if (props.isPlaying) {
+      let interval = setInterval(
+        () => props.fetchInitiatedRoutine(props.selectedRoutine.routine_id),
+        1000
+      );
+      return () => clearInterval(interval);
+    } else {
+    }
+  }, [props.isPlaying]);
+
   // ---------------------------------------------------------------------- //
 
   if (props.isLoading) {
@@ -65,7 +69,7 @@ const PlayRoutine = (props) => {
                 <img src={pause} alt="pause icon" />
               </button>
             ) : (
-              <button>
+              <button onClick={startRoutine}>
                 <img src={play} alt="play icon" />
               </button>
             )}
@@ -98,7 +102,7 @@ PlayRoutine.propTypes = {
   progressPercent: PropTypes.number.isRequired,
   completeTasks: PropTypes.array.isRequired,
   incompleteTasks: PropTypes.array.isRequired,
-  // initiateRoutine: PropTypes.func.isRequired,
+  initiateRoutine: PropTypes.func.isRequired,
   fetchInitiatedRoutine: PropTypes.func.isRequired,
   fetchOneRoutine: PropTypes.func.isRequired,
 };

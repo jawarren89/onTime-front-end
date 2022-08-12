@@ -30,19 +30,19 @@ const ProgressTimer = ({ percentage, colour }) => {
     );
   };
 
-  const Text = ({ percentage }) => {
-    return (
-      <text
-        x="50%"
-        y="50%"
-        dominantBaseline="central"
-        textAnchor="middle"
-        fontSize={"1.5em"}
-      >
-        {percentage.toFixed(0)}%
-      </text>
-    );
-  };
+  // const Text = ({ percentage }) => {
+  //   return (
+  //     <text
+  //       x="50%"
+  //       y="50%"
+  //       dominantBaseline="central"
+  //       textAnchor="middle"
+  //       fontSize={"1.5em"}
+  //     >
+  //       {percentage.toFixed(0)}%
+  //     </text>
+  //   );
+  // };
 
   const pct = cleanPercentage({ percentage });
   return (
@@ -51,7 +51,7 @@ const ProgressTimer = ({ percentage, colour }) => {
         <Circle colour="lightgrey" />
         <Circle colour={colour} percentage={pct} />
       </g>
-      <Text percentage={pct} />
+      {/* <Text percentage={pct} /> */}
     </svg>
   );
 };

@@ -15,24 +15,10 @@ import chevron_right from "../assets/chevron-right.svg";
 import chevron_down from "../assets/chevron-down.svg";
 
 // The Routine component displays each routine, with an optionally expanded
-// component (called RoutineExpanded) if the routine is selected.
+// component (called RoutineExpanded) if the routine is selected. Routines
+// can be deleted, edited, or selected for "play".
 
 const Routine = (props) => {
-  const startRoutine = () => {
-    props.setSelectedRoutine({
-      routine_id: props.routine_id,
-      title: props.title,
-      description: props.description,
-      destination: props.destination,
-      complete_time: props.complete_time,
-      start_time: props.start_time,
-      total_time: props.total_time,
-      tasks: props.tasks,
-    });
-    props.initiateRoutine(props.selectedRoutine.routine_id);
-    // props.setIsPlaying(true);
-  };
-
   const deleteOnClick = () => {
     props.deleteRoutine(props.routine_id);
   };
@@ -104,7 +90,7 @@ const Routine = (props) => {
         </li>
         <div className="button-container">
           <Link to={`/routines/${props.routine_id}/play`}>
-            <button className="play" onClick={startRoutine}>
+            <button className="play">
               <img src={play} alt="play icon" />
             </button>
           </Link>
@@ -166,7 +152,6 @@ Routine.propTypes = {
   setShowAddForm: PropTypes.func.isRequired,
   updateRoutine: PropTypes.func.isRequired,
   deleteRoutine: PropTypes.func.isRequired,
-  initiateRoutine: PropTypes.func.isRequired,
 };
 
 export default Routine;

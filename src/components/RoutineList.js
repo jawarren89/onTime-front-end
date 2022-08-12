@@ -25,7 +25,6 @@ const RoutineList = (props) => {
         setShowAddForm={props.setShowAddForm}
         updateRoutine={props.updateRoutine}
         deleteRoutine={props.deleteRoutine}
-        initiateRoutine={props.initiateRoutine}
       ></Routine>
     );
   });
@@ -57,7 +56,6 @@ RoutineList.propTypes = {
   ),
   updateRoutine: PropTypes.func.isRequired,
   deleteRoutine: PropTypes.func.isRequired,
-  initiateRoutine: PropTypes.func.isRequired,
 };
 
 export default RoutineList;

@@ -195,7 +195,13 @@ function App() {
         setSelectedTask(initiatedRoutine.current_task);
         setCompleteTasks(initiatedRoutine.complete_tasks);
         setIncompleteTasks(initiatedRoutine.incomplete_tasks);
-        setProgressPercent(initiatedRoutine.percent);
+
+        if (initiatedRoutine.percent <= 100) {
+          setProgressPercent(initiatedRoutine.percent);
+        } else {
+          setIsPlaying(false);
+        }
+
         console.log(initiatedRoutine);
       })
       .catch((error) => {
@@ -234,8 +240,6 @@ function App() {
     }
   }, [location]);
 
-  // ---------------------------------------------------------------------- //
-
   useEffect(() => fetchAllRoutines(), []);
 
   // ---------------------------------------------------------------------- //
@@ -267,7 +271,6 @@ function App() {
               addRoutine={addRoutine}
               updateRoutine={updateRoutine}
               deleteRoutine={deleteRoutine}
-              initiateRoutine={initiateRoutine}
             />
           }
         />
@@ -308,7 +311,7 @@ function App() {
               progressPercent={progressPercent}
               completeTasks={completeTasks}
               incompleteTasks={incompleteTasks}
-              // initiateRoutine={initiateRoutine}
+              initiateRoutine={initiateRoutine}
               fetchInitiatedRoutine={fetchInitiatedRoutine}
               fetchOneRoutine={fetchOneRoutine}
             />
