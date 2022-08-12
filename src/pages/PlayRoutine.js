@@ -52,25 +52,23 @@ const PlayRoutine = (props) => {
           )}
           <p>You can do this, I believe in you.</p>
           <section>
-            <div className="circle">
-              <ProgressTimer
-                percentage={props.progressPercent}
-                colour={"teal"}
-              ></ProgressTimer>
-            </div>
-          </section>
-          <div className="controls">
             {props.isPlaying ? (
-              <button className="play">
-                <img src={pause} alt="pause icon" />
-              </button>
+              <div className="circle">
+                <ProgressTimer
+                  percentage={props.progressPercent}
+                  colour={"teal"}
+                ></ProgressTimer>
+              </div>
             ) : (
               <button onClick={startRoutine}>
                 <img src={play} alt="play icon" />
               </button>
             )}
+          </section>
+          <div className="controls">
             <button>
               <img src={skip} alt="skip icon" />
+              <span>Next Task</span>
             </button>
           </div>
 
