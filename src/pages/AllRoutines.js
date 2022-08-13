@@ -45,7 +45,10 @@ const AllRoutines = (props) => {
         <main className="allroutines-container">
           <section>
             <div>
-              <button className="add-button" onClick={showAddRoutineOnClick}>
+              <button
+                className="addform-button"
+                onClick={showAddRoutineOnClick}
+              >
                 <img src={add} alt="add icon" />
               </button>
             </div>

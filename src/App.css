@@ -71,7 +71,7 @@
 
 }
 
-.add-button {
+.addform-button {
   width: 70px;
   height: 70px;
   background-color: var(--orange);
@@ -92,6 +92,6 @@
   cursor: pointer;
 }
 
-.add-button:active {
+.addform-button:active {
   background: #f37f12;
 }

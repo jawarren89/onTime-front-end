@@ -14,8 +14,9 @@
     padding: 10px 8px 10px 8px;
 }
 
-.expanded {
+.selected {
     background-color: var(--aliceblue);
+    box-shadow: 0 0 4px 0 rgba(0,0,0,.25);
 }
 
 .chevron {
@@ -37,6 +38,10 @@
     justify-items: end;
     column-gap: .5em;
     padding: .25em;
+}
+
+.btn {
+    cursor: pointer;
 }
 
 .times-container {

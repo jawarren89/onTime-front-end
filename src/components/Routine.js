@@ -23,33 +23,14 @@ const Routine = (props) => {
     props.deleteRoutine(props.routine_id);
   };
 
-  const expandRow = () => {
-    if (props.expandedRow === props.routine_id) {
-      props.setExpandedRow(0);
-      props.setSelectedRoutine(defaultRoutine);
-    } else {
-      props.setShowAddForm(false);
-      props.setExpandedRow(props.routine_id);
-      props.setSelectedRoutine({
-        routine_id: props.routine_id,
-        title: props.title,
-        description: props.description,
-        destination: props.destination,
-        complete_time: props.complete_time,
-        start_time: props.start_time,
-        total_time: props.total_time,
-        tasks: props.tasks,
-      });
-    }
-  };
-
-  // select routine and highlight it before allowing dropdown
+  // select routine only once to expand dropdown
   // const expandRow = () => {
-  //   if (props.expandedRow !== props.routine_id) {
-  //     console.log("select this, close others");
-  //     props.setSelectedRoutine(props.routine_id);
-  //     props.setShowAddForm(false);
+  //   if (props.expandedRow === props.routine_id) {
   //     props.setExpandedRow(0);
+  //     props.setSelectedRoutine(defaultRoutine);
+  //   } else {
+  //     props.setShowAddForm(false);
+  //     props.setExpandedRow(props.routine_id);
   //     props.setSelectedRoutine({
   //       routine_id: props.routine_id,
   //       title: props.title,
@@ -61,26 +42,45 @@ const Routine = (props) => {
   //       tasks: props.tasks,
   //     });
   //   }
-  //   if (props.selectedRoutine.routine_id === props.routine_id) {
-  //     props.setExpandedRow(props.routine_id);
-  //   }
-  //   if (props.expandedRow === props.routine_id) {
-  //     console.log("you've already selected this, close it please");
-  //     props.setExpandedRow(0);
-  //     props.setSelectedRoutine(defaultRoutine);
-  //   }
   // };
 
-  const isActive = props.expandedRow === props.routine_id;
+  // select routine and highlight it before allowing dropdown
+  const expandRow = () => {
+    if (props.expandedRow !== props.routine_id) {
+      props.setSelectedRoutine(props.routine_id);
+      props.setShowAddForm(false);
+      props.setExpandedRow(0);
+      props.setSelectedRoutine({
+        routine_id: props.routine_id,
+        title: props.title,
+        description: props.description,
+        destination: props.destination,
+        complete_time: props.complete_time,
+        start_time: props.start_time,
+        total_time: props.total_time,
+        tasks: props.tasks,
+      });
+    }
+    if (props.selectedRoutine.routine_id === props.routine_id) {
+      props.setExpandedRow(props.routine_id);
+    }
+    if (props.expandedRow === props.routine_id) {
+      props.setExpandedRow(0);
+      props.setSelectedRoutine(defaultRoutine);
+    }
+  };
+
+  const isSelected = props.selectedRoutine.routine_id === props.routine_id;
+  const isExpanded = props.expandedRow === props.routine_id;
 
   const civStartTime = TimeToCivilian(props.start_time);
   const civCompleteTime = TimeToCivilian(props.complete_time);
 
   return (
-    <div className="routine-item-container">
-      <ul className={isActive ? "routine expanded" : "routine"}>
+    <div className="routine-container">
+      <ul className={isSelected ? "routine selected" : "routine"}>
         <img
-          src={isActive ? chevron_down : chevron_right}
+          src={isExpanded ? chevron_down : chevron_right}
           alt="expand/collapse icon"
           className="chevron"
           onClick={expandRow}
@@ -90,17 +90,17 @@ const Routine = (props) => {
         </li>
         <div className="button-container">
           <Link to={`/routines/${props.routine_id}/play`}>
-            <button className="play">
+            <button className="play btn">
               <img src={play} alt="play icon" />
             </button>
           </Link>
           <Link to={`/routines/${props.routine_id}/edit`}>
-            <button className="edit">
+            <button className="edit btn">
               <img src={edit} alt="edit icon" />
             </button>
           </Link>
           <div>
-            <button className="delete" onClick={deleteOnClick}>
+            <button className="delete btn" onClick={deleteOnClick}>
               <img src={trash} alt="trash icon" />
             </button>
           </div>
@@ -117,7 +117,7 @@ const Routine = (props) => {
         </div>
       </ul>
       <div className="expanded-routine-container">
-        {isActive ? (
+        {isExpanded ? (
           <RoutineExpanded
             routine_id={props.routine_id}
             tasks={props.tasks}

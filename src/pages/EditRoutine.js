@@ -95,7 +95,7 @@ const EditRoutine = (props) => {
               <p>(drag to reorder)</p>
             </div>
             <div className="add-button-container">
-              <button className="add-button" onClick={showAddTaskOnClick}>
+              <button className="addform-button" onClick={showAddTaskOnClick}>
                 <img src={add} alt="add icon" />
               </button>
             </div>
