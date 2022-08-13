@@ -19,13 +19,29 @@ const Task = (props) => {
     props.deleteTask(props.task_id);
   };
 
+  // select task only once to expand dropdown
+  // const expandRow = () => {
+  //   if (props.expandedRow === props.task_id) {
+  //     props.setExpandedRow(0);
+  //     props.setSelectedTask(defaultTask);
+  //   } else {
+  //     props.setShowAddForm(false);
+  //     props.setExpandedRow(props.task_id);
+  //     props.setSelectedTask({
+  //       task_id: props.task_id,
+  //       routine_id: props.routine_id,
+  //       title: props.title,
+  //       start_time: props.start_time,
+  //     });
+  //   }
+  // };
+
+  // select task and highlight it before allowing dropdown
   const expandRow = () => {
-    if (props.expandedRow === props.task_id) {
-      props.setExpandedRow(0);
+    if (props.expandedRow !== props.task_id) {
       props.setSelectedTask(defaultTask);
-    } else {
       props.setShowAddForm(false);
-      props.setExpandedRow(props.task_id);
+      props.setExpandedRow(0);
       props.setSelectedTask({
         task_id: props.task_id,
         routine_id: props.routine_id,
@@ -33,9 +49,17 @@ const Task = (props) => {
         start_time: props.start_time,
       });
     }
+    if (props.selectedTask.task_id === props.task_id) {
+      props.setExpandedRow(props.task_id);
+    }
+    if (props.expandedRow === props.task_id) {
+      props.setExpandedRow(0);
+      props.setSelectedTask(defaultTask);
+    }
   };
 
-  const isActive = props.expandedRow === props.task_id;
+  const isSelected = props.selectedTask.task_id === props.task_id;
+  const isExpanded = props.expandedRow === props.task_id;
 
   const civStartTime = TimeToCivilian(props.start_time);
 
@@ -43,9 +67,9 @@ const Task = (props) => {
 
   return (
     <div className="task-item-container">
-      <ul className={isActive ? "task expanded" : "task"}>
+      <ul className={isSelected ? "task selected" : "task"}>
         <img
-          src={isActive ? chevron_down : chevron_right}
+          src={isExpanded ? chevron_down : chevron_right}
           alt="expand/collapse icon"
           className="chevron"
           onClick={expandRow}
@@ -67,7 +91,7 @@ const Task = (props) => {
         </div>
       </ul>
       <div className="expanded-task-container">
-        {isActive ? (
+        {isExpanded ? (
           <TaskExpanded
             task_id={props.task_id}
             time={props.time}

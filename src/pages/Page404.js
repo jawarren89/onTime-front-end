@@ -1,7 +1,11 @@
 import "../styles/Page404.css";
-import React from "react";
+import React, { useEffect } from "react";
 
 const Page404 = (props) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <main className="page404-container">
