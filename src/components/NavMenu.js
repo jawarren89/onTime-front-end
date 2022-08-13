@@ -1,7 +1,7 @@
 // Source: https://www.youtube.com/watch?v=CXa0f4-dWi4
 
 import "../styles/NavMenu.css";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 import NavMenuData from "./NavMenuData";
@@ -15,8 +15,27 @@ import menu from "../assets/menu.svg";
 const NavMenu = (props) => {
   const toggleNavMenu = () => props.setExpandNavMenu(!props.expandNavMenu);
 
+  const ref = useRef();
+
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      if (
+        props.expandNavMenu &&
+        ref.current &&
+        !ref.current.contains(e.target)
+      ) {
+        props.setExpandNavMenu(false);
+      }
+    };
+
+    document.addEventListener("click", checkIfClickedOutside);
+    return () => {
+      document.removeEventListener("click", checkIfClickedOutside);
+    };
+  }, [props.expandNavMenu]);
+
   return (
-    <div className="nav-system">
+    <div className="nav-system" ref={ref}>
       <Link to="#" className="left-button">
         <img src={menu} alt="menu icon" onClick={toggleNavMenu} />
       </Link>
