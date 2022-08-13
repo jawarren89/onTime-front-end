@@ -21,7 +21,7 @@ import add from "../assets/plus-circle.svg";
 const EditRoutine = (props) => {
   const { routine_id } = useParams();
 
-  const ref = useRef(null);
+  const ref = useRef();
 
   const showAddTaskOnClick = () => {
     props.setExpandedRow(0);
@@ -52,6 +52,10 @@ const EditRoutine = (props) => {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => props.fetchOneRoutine(routine_id), []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // ---------------------------------------------------------------------- //
 

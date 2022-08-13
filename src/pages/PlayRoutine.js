@@ -21,6 +21,10 @@ const PlayRoutine = (props) => {
   useEffect(() => props.fetchOneRoutine(routine_id), []);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     if (props.isPlaying) {
       const intervalTime = props.requestInterval;
       let interval = setInterval(
