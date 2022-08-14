@@ -41,53 +41,43 @@ const AllRoutines = (props) => {
     );
   } else {
     return (
-      <>
-        <main className="allroutines-container">
-          <section>
-            <div>
-              <button
-                className="addform-button"
-                onClick={showAddRoutineOnClick}
-              >
-                <img src={add} alt="add icon" />
-              </button>
-            </div>
-            {props.showAddForm ? (
-              <form
-                className="routine-form expanded"
-                onSubmit={submitNewRoutine}
-              >
-                <RoutineForm
-                  selectedRoutine={props.selectedRoutine}
-                  setSelectedRoutine={props.setSelectedRoutine}
-                ></RoutineForm>
-                <input
-                  className="submit-button"
-                  type="submit"
-                  value="Create Routine"
-                  disabled={
-                    props.selectedRoutine.title.length < 1 ||
-                    props.selectedRoutine.title.length > 40 ||
-                    props.selectedRoutine.description.length > 110
-                  }
-                ></input>
-              </form>
-            ) : (
-              ""
-            )}
-          </section>
-          <RoutineList
-            routines={props.routines}
-            selectedRoutine={props.selectedRoutine}
-            setSelectedRoutine={props.setSelectedRoutine}
-            expandedRow={props.expandedRow}
-            setExpandedRow={props.setExpandedRow}
-            setShowAddForm={props.setShowAddForm}
-            updateRoutine={props.updateRoutine}
-            deleteRoutine={props.deleteRoutine}
-          ></RoutineList>
-        </main>
-      </>
+      <main className="allroutines-container">
+        <section>
+          <button className="addform-button" onClick={showAddRoutineOnClick}>
+            <img src={add} alt="add icon" />
+          </button>
+          {props.showAddForm ? (
+            <form className="routine-form" onSubmit={submitNewRoutine}>
+              <RoutineForm
+                selectedRoutine={props.selectedRoutine}
+                setSelectedRoutine={props.setSelectedRoutine}
+              ></RoutineForm>
+              <input
+                className="submitform btn"
+                type="submit"
+                value="Create Routine"
+                disabled={
+                  props.selectedRoutine.title.length < 1 ||
+                  props.selectedRoutine.title.length > 40 ||
+                  props.selectedRoutine.description.length > 110
+                }
+              ></input>
+            </form>
+          ) : (
+            ""
+          )}
+        </section>
+        <RoutineList
+          routines={props.routines}
+          selectedRoutine={props.selectedRoutine}
+          setSelectedRoutine={props.setSelectedRoutine}
+          expandedRow={props.expandedRow}
+          setExpandedRow={props.setExpandedRow}
+          setShowAddForm={props.setShowAddForm}
+          updateRoutine={props.updateRoutine}
+          deleteRoutine={props.deleteRoutine}
+        ></RoutineList>
+      </main>
     );
   }
 };

@@ -39,7 +39,7 @@ const TimeSelector = (props) => {
   };
 
   return (
-    <div className="time-dropdowns">
+    <>
       <TimeDropdown
         id="hour"
         label="hour"
@@ -61,7 +61,7 @@ const TimeSelector = (props) => {
         value={civCompleteTime.meridiem}
         onChange={onTimeChange}
       ></TimeDropdown>
-    </div>
+    </>
   );
 };
 

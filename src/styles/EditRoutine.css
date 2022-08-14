@@ -1,1 +1,35 @@
 /* additional container and header css in App.js */
+
+.editpage-container * {
+    border: 1px solid blue;
+}
+
+.editpage-container {
+    height: 100vh;
+    line-height: 1.5;
+    margin: 2em auto;
+    padding-bottom: 12em;
+}
+
+.editpage-header {
+    padding: .5em 1rem;
+}
+
+.routineform-container {
+    padding: 0 1rem;
+}
+
+.task-section {
+    margin-top: 2em;
+}
+
+.tasks-header {
+    background-color: var(--orange);
+    padding: 1em 1em;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    /* flex-flow: row nowrap; */
+    /* align-items: center;
+    justify-content: space-betweens; */
+}

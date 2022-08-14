@@ -4,8 +4,19 @@
     border: 1px solid blue;
 } */
 
+.playroutine-container {
+    height: 100vh;
+    line-height: 1.5;
+    margin: 0 auto;
+    padding-bottom: 12em;
+}
 
 
 /* .play-header {
 
 } */
+
+.big-play {
+  cursor: pointer;
+
+}

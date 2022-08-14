@@ -38,11 +38,7 @@ const RoutineExpanded = (props) => {
               selectedRoutine={props.selectedRoutine}
               setSelectedRoutine={props.setSelectedRoutine}
             ></TimeSelector>
-            <input
-              className="update-button"
-              type="submit"
-              value="Update"
-            ></input>
+            <input className="update btn" type="submit" value="Update"></input>
           </form>
         </li>
       </ul>

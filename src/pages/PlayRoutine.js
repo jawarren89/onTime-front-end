@@ -53,7 +53,6 @@ const PlayRoutine = (props) => {
           ) : (
             <h2>Press play to start routine</h2>
           )}
-          <p>You can do this, I believe in you.</p>
           <section>
             {props.isPlaying ? (
               <div className="circle">
@@ -63,13 +62,13 @@ const PlayRoutine = (props) => {
                 ></ProgressTimer>
               </div>
             ) : (
-              <button onClick={startRoutine}>
+              <button className="big-play" onClick={startRoutine}>
                 <img src={play} alt="play icon" />
               </button>
             )}
           </section>
           <div className="controls">
-            <button>
+            <button className="skip iconbtn">
               <img src={skip} alt="skip icon" />
               <span>Next Task</span>
             </button>

@@ -70,47 +70,48 @@ const EditRoutine = (props) => {
       <>
         <main className="editpage-container" ref={ref}>
           <h2 className="editpage-header">
-            Edit Routine: {props.selectedRoutine.title}
+            Edit: {props.selectedRoutine.title}
           </h2>
-          <p>You can do this, I believe in you.</p>
-          <section className="routineform-container">
-            <form onSubmit={submitRoutineUpdate}>
-              <RoutineForm
-                selectedRoutine={props.selectedRoutine}
-                setSelectedRoutine={props.setSelectedRoutine}
-              ></RoutineForm>
-              <div className="button-container">
-                <input
-                  className="update-button"
-                  type="submit"
-                  value="Update Details"
-                  disabled={
-                    props.selectedRoutine.title.length < 1 ||
-                    props.selectedRoutine.title.length > 40 ||
-                    props.selectedRoutine.description.length > 110
-                  }
-                ></input>
-              </div>
-            </form>
-          </section>
-          <section>
-            <div className="task-section">
+
+          <form
+            className="routineform-container"
+            onSubmit={submitRoutineUpdate}
+          >
+            <RoutineForm
+              selectedRoutine={props.selectedRoutine}
+              setSelectedRoutine={props.setSelectedRoutine}
+            ></RoutineForm>
+            <div className="button-container">
+              <input
+                className="update btn"
+                type="submit"
+                value="Update Details"
+                disabled={
+                  props.selectedRoutine.title.length < 1 ||
+                  props.selectedRoutine.title.length > 40 ||
+                  props.selectedRoutine.description.length > 110
+                }
+              ></input>
+            </div>
+          </form>
+
+          <section className="task-section">
+            <div className="tasks-header">
               <h2>Tasks</h2>
-              <p>(drag to reorder)</p>
+              <div>Total Time: {props.selectedRoutine.total_time}</div>
+              <div>(expand task to edit, drag to reorder)</div>
             </div>
-            <div className="add-button-container">
-              <button className="addform-button" onClick={showAddTaskOnClick}>
-                <img src={add} alt="add icon" />
-              </button>
-            </div>
+            <button className="addform-button" onClick={showAddTaskOnClick}>
+              <img src={add} alt="add icon" />
+            </button>
             {props.showAddForm ? (
-              <form className="task-form expanded" onSubmit={submitNewTask}>
+              <form className="task-form" onSubmit={submitNewTask}>
                 <TaskForm
                   selectedTask={props.selectedTask}
                   setSelectedTask={props.setSelectedTask}
                 ></TaskForm>
                 <input
-                  className="submit-button"
+                  className="submitform btn"
                   type="submit"
                   value="Add Task"
                   disabled={

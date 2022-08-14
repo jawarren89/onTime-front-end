@@ -77,7 +77,7 @@ const Routine = (props) => {
   const civCompleteTime = TimeToCivilian(props.complete_time);
 
   return (
-    <div className="routine-container">
+    <React.Fragment>
       <ul className={isSelected ? "routine selected" : "routine"}>
         <img
           src={isExpanded ? chevron_down : chevron_right}
@@ -90,17 +90,17 @@ const Routine = (props) => {
         </li>
         <div className="button-container">
           <Link to={`/routines/${props.routine_id}/play`}>
-            <button className="play btn">
+            <button className="play iconbtn">
               <img src={play} alt="play icon" />
             </button>
           </Link>
           <Link to={`/routines/${props.routine_id}/edit`}>
-            <button className="edit btn">
+            <button className="edit iconbtn">
               <img src={edit} alt="edit icon" />
             </button>
           </Link>
           <div>
-            <button className="delete btn" onClick={deleteOnClick}>
+            <button className="delete iconbtn" onClick={deleteOnClick}>
               <img src={trash} alt="trash icon" />
             </button>
           </div>
@@ -116,23 +116,21 @@ const Routine = (props) => {
           </li>
         </div>
       </ul>
-      <div className="expanded-routine-container">
-        {isExpanded ? (
-          <RoutineExpanded
-            routine_id={props.routine_id}
-            tasks={props.tasks}
-            total_time={props.total_time}
-            description={props.description}
-            complete_time={props.complete_time}
-            selectedRoutine={props.selectedRoutine}
-            setSelectedRoutine={props.setSelectedRoutine}
-            updateRoutine={props.updateRoutine}
-          ></RoutineExpanded>
-        ) : (
-          ""
-        )}
-      </div>
-    </div>
+      {isExpanded ? (
+        <RoutineExpanded
+          routine_id={props.routine_id}
+          tasks={props.tasks}
+          total_time={props.total_time}
+          description={props.description}
+          complete_time={props.complete_time}
+          selectedRoutine={props.selectedRoutine}
+          setSelectedRoutine={props.setSelectedRoutine}
+          updateRoutine={props.updateRoutine}
+        ></RoutineExpanded>
+      ) : (
+        ""
+      )}
+    </React.Fragment>
   );
 };
 

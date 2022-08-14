@@ -1,6 +1,6 @@
-.drop-down * {
+/* .drop-down * {
     border: 1px solid blue;
-}
+} */
 
 .drop-down-container {
     padding: 12px 5px;
@@ -14,7 +14,7 @@
     list-style-type: none;
     font-size: smaller;
     display: grid;
-    grid-template-columns: .25fr 1fr 3fr .25fr;
+    grid-template-columns: .25fr 1fr 3fr;
     grid-template-rows: 1fr 1fr 1fr;
     row-gap: 5px;
     align-items: center;
@@ -42,7 +42,7 @@
 }
 
 .time-selector-container {
-    grid-column: 2/5;
+    grid-column: 2/4;
     grid-row: 3;
 }
 
@@ -60,7 +60,7 @@
     padding: 0 .25em;
 }
 
-.update-button {
+.update.btn {
     padding: 0 .5em;
     margin-left: 1em;
 }

@@ -1,4 +1,5 @@
 .dropdown-item {
     margin-right: .5em;
     text-align: center;
+    cursor: pointer;
 }

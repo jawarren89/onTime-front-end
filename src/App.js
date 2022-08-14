@@ -231,11 +231,13 @@ function App() {
     } else if (location.pathname === "/settings") {
       setPageTitle("Settings");
       setViewNavSystem(true);
-    } else if (
-      location.pathname.includes("edit") ||
-      location.pathname.includes("play")
-    ) {
-      setPageTitle(selectedRoutine.title);
+    } else if (location.pathname.includes("edit")) {
+      setPageTitle("Edit Routine");
+      setViewNavSystem(false);
+      setExpandedRow(0);
+      setShowAddForm(false);
+    } else if (location.pathname.includes("play")) {
+      setPageTitle("Play Routine");
       setViewNavSystem(false);
       setExpandedRow(0);
       setShowAddForm(false);
@@ -262,7 +264,7 @@ function App() {
         ></NavMenu>
       ) : (
         <PageHeader
-          pageTitle={selectedRoutine.title}
+          pageTitle={pageTitle}
           setIsPlaying={setIsPlaying}
         ></PageHeader>
       )}

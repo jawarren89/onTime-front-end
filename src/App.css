@@ -46,42 +46,42 @@
   color: var(--indigo);
 }
 
-.allroutines-container, 
-.playroutine-container, 
-.editpage-container, 
-.aboutpage-container {
-  max-width: 60em;
-  height: 100vh;
-  line-height: 1.5;
-  margin: 0 auto;
-  margin-bottom: 15em;
-}
-
 .play-header,
 .editpage-header,
-.about-header {
+.about-header,
+.loading, 
+.page404-title {
   font-family: 'Cairo', Arial, Helvetica, sans-serif;
   color: var(--indigo);
-  padding-bottom: 1em;
-  text-align: center;
 }
 
-.add-button-container {
-  max-width: 60em;
+.btn * {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 31px;
+}
 
+/* includes skip button on play page */
+.iconbtn {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 31px;
 }
 
 .addform-button {
   width: 70px;
   height: 70px;
   background-color: var(--orange);
-  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
   border-radius: 50%;
-  font-size: 30px;
+  /* font-size: 30px; */
   box-shadow: 2px 2px 5px rgba(0,0,0,.25);
   position: fixed;
   right: 10%;

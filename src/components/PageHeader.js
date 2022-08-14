@@ -26,7 +26,7 @@ const PageHeader = (props) => {
   };
 
   return (
-    <header className="header">
+    <header className="navheader">
       <Link to="/" className="left-button" onClick={endRoutine}>
         <img src={close} alt="x icon" />
       </Link>
@@ -34,11 +34,11 @@ const PageHeader = (props) => {
 
       {pageButton === "edit" ? (
         <Link to={`/`}>
-          <button className="save-routine btn">Save Changes</button>
+          <button className="right-button btn">Save</button>
         </Link>
       ) : (
-        <button className="stop-routine btn" onClick={endRoutine}>
-          End Routine
+        <button className="right-button btn" onClick={endRoutine}>
+          End
         </button>
       )}
     </header>

@@ -1,6 +1,17 @@
 /* additional container and header css in App.js */
+
 .aboutpage-container {
-    padding: 2em 2em;
+    max-width: 60em;
+    height: 100vh;
+    line-height: 1.5;
+    margin: 0 auto;
+    padding: 2em 1.5em;
+}
+
+.about-header {
+    text-align: center;
+    padding-bottom: 1em;
+
 }
 
 .about-content {

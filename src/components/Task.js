@@ -66,7 +66,7 @@ const Task = (props) => {
   // ---------------------------------------------------------------------- //
 
   return (
-    <div className="task-item-container">
+    <React.Fragment>
       <ul className={isSelected ? "task selected" : "task"}>
         <img
           src={isExpanded ? chevron_down : chevron_right}
@@ -75,10 +75,10 @@ const Task = (props) => {
           onClick={expandRow}
         />
         <li className="task-title" onClick={expandRow}>
-          {props.title} | {props.time} minutes
+          {props.title} ({props.time} minutes)
         </li>
         <div className="button-container">
-          <button className="delete" onClick={deleteOnClick}>
+          <button className="delete iconbtn" onClick={deleteOnClick}>
             <img src={trash} alt="trash icon" />
           </button>
         </div>
@@ -90,22 +90,20 @@ const Task = (props) => {
           </li>
         </div>
       </ul>
-      <div className="expanded-task-container">
-        {isExpanded ? (
-          <TaskExpanded
-            task_id={props.task_id}
-            time={props.time}
-            selectedRoutine={props.selectedRoutine}
-            setSelectedRoutine={props.setSelectedRoutine}
-            selectedTask={props.selectedTask}
-            setSelectedTask={props.setSelectedTask}
-            updateTask={props.updateTask}
-          ></TaskExpanded>
-        ) : (
-          ""
-        )}
-      </div>
-    </div>
+      {isExpanded ? (
+        <TaskExpanded
+          task_id={props.task_id}
+          time={props.time}
+          selectedRoutine={props.selectedRoutine}
+          setSelectedRoutine={props.setSelectedRoutine}
+          selectedTask={props.selectedTask}
+          setSelectedTask={props.setSelectedTask}
+          updateTask={props.updateTask}
+        ></TaskExpanded>
+      ) : (
+        ""
+      )}
+    </React.Fragment>
   );
 };
 
