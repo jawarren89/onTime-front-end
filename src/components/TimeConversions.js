@@ -47,3 +47,14 @@ export const TimeToMilitary = (state) => {
     };
   }
 };
+
+export const hourMinuteConvert = (time) => {
+  if (time > 59) {
+    const hours = time / 60;
+    const minutes = time % 60;
+    return `${hours} hr, ${minutes} min`;
+  } else {
+    const minutes = time;
+    return `${minutes} min`;
+  }
+};

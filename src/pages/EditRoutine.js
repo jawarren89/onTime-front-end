@@ -8,6 +8,7 @@ import TaskList from "../components/TaskList";
 import TaskForm from "../components/TaskForm";
 
 import { defaultTask } from "../components/Constants";
+import { hourMinuteConvert } from "../components/TimeConversions";
 
 import add from "../assets/plus-circle.svg";
 
@@ -22,6 +23,8 @@ const EditRoutine = (props) => {
   const { routine_id } = useParams();
 
   const ref = useRef();
+
+  const totalTime = hourMinuteConvert(props.selectedRoutine.total_time);
 
   const showAddTaskOnClick = () => {
     props.setExpandedRow(0);
@@ -98,7 +101,7 @@ const EditRoutine = (props) => {
           <section className="task-section">
             <div className="tasks-header">
               <h2>Tasks</h2>
-              <div>Total Time: {props.selectedRoutine.total_time}</div>
+              <div>Total Time: {totalTime}</div>
               <div>(expand task to edit, drag to reorder)</div>
             </div>
             <button className="addform-button" onClick={showAddTaskOnClick}>

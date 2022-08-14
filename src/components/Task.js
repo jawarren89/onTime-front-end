@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import TaskExpanded from "./TaskExpanded";
 
 import { defaultTask } from "./Constants";
-import { TimeToCivilian } from "./TimeConversions";
+import { TimeToCivilian, hourMinuteConvert } from "./TimeConversions";
 
 import trash from "../assets/trash-2.svg";
 import chevron_right from "../assets/chevron-right.svg";
@@ -15,6 +15,8 @@ import chevron_down from "../assets/chevron-down.svg";
 // component (called TaskExpanded) if the task is selected.
 
 const Task = (props) => {
+  const taskTime = hourMinuteConvert(props.time);
+
   const deleteOnClick = () => {
     props.deleteTask(props.task_id);
   };
@@ -75,7 +77,7 @@ const Task = (props) => {
           onClick={expandRow}
         />
         <li className="task-title" onClick={expandRow}>
-          {props.title} ({props.time} minutes)
+          {props.title} | {taskTime}
         </li>
         <div className="button-container">
           <button className="delete iconbtn" onClick={deleteOnClick}>
