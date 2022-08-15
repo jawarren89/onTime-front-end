@@ -58,13 +58,14 @@
   color: var(--text);
 }
 
-.btn * {
+/* .btn * {
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 30px;
-}
+  font-size: 14px;
+} */
 
 /* includes skip button on play page */
 .iconbtn {
@@ -75,17 +76,23 @@
   height: 30px;
 }
 
-.submitform-button {
-  margin: 0 .25em;
+.submit-task-button,
+.submit-routine-button {
   padding: 2px 4px;  
   cursor: pointer;
 }
 
-.submitform-button:disabled {
+.submit-routine-button {
+  margin: 0 .25em;
+}
+
+
+.submit-routine-button:disabled,
+.submit-task-button:disabled {
   cursor: default;
 }
 
-.addform-button {
+.showform-button {
   width: 70px;
   height: 70px;
   background-color: var(--bluegreen);
@@ -107,7 +114,7 @@
   cursor: pointer;
 }
 
-.addform-button:active {
+.showform-button:active {
   background: var(--yellow);
   color: var(--teal);
 }

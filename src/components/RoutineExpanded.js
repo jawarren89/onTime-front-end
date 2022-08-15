@@ -20,7 +20,6 @@ const RoutineExpanded = (props) => {
   };
 
   return (
-    // <div className="dropdown-container">
     <ul className="dropdown-routine">
       <div className="drop-row1">
         <li className="total-items">
@@ -38,13 +37,12 @@ const RoutineExpanded = (props) => {
           setSelectedRoutine={props.setSelectedRoutine}
         ></TimeSelector>
         <input
-          className="submitform-button btn"
+          className="submit-routine-button btn"
           type="submit"
           value="Update"
         ></input>
       </form>
     </ul>
-    // </div>
   );
 };
 

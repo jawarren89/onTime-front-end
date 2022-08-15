@@ -34,6 +34,7 @@ const PlayRoutine = (props) => {
       return () => clearInterval(interval);
     } else {
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.isPlaying]);
 
   // ---------------------------------------------------------------------- //
@@ -73,9 +74,7 @@ const PlayRoutine = (props) => {
               <span>Next Task</span>
             </button>
           </div>
-
           <h2 className="task-section">List your tasks here!</h2>
-
           {props.isPlaying ? (
             <section>
               <div className="incomplete-container">

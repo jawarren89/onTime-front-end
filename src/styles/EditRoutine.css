@@ -19,6 +19,13 @@
     padding: .5rem 1rem 2rem 1.25rem;
 }
 
+.task-instructions {
+    font-family: 'Roboto-Italic';
+    color: var(--gray);
+    font-size: 14px;
+    padding: 0 0 .25em 1em;
+}
+
 .tasks-section-header {
     display: grid;
     grid-template-columns: 1fr 3fr;
@@ -38,12 +45,6 @@
     justify-self: end; 
 }
 
-/* .task-instructions {
-    grid-column: 1/3;
-    font-family: 'Roboto-Italic';
-    color: var(--gray);
-    font-size: 14px;
-} */
 
 .addtask-form {
     padding: 1rem 1rem 1rem 1.25rem;

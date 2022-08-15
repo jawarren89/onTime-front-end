@@ -1,55 +1,29 @@
-/* .drop-down * {
-    border: 1px solid blue;
-} */
+.dropdown-task * {
+    /* border: 1px solid blue; */
+    list-style-type: none;
 
-/* same as RoutineExpanded */
-.drop-down-container {
+}
+
+.dropdown-task {
+    display: grid;
+    grid-template-columns: .25fr 3fr 1fr;
+    grid-auto-flow: row;
     font-size: 14px;
     line-height: 2em;
     border-right: 1px solid var(--outline);
     border-left: 1px solid var(--outline);
     border-bottom: 1px solid var(--outline);
     box-shadow: 0 0 4px 0 rgba(0,0,0,.2);
-    padding: 1rem .5rem .75rem 2rem;
-}
-/* 
-.drop-down {
-    list-style-type: none;
-    font-size: smaller;
-    display: grid;
-    grid-template-columns: .25fr 1fr 3fr .25fr;
-    grid-template-rows: 1fr 1fr;
-    row-gap: 5px;
-    align-items: center;
+    padding: 1.25rem .5rem 1rem 2rem;
 }
 
-.drop-row1 {     
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+.update-task-form {
     grid-row: 1;
-    grid-column: 2/4;
+    grid-column: 1/3;
 }
 
-.total-tasks {
-    padding-right: 1em;
+.delete-container {
+    grid-column: 3;
+    align-self: end;
+    justify-self: start;
 }
-
-.total-time {
-    padding-right: 1em;
-}
-
-.drop-down {
-    grid-column: 2/5;
-    grid-row: 3;
-}
-
-.drop-down * {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-.complete-by-text {
-    padding-right: 4px
-} */

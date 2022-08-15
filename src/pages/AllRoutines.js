@@ -7,8 +7,6 @@ import RoutineForm from "../components/RoutineForm";
 
 import { defaultRoutine } from "../components/Constants";
 
-// import add from "../assets/plus-circle.svg";
-
 // The AllRoutines page component is the page that loads as a "home" page.
 // It shows all the routines stored in the database, and allows users to
 // play, edit, or delete a routine. The page allows a user to add a new
@@ -43,8 +41,8 @@ const AllRoutines = (props) => {
     return (
       <main className="allroutines-container">
         <section>
-          <button className="addform-button" onClick={showAddRoutineOnClick}>
-            {/* <img className="plus" src={add} alt="add icon" /> */}+
+          <button className="showform-button" onClick={showAddRoutineOnClick}>
+            +
           </button>
           {props.showAddForm ? (
             <form className="addroutine-form" onSubmit={submitNewRoutine}>
@@ -53,7 +51,7 @@ const AllRoutines = (props) => {
                 setSelectedRoutine={props.setSelectedRoutine}
               ></RoutineForm>
               <input
-                className="submitform-button btn"
+                className="submit-routine-button btn"
                 type="submit"
                 value="Create Routine"
                 disabled={

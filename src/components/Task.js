@@ -7,7 +7,6 @@ import TaskExpanded from "./TaskExpanded";
 import { defaultTask } from "./Constants";
 import { TimeToCivilian, hourMinuteConvert } from "./TimeConversions";
 
-import trash from "../assets/trash-2.svg";
 import chevron_right from "../assets/chevron-right.svg";
 import chevron_down from "../assets/chevron-down.svg";
 
@@ -16,10 +15,6 @@ import chevron_down from "../assets/chevron-down.svg";
 
 const Task = (props) => {
   const taskTime = hourMinuteConvert(props.time);
-
-  const deleteOnClick = () => {
-    props.deleteTask(props.task_id);
-  };
 
   // select task only once to expand dropdown
   // const expandRow = () => {
@@ -79,12 +74,8 @@ const Task = (props) => {
         <li className="task-title" onClick={expandRow}>
           {props.title}
         </li>
-        {/* <div className="taskbutton-container">
-          <button className="delete iconbtn" onClick={deleteOnClick}>
-            <img src={trash} alt="trash icon" />
-          </button>
-        </div> */}
-        <li className="task-start" onClick={expandRow}>
+
+        <li className="task-start">
           {civStartTime.hour}:{civStartTime.minute} {civStartTime.meridiem}
         </li>
         <li className="task-time" onClick={expandRow}>
@@ -100,6 +91,7 @@ const Task = (props) => {
           selectedTask={props.selectedTask}
           setSelectedTask={props.setSelectedTask}
           updateTask={props.updateTask}
+          deleteTask={props.deleteTask}
         ></TaskExpanded>
       ) : (
         ""

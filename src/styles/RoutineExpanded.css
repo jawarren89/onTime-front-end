@@ -1,8 +1,8 @@
-/* .dropdown-routine * {
-    border: 1px solid blue;
-} */
+.dropdown-routine * {
+    /* border: 1px solid blue; */
+    list-style-type: none;
+}
 
-/* same as task expanded */
 .dropdown-routine {
     font-size: 14px;
     line-height: 2em;
@@ -11,10 +11,6 @@
     border-bottom: 1px solid var(--outline);
     box-shadow: 0 0 4px 0 rgba(0,0,0,.2);
     padding: 1rem .5rem .75rem 2rem;
-}
-
-.dropdown-routine * {
-    list-style-type: none;
 }
 
 .drop-row1 {

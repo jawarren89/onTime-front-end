@@ -6,10 +6,16 @@ import TaskForm from "./TaskForm";
 
 import { defaultTask } from "./Constants";
 
+import trash from "../assets/trash-2.svg";
+
 // The TaskExpanded component holds additional data about each task,
 // and allows the user to update the total time for a task.
 
 const TaskExpanded = (props) => {
+  const deleteOnClick = () => {
+    props.deleteTask(props.task_id);
+  };
+
   const submitTaskUpdate = (event) => {
     event.preventDefault();
     const newTask = JSON.parse(JSON.stringify(props.selectedTask));
@@ -20,29 +26,29 @@ const TaskExpanded = (props) => {
   };
 
   return (
-    <div className="drop-down-container">
-      <ul className="drop-down-task">
-        <li className="time-selector-container">
-          <div className="complete-by-text">Total Time:</div>
-          <form className="complete-by-form" onSubmit={submitTaskUpdate}>
-            <TaskForm
-              selectedTask={props.selectedTask}
-              setSelectedTask={props.setSelectedTask}
-            ></TaskForm>
-            <input
-              className="submitform-button btn"
-              type="submit"
-              value="Update"
-              disabled={
-                props.selectedTask.title.length < 1 ||
-                props.selectedTask.title.length > 50 ||
-                props.selectedTask.time < 1
-              }
-            ></input>
-          </form>
-        </li>
-      </ul>
-    </div>
+    <ul className="dropdown-task">
+      <form className="update-task-form" onSubmit={submitTaskUpdate}>
+        <TaskForm
+          selectedTask={props.selectedTask}
+          setSelectedTask={props.setSelectedTask}
+        ></TaskForm>
+        <input
+          className="submit-task-button btn"
+          type="submit"
+          value="Update"
+          disabled={
+            props.selectedTask.title.length < 1 ||
+            props.selectedTask.title.length > 50 ||
+            props.selectedTask.time < 1
+          }
+        ></input>
+      </form>
+      <div className="delete-container">
+        <button className="delete iconbtn" onClick={deleteOnClick}>
+          <img src={trash} alt="trash icon" />
+        </button>
+      </div>
+    </ul>
   );
 };
 
@@ -52,6 +58,7 @@ TaskExpanded.propTypes = {
   selectedRoutine: PropTypes.object.isRequired,
   setSelectedRoutine: PropTypes.func.isRequired,
   updateTask: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
 };
 
 export default TaskExpanded;

@@ -33,16 +33,6 @@
     padding-right: 1em;
 }
 
-/* .taskbutton-container {
-    display: grid;
-    grid-column: 3;
-    grid-row: 2;
-    align-items: center;
-    justify-items: end;
-    column-gap: .5em;
-    padding: .25em;
-} */
-
 .task-start {
     grid-column: 3;
     grid-row: 1/2;
@@ -54,4 +44,5 @@
     align-items: center;
     justify-items: end;
     column-gap: .5em;
+    font-size: 14px;
 }

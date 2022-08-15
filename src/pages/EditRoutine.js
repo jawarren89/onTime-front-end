@@ -10,8 +10,6 @@ import TaskForm from "../components/TaskForm";
 import { defaultTask } from "../components/Constants";
 import { hourMinuteConvert } from "../components/TimeConversions";
 
-import add from "../assets/plus-circle.svg";
-
 // The EditRoutine page is accessed when a user clicks on a routine to edit or
 // when a user navigates to a specific edit route. As such, the routine fetched
 // is based on the routineId in the browserURL.
@@ -75,14 +73,13 @@ const EditRoutine = (props) => {
           <h2 className="editpage-header">
             Edit: {props.selectedRoutine.title}
           </h2>
-
           <form className="editroutine-form" onSubmit={submitRoutineUpdate}>
             <RoutineForm
               selectedRoutine={props.selectedRoutine}
               setSelectedRoutine={props.setSelectedRoutine}
             ></RoutineForm>
             <input
-              className="submitform-button btn"
+              className="submit-routine-button btn"
               type="submit"
               value="Update Details"
               disabled={
@@ -92,17 +89,16 @@ const EditRoutine = (props) => {
               }
             ></input>
           </form>
-
           <section>
+            <div className="task-instructions">
+              (expand task to edit, drag to reorder)
+            </div>
             <div className="tasks-section-header">
               <h2 className="task-header">Tasks</h2>
               <div className="routine-time">Total Time: {totalTime}</div>
-              {/* <div className="task-instructions">
-                (expand task to edit, drag to reorder)
-              </div> */}
             </div>
-            <button className="addform-button" onClick={showAddTaskOnClick}>
-              {/* <img src={add} alt="add icon" /> */}+
+            <button className="showform-button" onClick={showAddTaskOnClick}>
+              +
             </button>
             {props.showAddForm ? (
               <form className="addtask-form" onSubmit={submitNewTask}>
@@ -111,7 +107,7 @@ const EditRoutine = (props) => {
                   setSelectedTask={props.setSelectedTask}
                 ></TaskForm>
                 <input
-                  className="submitform-button btn"
+                  className="submit-task-button btn"
                   type="submit"
                   value="Add Task"
                   disabled={
