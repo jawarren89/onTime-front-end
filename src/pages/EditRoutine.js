@@ -76,36 +76,33 @@ const EditRoutine = (props) => {
             Edit: {props.selectedRoutine.title}
           </h2>
 
-          <form
-            className="routineform-container"
-            onSubmit={submitRoutineUpdate}
-          >
+          <form className="editroutine-form" onSubmit={submitRoutineUpdate}>
             <RoutineForm
               selectedRoutine={props.selectedRoutine}
               setSelectedRoutine={props.setSelectedRoutine}
             ></RoutineForm>
-            <div className="button-container">
-              <input
-                className="update btn"
-                type="submit"
-                value="Update Details"
-                disabled={
-                  props.selectedRoutine.title.length < 1 ||
-                  props.selectedRoutine.title.length > 40 ||
-                  props.selectedRoutine.description.length > 110
-                }
-              ></input>
-            </div>
+            <input
+              className="submit-routineform btn"
+              type="submit"
+              value="Update Details"
+              disabled={
+                props.selectedRoutine.title.length < 1 ||
+                props.selectedRoutine.title.length > 40 ||
+                props.selectedRoutine.description.length > 110
+              }
+            ></input>
           </form>
 
           <section className="task-section">
             <div className="tasks-header">
               <h2>Tasks</h2>
-              <div>Total Time: {totalTime}</div>
-              <div>(expand task to edit, drag to reorder)</div>
+              <div className="routine-time">Total Time: {totalTime}</div>
+              <div className="task-instructions">
+                (expand task to edit, drag to reorder)
+              </div>
             </div>
             <button className="addform-button" onClick={showAddTaskOnClick}>
-              <img src={add} alt="add icon" />
+              {/* <img src={add} alt="add icon" /> */}+
             </button>
             {props.showAddForm ? (
               <form className="task-form" onSubmit={submitNewTask}>

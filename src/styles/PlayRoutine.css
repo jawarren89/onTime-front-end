@@ -8,13 +8,8 @@
     height: 100vh;
     line-height: 1.5;
     margin: 0 auto;
-    padding-bottom: 12em;
+    padding-bottom: 12rem;
 }
-
-
-/* .play-header {
-
-} */
 
 .big-play {
   cursor: pointer;

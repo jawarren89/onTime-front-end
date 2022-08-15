@@ -1,22 +1,15 @@
+.input-container {
+    line-height: 1.5em;
+    padding-bottom: .5em;
+}
 
+.input-text {
+    font-size: 14px;
+    width: 33vw;
+    min-width: 285px;
+}
 
-
-/* for managing add new routine form, per inspo board
-h3 {
-    font-size: 20px;
-    margin: 0px;
-} */
-
-/* input[type=text] {
-    width: 80vw;
-    height: 24px;
-    padding: 5px;
-    border: 2px solid var(--aliceblue);
-    font-size: 16px;
-    color: var(--text);
-}  */
-
-/* .boardform-container {
-    display: inline-block;
-    margin: 0px;
-} */
+.input-complete {
+    line-height: 1.55em;
+    padding-bottom: .25em;
+}

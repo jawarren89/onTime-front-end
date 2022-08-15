@@ -79,7 +79,7 @@ const Task = (props) => {
         <li className="task-title" onClick={expandRow}>
           {props.title} | {taskTime}
         </li>
-        <div className="button-container">
+        <div className="taskbutton-container">
           <button className="delete iconbtn" onClick={deleteOnClick}>
             <img src={trash} alt="trash icon" />
           </button>

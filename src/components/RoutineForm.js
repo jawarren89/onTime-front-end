@@ -26,23 +26,26 @@ const RoutineForm = (props) => {
         <input
           type="text"
           name="title"
+          maxLength={40}
           placeholder="title required"
           value={props.selectedRoutine.title}
           onChange={onRoutineFormChange}
-          className="input-title"
+          className="input-text"
         />
       </div>
-      <div>
+      <div className="input-container">
         <label htmlFor="description">Description: </label>
         <input
           type="text"
           name="description"
+          maxLength={110}
           placeholder="add a description (optional)"
           value={props.selectedRoutine.description}
           onChange={onRoutineFormChange}
+          className="input-text resizeable"
         />
       </div>
-      <div>Complete by:</div>
+      <div className="input-complete">Complete by:</div>
       <TimeSelector
         selectedRoutine={props.selectedRoutine}
         setSelectedRoutine={props.setSelectedRoutine}

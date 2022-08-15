@@ -1,35 +1,53 @@
 /* additional container and header css in App.js */
 
-.editpage-container * {
+/* .editpage-container * {
     border: 1px solid blue;
-}
+} */
 
 .editpage-container {
     height: 100vh;
-    line-height: 1.5;
-    margin: 2em auto;
-    padding-bottom: 12em;
+    margin: 0 auto;
+    padding-bottom: 12rem;
 }
 
 .editpage-header {
-    padding: .5em 1rem;
+    padding: 2rem 1rem 1rem 1rem;
+    line-height: 1.55rem;
+    /* background-color: var(--aliceblue) */
+
 }
 
-.routineform-container {
-    padding: 0 1rem;
+.editroutine-form {
+    padding: .5rem 1rem 2.5rem 1rem;
+    /* background-color: var(--aliceblue) */
 }
 
-.task-section {
-    margin-top: 2em;
+.submit-routineform {
+    margin: 0 .25em;
+    padding: 2px 4px;    
 }
+
+/* .task-section {
+    margin-top: 2rem;
+} */
 
 .tasks-header {
     background-color: var(--orange);
-    padding: 1em 1em;
+    padding: .5rem 1rem;
     display: grid;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
-    /* flex-flow: row nowrap; */
-    /* align-items: center;
-    justify-content: space-betweens; */
+    align-items: center;
+    line-height: 1.5rem;
+}
+
+.routine-time {
+    justify-self: end; 
+    grid-column: 3;
+}
+
+.task-instructions {
+    font-family: 'Roboto-Italic';
+    font-size: smaller;
+    grid-column: 1/4;
 }

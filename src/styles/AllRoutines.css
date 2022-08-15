@@ -1,15 +1,21 @@
 /* additional container css in App.js */
 
-.allroutines-container * {
-    /* border: 1px solid blue; */
-
-}
+/* .allroutines-container * {
+    border: 1px solid blue;
+} */
 
 .allroutines-container {
-    /* max-width: 60em; */
     line-height: 1.5;
     margin: 0 auto;
-    padding-bottom: 12em;
+    padding-bottom: 12rem;
 }
 
+.addroutine-form {
+    padding: 1rem 1rem;
+    background-color: var(--aliceblue)
+}
 
+.submit-routineform {
+    margin: 0 .25em;
+    padding: 2px 4px;    
+}

@@ -11,17 +11,17 @@
     align-items: center;
     position: sticky;
     top: 0;
-    z-index: 999;
 }
 
 .page-title {
     color: var(--indigo);
-    padding: 0 0 0 1.5rem;
+    padding: 0 0 0 1.25rem;
     width: 100%;
+    font-size: 30px;
 }
 
 .left-button {
-    margin-left: 1.5rem;
+    margin-left: 1.25rem;
     font-size: 2rem;
     background: none;
 }

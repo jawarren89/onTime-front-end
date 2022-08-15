@@ -1,5 +1,5 @@
 import "../styles/AllRoutines.css";
-import React, { useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 import RoutineList from "../components/RoutineList";
@@ -7,7 +7,7 @@ import RoutineForm from "../components/RoutineForm";
 
 import { defaultRoutine } from "../components/Constants";
 
-import add from "../assets/plus-circle.svg";
+// import add from "../assets/plus-circle.svg";
 
 // The AllRoutines page component is the page that loads as a "home" page.
 // It shows all the routines stored in the database, and allows users to
@@ -44,16 +44,16 @@ const AllRoutines = (props) => {
       <main className="allroutines-container">
         <section>
           <button className="addform-button" onClick={showAddRoutineOnClick}>
-            <img src={add} alt="add icon" />
+            {/* <img className="plus" src={add} alt="add icon" /> */}+
           </button>
           {props.showAddForm ? (
-            <form className="routine-form" onSubmit={submitNewRoutine}>
+            <form className="addroutine-form" onSubmit={submitNewRoutine}>
               <RoutineForm
                 selectedRoutine={props.selectedRoutine}
                 setSelectedRoutine={props.setSelectedRoutine}
               ></RoutineForm>
               <input
-                className="submitform btn"
+                className="submit-routineform btn"
                 type="submit"
                 value="Create Routine"
                 disabled={
