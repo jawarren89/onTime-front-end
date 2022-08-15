@@ -49,32 +49,37 @@ const PlayRoutine = (props) => {
     return (
       <>
         <main className="playroutine-container">
-          {props.isPlaying ? (
-            <h2 className="play-header">Now: {props.selectedTask.title}</h2>
-          ) : (
-            <h2>Press play to start routine</h2>
-          )}
+          <h2 className="playroutine-header">{props.selectedRoutine.title}</h2>
           <section>
             {props.isPlaying ? (
-              <div className="circle">
+              <h3 className="currently-playing">
+                Now: {props.selectedTask.title}
+              </h3>
+            ) : (
+              <h3 className="currently-playing">Press play to start</h3>
+            )}
+            {props.isPlaying ? (
+              <div className="circle-container">
                 <ProgressTimer
                   percentage={props.progressPercent}
                   colour={"teal"}
                 ></ProgressTimer>
               </div>
             ) : (
-              <button className="big-play" onClick={startRoutine}>
-                <img src={play} alt="play icon" />
-              </button>
+              <div className="play-container">
+                <button className="big-play" onClick={startRoutine}>
+                  <img src={play} alt="play icon" />
+                </button>
+              </div>
             )}
           </section>
-          <div className="controls">
+          {/* <div className="controls">
             <button className="skip iconbtn">
               <img src={skip} alt="skip icon" />
-              <span>Next Task</span>
+              <span className="skip-text">Next Task</span>
             </button>
-          </div>
-          <h2 className="task-section">List your tasks here!</h2>
+          </div> */}
+          <h2 className="tasklist-header">Tasks</h2>
           {props.isPlaying ? (
             <section>
               <div className="incomplete-container">
@@ -86,12 +91,11 @@ const PlayRoutine = (props) => {
               </div>
             </section>
           ) : (
-            <section className="incomplete-container">
+            <section className="alltasks-container">
               <PlayTaskList tasks={props.tasks}></PlayTaskList>
             </section>
           )}
-
-          <div>Saved Time:</div>
+          <div className="saved-time">Saved Time:</div>
         </main>
       </>
     );

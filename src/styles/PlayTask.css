@@ -1,0 +1,43 @@
+.playtask * {
+    /* border: 1px solid blue; */
+}
+
+.playtask {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: .25fr 3fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-auto-flow: row;
+    border-right: 1px solid var(--outline);
+    border-left: 1px solid var(--outline);
+    border-bottom: 1px solid var(--outline);
+    padding: 1em .5em .75em .5em;
+    line-height: 1.5em
+
+}
+
+.playtask-chevron {
+    grid-column: 1;
+    grid-row: 1/3;
+    padding-right: .25em;
+}
+
+.playtask-title {
+    grid-row: 1;
+    grid-column: 2/3;
+    padding-right: 1em;
+}
+
+.playtask-start {
+    grid-column: 3;
+    grid-row: 1/2;
+    align-self: center;
+}
+
+.playtask-time {
+    grid-row: 2/3;
+    align-items: center;
+    justify-items: end;
+    column-gap: .5em;
+    font-size: 14px;
+}

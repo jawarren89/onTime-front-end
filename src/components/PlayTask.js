@@ -2,7 +2,7 @@ import "../styles/PlayTask.css";
 import React from "react";
 import PropTypes from "prop-types";
 
-import { hourMinuteConvert } from "./TimeConversions";
+import { hourMinuteConvert, TimeToCivilian } from "./TimeConversions";
 
 import chevron_right from "../assets/chevron-right.svg";
 
@@ -11,19 +11,21 @@ import chevron_right from "../assets/chevron-right.svg";
 
 const PlayTask = (props) => {
   const taskTime = hourMinuteConvert(props.time);
+  const civStartTime = TimeToCivilian(props.start_time);
 
   return (
-    <div className="playtask-container">
-      <ul className="playtask">
-        <img src={chevron_right} alt="right chevron" className="chevron" />
-        <li className="task-title">
-          {props.title} | {taskTime}
-        </li>
-        <div className="times-container">
-          <li className="time-start">Start:</li>
-        </div>
-      </ul>
-    </div>
+    <ul className="playtask">
+      <img
+        src={chevron_right}
+        alt="right chevron"
+        className="playtask-chevron"
+      />
+      <li className="playtask-title">{props.title}</li>
+      <li className="playtask-start">
+        {civStartTime.hour}:{civStartTime.minute} {civStartTime.meridiem}
+      </li>
+      <li className="playtask-time">{taskTime}</li>
+    </ul>
   );
 };
 
