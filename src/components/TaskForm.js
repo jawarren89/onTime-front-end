@@ -1,4 +1,4 @@
-import "../styles/RoutineForm.css";
+import "../styles/TaskForm.css";
 import React from "react";
 import PropTypes from "prop-types";
 
@@ -16,18 +16,19 @@ const TaskForm = (props) => {
 
   return (
     <React.Fragment>
-      <div className="input-container">
+      <div className="task-input-container">
         <label htmlFor="title">Title: </label>
         <input
           type="text"
           name="title"
+          maxLength={40}
           placeholder="title required"
           value={props.selectedTask.title}
           onChange={onTaskFormChange}
-          className="input-title"
+          className="task-input-text"
         />
       </div>
-      {/* <div className="input-container">
+      {/* <div className="task-input-container">
         <label htmlFor="hour">Hours: </label>
         <input
           type="number"
@@ -35,19 +36,19 @@ const TaskForm = (props) => {
           placeholder="0"
           value={props.selectedTask.time}
           onChange={onTaskFormChange}
-          className="input-title"
+          className="task-input-text"
         />
       </div> */}
-      <div>
+      <div className="task-input-container">
         <label htmlFor="time">Minutes: </label>
         <input
           type="number"
           min="1"
           name="time"
-          placeholder="time required"
+          placeholder="required"
           value={props.selectedTask.time}
           onChange={onTaskFormChange}
-          className="input-title"
+          className="task-input-number"
         />
       </div>
     </React.Fragment>

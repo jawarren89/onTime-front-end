@@ -73,24 +73,23 @@ const Task = (props) => {
         <img
           src={isExpanded ? chevron_down : chevron_right}
           alt="expand/collapse icon"
-          className="chevron"
+          className="task-chevron"
           onClick={expandRow}
         />
         <li className="task-title" onClick={expandRow}>
-          {props.title} | {taskTime}
+          {props.title}
         </li>
-        <div className="taskbutton-container">
+        {/* <div className="taskbutton-container">
           <button className="delete iconbtn" onClick={deleteOnClick}>
             <img src={trash} alt="trash icon" />
           </button>
-        </div>
-        <div className="times-container" onClick={expandRow}>
-          {/* <li className="total-time">Total Time: {props.time}</li> */}
-          <li className="time-start">
-            Start: {civStartTime.hour}:{civStartTime.minute}{" "}
-            {civStartTime.meridiem}
-          </li>
-        </div>
+        </div> */}
+        <li className="task-start" onClick={expandRow}>
+          {civStartTime.hour}:{civStartTime.minute} {civStartTime.meridiem}
+        </li>
+        <li className="task-time" onClick={expandRow}>
+          {taskTime}
+        </li>
       </ul>
       {isExpanded ? (
         <TaskExpanded

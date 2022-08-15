@@ -21,7 +21,7 @@ const RoutineForm = (props) => {
 
   return (
     <React.Fragment>
-      <div className="input-container">
+      <div className="routine-input-container">
         <label htmlFor="title">Title: </label>
         <input
           type="text"
@@ -30,10 +30,10 @@ const RoutineForm = (props) => {
           placeholder="title required"
           value={props.selectedRoutine.title}
           onChange={onRoutineFormChange}
-          className="input-text"
+          className="routine-input-text"
         />
       </div>
-      <div className="input-container">
+      <div className="routine-input-container">
         <label htmlFor="description">Description: </label>
         <input
           type="text"
@@ -42,10 +42,10 @@ const RoutineForm = (props) => {
           placeholder="add a description (optional)"
           value={props.selectedRoutine.description}
           onChange={onRoutineFormChange}
-          className="input-text resizeable"
+          className="routine-input-text"
         />
       </div>
-      <div className="input-complete">Complete by:</div>
+      <div className="input-complete-by">Complete by:</div>
       <TimeSelector
         selectedRoutine={props.selectedRoutine}
         setSelectedRoutine={props.setSelectedRoutine}

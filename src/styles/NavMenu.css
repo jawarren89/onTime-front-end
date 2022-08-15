@@ -2,18 +2,19 @@
 /* horizontal nav system header starts here */
 
 .nav-system {
-    font-family: 'Cairo', Arial, sans-serif;
-    margin: 0;
-    background-color: var(--bluegreen);
-    height: 56px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     position: sticky;
+    height: 56px;
+    margin: 0;
     top: 0;
+    font-family: 'Cairo', Arial, sans-serif;
+    background-color: var(--bluegreen);
 }
 
 .page-title {
+    font-family: 'Cairo', Arial, sans-serif;
     color: var(--indigo);
     padding: 0 0 0 1.25rem;
     width: 100%;

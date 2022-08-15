@@ -5,17 +5,13 @@
 } */
 
 .allroutines-container {
-    line-height: 1.5;
     margin: 0 auto;
     padding-bottom: 12rem;
 }
 
 .addroutine-form {
-    padding: 1rem 1rem;
-    background-color: var(--aliceblue)
-}
-
-.submit-routineform {
-    margin: 0 .25em;
-    padding: 2px 4px;    
+    padding: 1rem 2rem;
+    background-color: var(--aliceblue);
+    border-bottom: 1px solid var(--outline);
+    box-shadow: 0 0 4px 0 rgba(0,0,0,.2);
 }

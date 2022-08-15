@@ -1,8 +1,8 @@
 /* additional container and header css in App.js */
 
-/* .editpage-container * {
-    border: 1px solid blue;
-} */
+.editpage-container * {
+    /* border: 1px solid blue; */
+}
 
 .editpage-container {
     height: 100vh;
@@ -11,43 +11,43 @@
 }
 
 .editpage-header {
-    padding: 2rem 1rem 1rem 1rem;
-    line-height: 1.55rem;
-    /* background-color: var(--aliceblue) */
-
+    padding: 1.5rem 1rem 1rem 1.25rem;
+    line-height: 1.5rem;
 }
 
 .editroutine-form {
-    padding: .5rem 1rem 2.5rem 1rem;
-    /* background-color: var(--aliceblue) */
+    padding: .5rem 1rem 2rem 1.25rem;
 }
 
-.submit-routineform {
-    margin: 0 .25em;
-    padding: 2px 4px;    
-}
-
-/* .task-section {
-    margin-top: 2rem;
-} */
-
-.tasks-header {
-    background-color: var(--orange);
-    padding: .5rem 1rem;
+.tasks-section-header {
     display: grid;
-    grid-template-rows: 1fr 1fr;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 3fr;
     align-items: center;
+    padding: 1rem 1.25rem;
     line-height: 1.5rem;
+    background-color: var(--orange);
+    border-top: 1px solid var(--outline);
+    border-bottom: 1px solid var(--outline);
+}
+
+.task-header {
+    align-self: center;
 }
 
 .routine-time {
     justify-self: end; 
-    grid-column: 3;
 }
 
-.task-instructions {
+/* .task-instructions {
+    grid-column: 1/3;
     font-family: 'Roboto-Italic';
-    font-size: smaller;
-    grid-column: 1/4;
+    color: var(--gray);
+    font-size: 14px;
+} */
+
+.addtask-form {
+    padding: 1rem 1rem 1rem 1.25rem;
+    background-color: var(--aliceblue);
+    border-bottom: 1px solid var(--outline);
+    box-shadow: 0 0 4px 0 rgba(0,0,0,.2);
 }

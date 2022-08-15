@@ -3,20 +3,20 @@
 } */
 
 .navheader {
-    font-family: 'Cairo', Arial, sans-serif;
-    margin: 0;
-    background-color: var(--bluegreen);
-    height: 56px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     position: sticky;
+    margin: 0;
     top: 0;
+    height: 56px;
+    background-color: var(--bluegreen);
 }
 
 .right-button {
     margin: 0 1.5em;
     height: 30px;
     min-width: 40px;
-    padding: 4px 4px;    
+    padding: 4px 4px;   
+    cursor: pointer; 
 }

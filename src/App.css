@@ -75,6 +75,16 @@
   height: 30px;
 }
 
+.submitform-button {
+  margin: 0 .25em;
+  padding: 2px 4px;  
+  cursor: pointer;
+}
+
+.submitform-button:disabled {
+  cursor: default;
+}
+
 .addform-button {
   width: 70px;
   height: 70px;
@@ -89,7 +99,7 @@
   color: var(--indigo);
   box-shadow: 2px 2px 5px rgba(0,0,0,.25);
   position: fixed;
-  right: 10%;
+  right: 5%;
   bottom: 10%;
   transition: background-color .25s;
   outline: var(--teal);

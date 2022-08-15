@@ -34,10 +34,10 @@ const PageHeader = (props) => {
 
       {pageButton === "edit" ? (
         <Link to={`/`}>
-          <button className="right-button btn">Save</button>
+          <button className="right-button">Save</button>
         </Link>
       ) : (
-        <button className="right-button btn" onClick={endRoutine}>
+        <button className="right-button" onClick={endRoutine}>
           End
         </button>
       )}

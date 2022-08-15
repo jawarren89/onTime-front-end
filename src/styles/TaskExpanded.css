@@ -2,14 +2,17 @@
     border: 1px solid blue;
 } */
 
+/* same as RoutineExpanded */
 .drop-down-container {
-    padding: 12px 5px;
+    font-size: 14px;
+    line-height: 2em;
     border-right: 1px solid var(--outline);
     border-left: 1px solid var(--outline);
     border-bottom: 1px solid var(--outline);
     box-shadow: 0 0 4px 0 rgba(0,0,0,.2);
+    padding: 1rem .5rem .75rem 2rem;
 }
-
+/* 
 .drop-down {
     list-style-type: none;
     font-size: smaller;
@@ -49,13 +52,4 @@
 
 .complete-by-text {
     padding-right: 4px
-}
-
-.update-button-container {
-    padding: 0 .25em;
-}
-
-.update-button {
-    padding: 0 .5em;
-    margin-left: 1em;
-}
+} */

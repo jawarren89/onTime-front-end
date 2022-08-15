@@ -20,29 +20,31 @@ const RoutineExpanded = (props) => {
   };
 
   return (
-    <div className="drop-down-container">
-      <ul className="drop-down">
-        <div className="drop-row1">
-          <li className="total-tasks">
-            Tasks: {props.tasks.length ? props.tasks.length : "--"}
-          </li>
-          <li className="total-time">
-            Total time: {props.total_time ? props.total_time : "--"}
-          </li>
-        </div>
-        <li className="description">Description: {props.description}</li>
-        <li className="time-selector-container">
-          <div className="complete-by-text">Complete by:</div>
-          <form className="complete-by-form" onSubmit={submitTimeUpdate}>
-            <TimeSelector
-              selectedRoutine={props.selectedRoutine}
-              setSelectedRoutine={props.setSelectedRoutine}
-            ></TimeSelector>
-            <input className="update btn" type="submit" value="Update"></input>
-          </form>
+    // <div className="dropdown-container">
+    <ul className="dropdown-routine">
+      <div className="drop-row1">
+        <li className="total-items">
+          Tasks: {props.tasks.length ? props.tasks.length : "--"}
         </li>
-      </ul>
-    </div>
+        <li className="total-time">
+          Total time: {props.total_time ? props.total_time : "--"}
+        </li>
+      </div>
+      <li className="routine-description">Description: {props.description}</li>
+      <li className="complete-by-text">Complete by:</li>
+      <form className="complete-by-form" onSubmit={submitTimeUpdate}>
+        <TimeSelector
+          selectedRoutine={props.selectedRoutine}
+          setSelectedRoutine={props.setSelectedRoutine}
+        ></TimeSelector>
+        <input
+          className="submitform-button btn"
+          type="submit"
+          value="Update"
+        ></input>
+      </form>
+    </ul>
+    // </div>
   );
 };
 

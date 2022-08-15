@@ -53,7 +53,7 @@ const AllRoutines = (props) => {
                 setSelectedRoutine={props.setSelectedRoutine}
               ></RoutineForm>
               <input
-                className="submit-routineform btn"
+                className="submitform-button btn"
                 type="submit"
                 value="Create Routine"
                 disabled={

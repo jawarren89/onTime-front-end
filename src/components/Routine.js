@@ -82,13 +82,13 @@ const Routine = (props) => {
         <img
           src={isExpanded ? chevron_down : chevron_right}
           alt="expand/collapse icon"
-          className="chevron"
+          className="routine-chevron"
           onClick={expandRow}
         />
         <li className="routine-title" onClick={expandRow}>
           {props.title}
         </li>
-        <div className="button-container">
+        <div className="routinebutton-container">
           <Link to={`/routines/${props.routine_id}/play`}>
             <button className="play iconbtn">
               <img src={play} alt="play icon" />
@@ -105,12 +105,12 @@ const Routine = (props) => {
             </button>
           </div>
         </div>
-        <div className="times-container" onClick={expandRow}>
-          <li className="time-start">
+        <div className="routinetimes-container" onClick={expandRow}>
+          <li className="routine-start">
             Start: {civStartTime.hour}:{civStartTime.minute}{" "}
             {civStartTime.meridiem}
           </li>
-          <li className="time-complete">
+          <li className="routine-complete">
             Complete: {civCompleteTime.hour}:{civCompleteTime.minute}{" "}
             {civCompleteTime.meridiem}
           </li>

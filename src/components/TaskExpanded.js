@@ -21,7 +21,7 @@ const TaskExpanded = (props) => {
 
   return (
     <div className="drop-down-container">
-      <ul className="drop-down">
+      <ul className="drop-down-task">
         <li className="time-selector-container">
           <div className="complete-by-text">Total Time:</div>
           <form className="complete-by-form" onSubmit={submitTaskUpdate}>
@@ -30,7 +30,7 @@ const TaskExpanded = (props) => {
               setSelectedTask={props.setSelectedTask}
             ></TaskForm>
             <input
-              className="update-button"
+              className="submitform-button btn"
               type="submit"
               value="Update"
               disabled={
