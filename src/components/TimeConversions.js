@@ -48,6 +48,23 @@ export const TimeToMilitary = (state) => {
   }
 };
 
+// export const TimeToMilitary = (state) => {
+//   if (state.hour === "--") {
+//     return { hour: 0, minute: 0 };
+//   }
+//   if (state.meridiem === "PM") {
+//     return {
+//       hour: parseInt(state.hour) + 12,
+//       minute: parseInt(state.minute),
+//     };
+//   } else if (state.meridiem === "AM") {
+//     return {
+//       hour: parseInt(state.hour),
+//       minute: parseInt(state.minute),
+//     };
+//   }
+// };
+
 export const hourMinuteConvert = (time) => {
   if (time > 59) {
     const hours = time / 60;

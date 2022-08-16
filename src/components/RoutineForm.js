@@ -16,6 +16,7 @@ const RoutineForm = (props) => {
     routineForm[event.target.name] = event.target.value;
     const time = TimeToMilitary(props.selectedRoutine.complete_time);
     routineForm.complete_time = time;
+    console.log(routineForm);
     props.setSelectedRoutine(routineForm);
   };
 

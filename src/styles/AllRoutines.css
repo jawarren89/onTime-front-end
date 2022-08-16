@@ -9,9 +9,14 @@
     padding-bottom: 12rem;
 }
 
+.create-routine {
+    padding: 1rem 2rem 0rem 2rem;
+    background-color: var(--aliceblue);
+}
+
 .addroutine-form {
     padding: 1rem 2rem;
     background-color: var(--aliceblue);
     border-bottom: 1px solid var(--outline);
-    box-shadow: 0 0 4px 0 rgba(0,0,0,.2);
+    box-shadow: 0 4px 4px -4px rgba(0,0,0,.2);
 }

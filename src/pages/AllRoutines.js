@@ -24,8 +24,8 @@ const AllRoutines = (props) => {
     event.preventDefault();
     const newRoutine = JSON.parse(JSON.stringify(props.selectedRoutine));
     delete newRoutine.routine_id;
+    delete newRoutine.start_time;
     props.addRoutine(newRoutine);
-    props.setSelectedRoutine(defaultRoutine);
     console.log(newRoutine);
   };
 
@@ -45,22 +45,25 @@ const AllRoutines = (props) => {
             +
           </button>
           {props.showAddForm ? (
-            <form className="addroutine-form" onSubmit={submitNewRoutine}>
-              <RoutineForm
-                selectedRoutine={props.selectedRoutine}
-                setSelectedRoutine={props.setSelectedRoutine}
-              ></RoutineForm>
-              <input
-                className="submit-routine-button btn"
-                type="submit"
-                value="Create Routine"
-                disabled={
-                  props.selectedRoutine.title.length < 1 ||
-                  props.selectedRoutine.title.length > 40 ||
-                  props.selectedRoutine.description.length > 110
-                }
-              ></input>
-            </form>
+            <React.Fragment>
+              <h3 className="create-routine">Create a new routine</h3>
+              <form className="addroutine-form" onSubmit={submitNewRoutine}>
+                <RoutineForm
+                  selectedRoutine={props.selectedRoutine}
+                  setSelectedRoutine={props.setSelectedRoutine}
+                ></RoutineForm>
+                <input
+                  className="submit-routine-button btn"
+                  type="submit"
+                  value="Create Routine"
+                  disabled={
+                    props.selectedRoutine.title.length < 1 ||
+                    props.selectedRoutine.title.length > 40 ||
+                    props.selectedRoutine.description.length > 110
+                  }
+                ></input>
+              </form>
+            </React.Fragment>
           ) : (
             ""
           )}

@@ -44,15 +44,15 @@ const EditRoutine = (props) => {
     event.preventDefault();
     const newTask = JSON.parse(JSON.stringify(props.selectedTask));
     delete newTask.task_id;
+    delete newTask.start_time;
     newTask["routine_id"] = props.selectedRoutine.routine_id;
     newTask.time = parseInt(newTask.time);
     props.addTask(newTask);
-    props.setSelectedTask(defaultTask);
     console.log(newTask);
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => props.fetchOneRoutine(routine_id), []);
+  useEffect(() => props.fetchOneRoutine(routine_id), [submitNewTask]);
 
   useEffect(() => {
     window.scrollTo(0, 0);

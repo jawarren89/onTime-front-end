@@ -74,7 +74,6 @@ const Task = (props) => {
         <li className="task-title" onClick={expandRow}>
           {props.title}
         </li>
-
         <li className="task-start">
           {civStartTime.hour}:{civStartTime.minute} {civStartTime.meridiem}
         </li>
