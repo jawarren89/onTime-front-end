@@ -47,7 +47,7 @@ const About = (props) => {
               visualizer tool
             </li>
             <li>See how much time is left on each task</li>
-            <li>View task time represented in both analog and digital form</li>
+            <li>View task time represented in analog form</li>
             {/* <li>
               If a task is completed early, "save" time and skip to the next
               task
