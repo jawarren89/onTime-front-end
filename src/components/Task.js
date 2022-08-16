@@ -47,7 +47,6 @@ const Task = (props) => {
       });
     }
     if (props.selectedTask.task_id === props.task_id) {
-      console.log(props.selectedTask);
       props.setExpandedRow(props.task_id);
     }
     if (props.expandedRow === props.task_id) {
@@ -85,6 +84,7 @@ const Task = (props) => {
       {isExpanded ? (
         <TaskExpanded
           task_id={props.task_id}
+          routine_id={props.routine_id}
           time={props.time}
           selectedRoutine={props.selectedRoutine}
           setSelectedRoutine={props.setSelectedRoutine}

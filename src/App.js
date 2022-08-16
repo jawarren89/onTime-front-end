@@ -85,7 +85,6 @@ function App() {
     axios
       .post(`${URL}/routines`, routineData)
       .then((response) => {
-        console.log("POST: new routine added");
         console.log(response.data);
         setSelectedRoutine(defaultRoutine);
         setShowAddForm(false);
@@ -101,7 +100,9 @@ function App() {
       .put(`${URL}/routines/${routineId}`, routineData)
       .then((response) => {
         console.log(response.data);
+        setExpandedRow(0);
         fetchAllRoutines();
+        fetchOneRoutine(routineId);
       })
       .catch((error) => {
         console.log(error.response.data);
@@ -156,19 +157,20 @@ function App() {
       .put(`${URL}/tasks/${taskId}`, taskData)
       .then((response) => {
         console.log(response.data);
-        setSelectedTask(defaultTask);
         setExpandedRow(0);
+        fetchOneRoutine(taskData.routine_id);
       })
       .catch((error) => {
         console.log(error.response.data);
       });
   };
 
-  const deleteTask = (taskId) => {
+  const deleteTask = (taskId, routineId) => {
     axios
       .delete(`${URL}/tasks/${taskId}`)
       .then((response) => {
         console.log(response.data);
+        fetchOneRoutine(routineId);
       })
       .catch((error) => {
         console.log(error.response.data);

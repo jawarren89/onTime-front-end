@@ -8,7 +8,10 @@ import TaskList from "../components/TaskList";
 import TaskForm from "../components/TaskForm";
 
 import { defaultTask } from "../components/Constants";
-import { hourMinuteConvert } from "../components/TimeConversions";
+import {
+  TimeToMilitary,
+  hourMinuteConvert,
+} from "../components/TimeConversions";
 
 // The EditRoutine page is accessed when a user clicks on a routine to edit or
 // when a user navigates to a specific edit route. As such, the routine fetched
@@ -33,11 +36,11 @@ const EditRoutine = (props) => {
 
   const submitRoutineUpdate = (event) => {
     event.preventDefault();
-    props.updateRoutine(
-      props.selectedRoutine.routine_id,
-      props.selectedRoutine
-    );
-    console.log(props.selectedRoutine);
+    const updateRoutineForm = JSON.parse(JSON.stringify(props.selectedRoutine));
+    const time = TimeToMilitary(props.selectedRoutine.complete_time);
+    updateRoutineForm.complete_time = time;
+    props.updateRoutine(props.selectedRoutine.routine_id, updateRoutineForm);
+    console.log(updateRoutineForm);
   };
 
   const submitNewTask = (event) => {

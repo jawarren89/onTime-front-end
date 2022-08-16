@@ -22,7 +22,9 @@ import TimeDropdown from "./TimeDropdown";
 const TimeSelector = (props) => {
   const civCompleteTime = TimeToCivilian(props.selectedRoutine.complete_time);
 
-  // onTimeChange managed here and not at component level because component is
+  // The onTimeChange function takes the selected time from the dropdown and
+  // converts the hour and minute strings into integers to be stored in state.
+  // It is managed here and not at component level because component is
   // used in multiple places but submitted in combination with other forms.
   const onTimeChange = (event) => {
     const updateRoutineForm = JSON.parse(JSON.stringify(props.selectedRoutine));
@@ -32,7 +34,7 @@ const TimeSelector = (props) => {
       updateRoutineForm.complete_time[event.target.id] = parseInt(
         event.target.value
       );
-    } else {
+    } else if (event.target.id === "meridiem") {
       updateRoutineForm.complete_time[event.target.id] = event.target.value;
     }
     props.setSelectedRoutine(updateRoutineForm);

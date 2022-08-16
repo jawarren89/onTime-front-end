@@ -6,6 +6,7 @@ import RoutineList from "../components/RoutineList";
 import RoutineForm from "../components/RoutineForm";
 
 import { defaultRoutine } from "../components/Constants";
+import { TimeToMilitary } from "../components/TimeConversions";
 
 // The AllRoutines page component is the page that loads as a "home" page.
 // It shows all the routines stored in the database, and allows users to
@@ -25,6 +26,8 @@ const AllRoutines = (props) => {
     const newRoutine = JSON.parse(JSON.stringify(props.selectedRoutine));
     delete newRoutine.routine_id;
     delete newRoutine.start_time;
+    const time = TimeToMilitary(props.selectedRoutine.complete_time);
+    newRoutine.complete_time = time;
     props.addRoutine(newRoutine);
     console.log(newRoutine);
   };

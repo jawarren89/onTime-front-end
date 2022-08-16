@@ -4,8 +4,6 @@ import PropTypes from "prop-types";
 
 import TimeSelector from "./TimeSelector";
 
-import { TimeToMilitary } from "./TimeConversions";
-
 // The RoutineForm component is used to add a routine on the AllRoutines
 // page and to edit an existing routine on the EditRoutine page. The values
 // are managed with selectedRoutine state in App.
@@ -14,9 +12,6 @@ const RoutineForm = (props) => {
   const onRoutineFormChange = (event) => {
     const routineForm = JSON.parse(JSON.stringify(props.selectedRoutine));
     routineForm[event.target.name] = event.target.value;
-    const time = TimeToMilitary(props.selectedRoutine.complete_time);
-    routineForm.complete_time = time;
-    console.log(routineForm);
     props.setSelectedRoutine(routineForm);
   };
 

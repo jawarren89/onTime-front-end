@@ -13,16 +13,16 @@ import trash from "../assets/trash-2.svg";
 
 const TaskExpanded = (props) => {
   const deleteOnClick = () => {
-    props.deleteTask(props.task_id);
+    props.deleteTask(props.task_id, props.routine_id);
   };
 
   const submitTaskUpdate = (event) => {
     event.preventDefault();
-    const newTask = JSON.parse(JSON.stringify(props.selectedTask));
-    newTask.time = parseInt(newTask.time);
-    props.updateTask(props.task_id, newTask);
+    const updateTaskForm = JSON.parse(JSON.stringify(props.selectedTask));
+    updateTaskForm.time = parseInt(updateTaskForm.time);
+    props.updateTask(props.task_id, updateTaskForm);
     props.setSelectedTask(defaultTask);
-    console.log(newTask);
+    console.log(updateTaskForm);
   };
 
   return (
@@ -54,6 +54,7 @@ const TaskExpanded = (props) => {
 
 TaskExpanded.propTypes = {
   task_id: PropTypes.number.isRequired,
+  routine_id: PropTypes.number.isRequired,
   time: PropTypes.number.isRequired,
   selectedRoutine: PropTypes.object.isRequired,
   setSelectedRoutine: PropTypes.func.isRequired,
