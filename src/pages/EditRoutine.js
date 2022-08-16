@@ -52,7 +52,7 @@ const EditRoutine = (props) => {
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => props.fetchOneRoutine(routine_id), [submitNewTask]);
+  useEffect(() => props.fetchOneRoutine(routine_id), []);
 
   useEffect(() => {
     window.scrollTo(0, 0);

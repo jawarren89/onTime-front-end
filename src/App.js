@@ -100,7 +100,6 @@ function App() {
     axios
       .put(`${URL}/routines/${routineId}`, routineData)
       .then((response) => {
-        console.log("PUT: routine complete_time updated");
         console.log(response.data);
         fetchAllRoutines();
       })
@@ -142,10 +141,10 @@ function App() {
     axios
       .post(`${URL}/tasks`, taskData)
       .then((response) => {
-        console.log("POST: new task added");
         console.log(response.data);
         setSelectedTask(defaultTask);
         setShowAddForm(false);
+        fetchOneRoutine(taskData.routine_id);
       })
       .catch((error) => {
         console.log(error.response.data);
@@ -157,6 +156,8 @@ function App() {
       .put(`${URL}/tasks/${taskId}`, taskData)
       .then((response) => {
         console.log(response.data);
+        setSelectedTask(defaultTask);
+        setExpandedRow(0);
       })
       .catch((error) => {
         console.log(error.response.data);
