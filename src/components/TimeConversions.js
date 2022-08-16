@@ -14,6 +14,12 @@ export const TimeToCivilian = (time) => {
         minute: "--",
         meridiem: "--",
       };
+    } else if (time.hour === 0) {
+      return {
+        hour: "--",
+        minute: "--",
+        meridiem: "--",
+      };
     } else if (time.minute < 10) {
       return {
         hour: time.hour.toString(),
@@ -35,7 +41,7 @@ export const TimeToCivilian = (time) => {
 export const TimeToMilitary = (state) => {
   if (state.hour === "--") {
     return { hour: 0, minute: 0 };
-  } else if (state.meridiem === "PM") {
+  } else if (state.meridiem === "PM" && state.hour < 12) {
     return {
       hour: parseInt(state.hour) + 12,
       minute: parseInt(state.minute),
