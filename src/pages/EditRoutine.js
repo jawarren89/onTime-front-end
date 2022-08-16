@@ -1,5 +1,5 @@
 import "../styles/EditRoutine.css";
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -21,6 +21,8 @@ import {
 // Associated tasks can be added, updated, deleted, and reordered.
 
 const EditRoutine = (props) => {
+  const [updateButton, setUpdateButton] = useState("Update");
+
   const { routine_id } = useParams();
 
   const ref = useRef();
@@ -35,6 +37,11 @@ const EditRoutine = (props) => {
   };
 
   const submitRoutineUpdate = (event) => {
+    setUpdateButton("Saving...");
+    setTimeout(() => {
+      setUpdateButton("Update");
+    }, 2000);
+
     event.preventDefault();
     const updateRoutineForm = JSON.parse(JSON.stringify(props.selectedRoutine));
     const time = TimeToMilitary(props.selectedRoutine.complete_time);
@@ -84,7 +91,7 @@ const EditRoutine = (props) => {
             <input
               className="submit-routine-button btn"
               type="submit"
-              value="Update"
+              value={updateButton}
               disabled={
                 props.selectedRoutine.title.length < 1 ||
                 props.selectedRoutine.title.length > 40 ||

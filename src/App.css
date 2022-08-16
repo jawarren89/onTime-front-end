@@ -109,7 +109,7 @@
   right: 5%;
   bottom: 10%;
   transition: background-color .25s;
-  outline: var(--teal);
+  outline: var(--bluegreen);
   border: none;
   cursor: pointer;
 }
