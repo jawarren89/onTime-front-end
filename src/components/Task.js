@@ -36,17 +36,18 @@ const Task = (props) => {
   // select task and highlight it before allowing dropdown
   const expandRow = () => {
     if (props.expandedRow !== props.task_id) {
-      props.setSelectedTask(defaultTask);
       props.setShowAddForm(false);
       props.setExpandedRow(0);
       props.setSelectedTask({
         task_id: props.task_id,
         routine_id: props.routine_id,
         title: props.title,
+        time: props.time,
         start_time: props.start_time,
       });
     }
     if (props.selectedTask.task_id === props.task_id) {
+      console.log(props.selectedTask);
       props.setExpandedRow(props.task_id);
     }
     if (props.expandedRow === props.task_id) {

@@ -47,7 +47,6 @@ const Routine = (props) => {
   // select routine and highlight it before allowing dropdown
   const expandRow = () => {
     if (props.expandedRow !== props.routine_id) {
-      props.setSelectedRoutine(props.routine_id);
       props.setShowAddForm(false);
       props.setExpandedRow(0);
       props.setSelectedRoutine({
