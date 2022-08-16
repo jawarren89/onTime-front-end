@@ -74,9 +74,15 @@ const Task = (props) => {
         <li className="task-title" onClick={expandRow}>
           {props.title}
         </li>
-        <li className="task-start">
-          {civStartTime.hour}:{civStartTime.minute} {civStartTime.meridiem}
-        </li>
+        {props.selectedRoutine.complete_time.hour ? (
+          <li className="task-start">
+            {civStartTime.hour}:{civStartTime.minute} {civStartTime.meridiem}
+          </li>
+        ) : (
+          <li className="task-start" onClick={expandRow}>
+            -- : -- --
+          </li>
+        )}
         <li className="task-time" onClick={expandRow}>
           {taskTime}
         </li>
