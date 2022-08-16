@@ -84,7 +84,7 @@ const EditRoutine = (props) => {
             <input
               className="submit-routine-button btn"
               type="submit"
-              value="Update Details"
+              value="Update"
               disabled={
                 props.selectedRoutine.title.length < 1 ||
                 props.selectedRoutine.title.length > 40 ||

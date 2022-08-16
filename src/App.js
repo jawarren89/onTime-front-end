@@ -268,6 +268,8 @@ function App() {
       ) : (
         <PageHeader
           pageTitle={pageTitle}
+          selectedRoutine={selectedRoutine}
+          updateRoutine={updateRoutine}
           setIsPlaying={setIsPlaying}
         ></PageHeader>
       )}
