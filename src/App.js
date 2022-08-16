@@ -14,7 +14,7 @@ import Page404 from "./pages/Page404";
 import { defaultTask, defaultRoutine } from "./components/Constants";
 
 function App() {
-  const URL = "https://ontime-planner.herokuapp.com";
+  const URL = "https://ontime-planner1.herokuapp.com";
 
   // Utilities
   const [isLoading, setIsLoading] = useState(true);

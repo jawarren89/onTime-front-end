@@ -61,7 +61,8 @@ const About = (props) => {
         <section className="authors-section">
           <h2 className="about-header">Who are we?</h2>
           <p className="about-content">
-            That feels like an existential question, don't you think?
+            onTime was developed by Julie Warren and Joan Kovacs as a capstone
+            project for Cohort 17 of Ada Developers Academy.
           </p>
         </section>
       </main>
