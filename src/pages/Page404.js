@@ -10,7 +10,7 @@ const Page404 = (props) => {
     <>
       <main className="page404-container">
         <h1 className="page404-title">404: Page Not Found</h1>
-        <p>load interesting image here</p>
+        {/* <p>load interesting image here</p> */}
       </main>
     </>
   );
